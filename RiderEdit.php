@@ -5,9 +5,9 @@
  * Date: 1/23/17
  * Time: 6:08 PM
  */
-// TRiderEdit.php
+// RiderEdit.php
 // Sandor Dosa
-// v0.01
+// v0.03
 // Script to allow a Rider to edit their information, or for a new rider to register with the database.
 // Set ROMEO Rider Search dropdown
 // Set PAPA Rider info pull.
