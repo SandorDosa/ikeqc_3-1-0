@@ -5,7 +5,7 @@ $_SESSION['MA1'] = false;
 $_SESSION['MA3'] = true;
 include "ikeqcfuncs.inc";
 include "year.inc";
-include "moarch.inc";
+include "MA3.inc";
 $EName = "Sample Wars III";
 $RiderHonors = "Earl Sir";
 $RiderName = "Earl";
@@ -121,7 +121,7 @@ IF ($RunMoarch) {
         print "<TD>Bounce<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"N\"></TD>\n";
         print "<TD>Dropout<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"D\"></TD>\n";
         print "<TD>P/T<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"P\"></TD></TR>\n";
-        print "<TR><TD ALIGN=\"RIGHT\">Time:</TD><TD COLSPAN=3></TD><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"16\"></TD></TR>\n";
+        print "<TR><TD ALIGN=\"RIGHT\">Time:</TD><TD COLSPAN=3><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"16\"></TD></TR>\n";
         print "</TABLE>\n";
         print "</DIV>\n";
 
