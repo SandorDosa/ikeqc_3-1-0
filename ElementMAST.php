@@ -1,11 +1,11 @@
 <?PHP
 
 session_start();
+$_SESSION['MA3'] = false;
+$_SESSION['MA1'] = true;
 include "ikeqcfuncs.inc";
 include "year.inc";
 include "moarch.inc";
-$_SESSION['MA3'] = false;
-$_SESSION['MA1'] = true;
 $EName = "Sample Wars III";
 $RiderHonors = "Earl Sir";
 $RiderName = "Earl";
