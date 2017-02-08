@@ -1,36 +1,20 @@
-<?php
+<?PHP
+// MA1.inc
+// Include file with the settings of scoring for 'Petite Mounted Archery' aka Single Shot
+// File v0.2a
+// Last Updated: 5 FEB 2017
+// Sandor Dosa
 
-//The following will allow for the easy alteration of the scoring for the Mounted Archery games.
+// NOTE: This is a six-fold increase above Grand Mounted Archery.
 
-IF (isset($_SESSION['MA1']) OR $_SESSION['MA1']) {
+$Gold = 30;                      //Bullseye of Target
+$Red = 24;                       //First Ring
+$Blue = 18;                      //Second Ring
+$Black = 12;                     //Third Ring
+$White = 6;                      //Outer Ring
+$Bounce = 0;                     //Shots that strike but do not stick in the target
+$Passthru = 0;                   //Shots that pass thru the target
+$Dropout = 0;                    //Shots that strike, stick for a moment and then drop out
+$Technical = 0;                  //Score added for proper control and technical form (i.e. consolation point(s)
 
-    // This section for Single Shot
-
-    $Gold = 30;
-    $Red = 24;
-    $Blue = 18;
-    $Black = 12;
-    $White = 6;
-    $Bounce = 0;
-    $Passthru = 0;
-    $Dropout = 0;
-    $Technical = 0;
-}
-
-IF (isset($_SESSION['MA3']) OR $_SESSION['MA3']) {
-
-    $Gold = 5;
-    $Red = 4;
-    $Blue = 3;
-    $Black = 2;
-    $White = 1;
-    $Bounce = 0;
-    $Passthru = 0;
-    $Dropout = 0;
-    $Technical = 0;
-    $bonus_gate = 15;
-    $bonus_method = "STRICT";
-
-
-}
 ?>

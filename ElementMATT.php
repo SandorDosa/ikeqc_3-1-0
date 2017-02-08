@@ -1,27 +1,28 @@
 <?PHP
 
 session_start();
-$_SESSION['MA1'] = false;
-$_SESSION['MA3'] = true;
 include "ikeqcfuncs.inc";
-include "year.inc";
+//include "year.inc";
 include "MA3.inc";
+// /Dev/Data is hardcoded here, actual use will pass this data via $_POST
 $EName = "Sample Wars III";
 $RiderHonors = "Earl Sir";
 $RiderName = "Earl";
 $RiderID = 999;
 $RiderDVN = 1;
 $run = 999;
+$RunMoarch = true;
+// End /Dev/Data
 $_SESSION['RiderHonors'] = $RiderHonors;
 $_SESSION['RiderName'] = $RiderName;
 $_SESSION['RiderID'] = $RiderID;
 $_SESSION['RiderDVN'] = $RiderDVN;
-$_SESSION['EName'] = "Sample Wars III";
-$RunMoarch = true;
+$_SESSION['EName'] = $EName;
+
 
 IF ($RunMoarch) {
 
-    IF ($MA3Edit > 0) {
+    IF (isset($MA3Edit) OR $MA3Edit > 0) {
         $run = $_SESSION['RiderID'];
         $review = -1;
     }
@@ -55,7 +56,7 @@ IF ($RunMoarch) {
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-light-green\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"G\"></TD>\n";
+        print "<TD class=\"w3-text-dark-grey\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"G\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"R\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"B\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"K\"></TD>\n";
@@ -80,7 +81,7 @@ IF ($RunMoarch) {
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-light-green\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"G\"></TD>\n";
+        print "<TD class=\"w3-text-black\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"G\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"R\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"B\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"K\"></TD>\n";
@@ -90,7 +91,7 @@ IF ($RunMoarch) {
         print "</TABLE>\n";
         print "</div>\n";
         print "</div>\n";
-        print "<div id=\"MoArch\" class=\"w3-container w3-indigo\">\n";
+        print "<div id=\"MoArch\" class=\"w3-container w3-deep-purple\">\n";
         print "<table class=\"w3-table w3-centered\"> \n";
         print "<TR><TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"M\"></TD>\n";
         print "<TD>Bounce<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"N\"></TD>\n";
@@ -105,7 +106,7 @@ IF ($RunMoarch) {
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-light-green\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"G\"></TD>\n";
+        print "<TD class=\"w3-text-light-grey\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"G\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"R\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"B\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"K\"></TD>\n";
@@ -115,7 +116,7 @@ IF ($RunMoarch) {
         print "</TABLE>\n";
         print "</div>\n";
         print "</div>\n";
-        print "<div id=\"MoArch\" class=\"w3-container w3-indigo\">\n";
+        print "<div id=\"MoArch\" class=\"w3-container w3-purple\">\n";
         print "<table class=\"w3-table w3-centered\"> \n";
         print "<TR><TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"M\"></TD>\n";
         print "<TD>Bounce<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"N\"></TD>\n";
@@ -124,11 +125,12 @@ IF ($RunMoarch) {
         print "<TR><TD ALIGN=\"RIGHT\">Time:</TD><TD COLSPAN=3><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"16\"></TD></TR>\n";
         print "</TABLE>\n";
         print "</DIV>\n";
-
-
-
-        print "<input type=\"hidden\" name=\"run\" value=\"$run\">\n";
-        print "<button class=\"w3-btn w3-black\" name=\"review\" value=\"11\">Submit</button>\n";
+        print "<DIV class=\"w3-container w3-pink\">\n";
+        print "<input type=\"hidden\" name=\"review\" value=\"11\">\n";
+        print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> or \n";
+        print "<button class=\"w3-btn w3-black\" name=\"run\" type=\"reset\" value=\"$run\">Reset</button>\n";
+        print "</DIV>\n";
+        ShowDebug();
         die;
     }
 
@@ -138,17 +140,17 @@ IF ($RunMoarch) {
         IF (isset($MA3time)) {
             IF (is_numeric($MA3time)) {
                 IF (preg_match('/^[0-9]+\.[0-9]{2}$/', $MA3time)) {
-                    $raw = $MA3time * 100;
-                    
+                    $raw = $MA3time;
+
                     IF ($bonus_method = "R") {
                         IF ($raw <= $bonus_gate) {
-                            $bonus = $raw - $bonus_gate;
+                            $bonus = $bonus_gate - $raw;
                         } ELSE {
                             $bonus = 0;
                         }
                     } ELSE {
                         IF ($raw <= ($bonus_gate - 1)) {
-                            $raw2 = $raw - $bonus_gate;
+                            $raw2 = $bonus_gate - $raw;
                             $bonus = intval($raw2);
                         } ELSE {
                             $bonus = 0;
@@ -186,6 +188,9 @@ IF ($RunMoarch) {
                             break;
                         DEFAULT:
                             $_SESSION['Caution'] = "Pass one scored as a miss<BR>";
+                            IF ($Pass1 != "M") {
+                                $Pass1 = 'M';
+                            }
                             break;
                     }
                     SWITCH ($Pass2) {
@@ -216,6 +221,9 @@ IF ($RunMoarch) {
                             break;
                         DEFAULT:
                             $_SESSION['Caution'] = $_SESSION['Caution']."Pass two scored as a miss<BR>";
+                            IF ($Pass2 != "M") {
+                                $Pass2 = 'M';
+                            }
                             break;
                     }
                     SWITCH ($Pass3) {
@@ -246,6 +254,9 @@ IF ($RunMoarch) {
                             break;
                         DEFAULT:
                             $_SESSION['Caution'] = $_SESSION['Caution']."Pass three scored as a miss<BR>";
+                            IF ($Pass3 != "M") {
+                                $Pass3 = 'M';
+                            }
                             break;
                     }
 
@@ -284,9 +295,10 @@ IF ($RunMoarch) {
                     printf("<input type=\"hidden\" name=\"MA3Pass3\" value=\"%s\">\n", $Pass3);
                     printf("<input type=\"hidden\" name=\"MA3time\" value=\"%s\">\n", $MA3time);
                     print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
+                    ShowDebug();
                     die;
 
-                    
+
 
                 } ELSE {
                     $_SESSION['EntryError'] = "Time is not in the correct format.<BR> Example of Format: 75.50<BR>";
@@ -319,44 +331,44 @@ IF ($RunMoarch) {
 
 
 // If $GoodRun is set, the score has been reviewed and confirmed.
-
-    IF ($run > 0 AND $GoodRun > 0) {
-        $setRup = true; // testing peg
-        //$setRup = "INSERT INTO moarch3 (PID,HID,EID,DVN,L2,L4,L6,L8,L10,R2,R4,R6,R8,R10,SDcount,SDcount,SDcount,SDyear) VALUES ({$_SESSION['RiderID']},9999,{$_SESSION['EID']},{$_SESSION['RiderDVN']},$Reed2L,$Reed4L,$Reed6L,$Reed8L,$Reed10L,$Reed2R,$Reed4R,$Reed6R,$Reed8R,$Reed10R,$Dcount,$Dscore,'U',$anyear)";
-        //IF ($Rup = mysql_query($setRup, $db)) {
-        IF (isset($setRup)) {
-            IF ($Rup) {
-                //$_SESSION['ER']--;
-
-                OpenHTML($_SESSION['EName']);
-
-                PageHeadRider("Reed Chop", "w3-panel");
-
-
-
-                print "<form name=\"reedsdone\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
-
-                print "<section class=\"w3-container w3-light-green\">\n";
-                print "<H2>Score saved.</H2>\n";
-                print "<P>$setRup</P>";
-                print "</section>\n";
-
-                print "<section class=\"w3-container w3-pale-yellow w3-padding-8\">\n";
-                print "<P>Are we staying with ";
-                print "<button class=\"w3-btn w3-amber\" name=\"NextRider\" value=\"1\">THIS RIDER</button>";
-                print " or ";
-                print "<button class=\"w3-btn w3-lime\" name=\"NextGame\" value=\"1\">THIS GAME</button> for the next run?\n";
-                print "</section>\n";
-                die;
-            }
-        } ELSE {
-            print "Something went wrong, click <A HREF=\"{$_SERVER['PHP_SELF']}?\">here</A> to try again.\n";
-            print "<PRE>";
-            print_r($_POST);
-            print_r($_SESSION);
-            die(mysql_error());
-        }
-
-    }
-
+//
+//    IF ($run > 0 AND $GoodRun > 0) {
+//        $setRup = true; // testing peg
+//        //$setRup = "INSERT INTO moarch3 (PID,HID,EID,DVN,L2,L4,L6,L8,L10,R2,R4,R6,R8,R10,SDcount,SDcount,SDcount,SDyear) VALUES ({$_SESSION['RiderID']},9999,{$_SESSION['EID']},{$_SESSION['RiderDVN']},$Reed2L,$Reed4L,$Reed6L,$Reed8L,$Reed10L,$Reed2R,$Reed4R,$Reed6R,$Reed8R,$Reed10R,$Dcount,$Dscore,'U',$anyear)";
+//        //IF ($Rup = mysql_query($setRup, $db)) {
+//        IF (isset($setRup)) {
+//            IF ($Rup) {
+//                //$_SESSION['ER']--;
+//
+//                OpenHTML($_SESSION['EName']);
+//
+//                PageHeadRider("Reed Chop", "w3-panel");
+//
+//
+//
+//                print "<form name=\"reedsdone\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
+//
+//                print "<section class=\"w3-container w3-light-green\">\n";
+//                print "<H2>Score saved.</H2>\n";
+//                print "<P>$setRup</P>";
+//                print "</section>\n";
+//
+//                print "<section class=\"w3-container w3-pale-yellow w3-padding-8\">\n";
+//                print "<P>Are we staying with ";
+//                print "<button class=\"w3-btn w3-amber\" name=\"NextRider\" value=\"1\">THIS RIDER</button>";
+//                print " or ";
+//                print "<button class=\"w3-btn w3-lime\" name=\"NextGame\" value=\"1\">THIS GAME</button> for the next run?\n";
+//                print "</section>\n";
+//                die;
+//            }
+//        } ELSE {
+//            print "Something went wrong, click <A HREF=\"{$_SERVER['PHP_SELF']}?\">here</A> to try again.\n";
+//            print "<PRE>";
+//            print_r($_POST);
+//            print_r($_SESSION);
+//            die(mysql_error());
+//        }
+//
+//    }
+//
 } // End RunReeds

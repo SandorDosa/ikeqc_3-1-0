@@ -34,6 +34,16 @@ function ShowError() {
 
 }
 
+function ShowDebug() {
+
+    print "<article class=\"w3-panel w3-black w3-text-green\">\n";
+    print "<PRE>";
+    print_r($_POST);
+    print_r($_SESSION);
+    print "</article>\n";
+
+}
+
 function PageHead($d,$e) {
 
     print "<header class=\"$e\">\n";

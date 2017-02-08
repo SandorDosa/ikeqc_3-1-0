@@ -5,7 +5,7 @@ $_SESSION['MA3'] = false;
 $_SESSION['MA1'] = true;
 include "ikeqcfuncs.inc";
 include "year.inc";
-include "moarch.inc";
+include "MA1.inc";
 $EName = "Sample Wars III";
 $RiderHonors = "Earl Sir";
 $RiderName = "Earl";
@@ -53,7 +53,7 @@ IF ($RunMoarch) {
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-light-green\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"G\"></TD><TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"R\"></TD><TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"B\"></TD><TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"K\"></TD><TD></TD><TD class=\"w3-text-dark-gray\">$White<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"WK\"></TD><TD></TD>\n";
+        print "<TD class=\"w3-text-light-grey\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"G\"></TD><TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"R\"></TD><TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"B\"></TD><TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"K\"></TD><TD></TD><TD class=\"w3-text-dark-gray\">$White<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"WK\"></TD><TD></TD>\n";
         print "</TR>\n";
         print "</TABLE>\n";
         print "</div>\n";
@@ -69,7 +69,7 @@ IF ($RunMoarch) {
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-light-green\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"G\"></TD><TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"R\"></TD><TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"B\"></TD><TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"K\"></TD><TD></TD><TD class=\"w3-text-dark-gray\">$White<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"W\"></TD><TD></TD><TD CLASS=\"w3-text-white\">Miss<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"M\"></TD>\n";
+        print "<TD class=\"w3-text-light-grey\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"G\"></TD><TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"R\"></TD><TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"B\"></TD><TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"K\"></TD><TD></TD><TD class=\"w3-text-dark-gray\">$White<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"W\"></TD><TD></TD><TD CLASS=\"w3-text-white\">Miss<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"M\"></TD>\n";
         print "</TR>\n";
         print "</TABLE>\n";
         print "</div>\n";
@@ -85,7 +85,7 @@ IF ($RunMoarch) {
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-light-green\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"G\"></TD><TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"R\"></TD><TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"B\"></TD><TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"K\"></TD><TD></TD><TD class=\"w3-text-dark-gray\">$White<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\ value=\"W\"></TD><TD></TD><TD CLASS=\"w3-text-white\">Miss<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"M\"></TD>\n";
+        print "<TD class=\"w3-text-light-grey\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"G\"></TD><TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"R\"></TD><TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"B\"></TD><TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"K\"></TD><TD></TD><TD class=\"w3-text-dark-gray\">$White<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\ value=\"W\"></TD><TD></TD><TD CLASS=\"w3-text-white\">Miss<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"M\"></TD>\n";
         print "</TR>\n";
         print "</TABLE>\n";
         print "</div>\n";
