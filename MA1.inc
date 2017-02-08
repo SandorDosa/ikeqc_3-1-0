@@ -18,3 +18,6 @@ $Dropout = 0;                    //Shots that strike, stick for a moment and the
 $Technical = 10;                  //Score added for proper control and technical form (i.e. consolation point(s)
 
 ?>
+
+
+
