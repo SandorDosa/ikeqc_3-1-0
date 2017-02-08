@@ -40,6 +40,7 @@ function ShowDebug() {
     print "<PRE>";
     print_r($_POST);
     print_r($_SESSION);
+    var_dump();
     print "</article>\n";
 
 }
