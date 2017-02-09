@@ -1,5 +1,5 @@
 <?PHP
-
+$vars_start = get_defined_vars();
 session_start();
 include "ikeqcfuncs.inc";
 //include "year.inc";
@@ -122,17 +122,17 @@ IF ($RunMoarch) {
         print "<TD>Bounce<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"N\"></TD>\n";
         print "<TD>Dropout<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"D\"></TD>\n";
         print "<TD>P/T<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"P\"></TD></TR>\n";
-        print "<TR><TD>Tech:<input class=\"w3-check\" type=\"checkbox\" name=\"TechOK\" value=\"$run\" checked=\"checked\"></TD>\n";
-        print "<TD ALIGN=\"RIGHT\">Time:</TD><TD COLSPAN=2><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"7\"></TD></TR>\n";
+        print "<TR><TD colspan=2 valign=\"middle\">Tech:<input class=\"w3-check\" type=\"checkbox\" name=\"TechOK\" value=\"$run\" checked=\"checked\">\n";
+        print "Time:</TD><TD colspan=2><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"7\"></TD></TR>\n";
         print "</TABLE>\n";
         print "</DIV>\n";
         print "<DIV class=\"w3-container w3-pink\">\n";
         print "<input type=\"hidden\" name=\"review\" value=\"11\">\n";
         print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> or \n";
         print "<button class=\"w3-btn w3-black\" name=\"run\" type=\"reset\" value=\"$run\">Reset</button>\n";
+        ShowDebug(get_defined_vars(),$vars_start);
         print "</DIV>\n";
-        ShowDebug();
-        die;
+       die;
     }
 
     // If $review is set, The run has been completed.
@@ -300,7 +300,7 @@ IF ($RunMoarch) {
                     printf("<input type=\"hidden\" name=\"MA3Pass3\" value=\"%s\">\n", $Pass3);
                     printf("<input type=\"hidden\" name=\"MA3time\" value=\"%s\">\n", $MA3time);
                     print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
-                    ShowDebug();
+                    ShowDebug(get_defined_vars(),$vars_start);
                     die;
 
 
