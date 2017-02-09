@@ -122,7 +122,8 @@ IF ($RunMoarch) {
         print "<TD>Bounce<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"N\"></TD>\n";
         print "<TD>Dropout<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"D\"></TD>\n";
         print "<TD>P/T<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"P\"></TD></TR>\n";
-        print "<TR><TD ALIGN=\"RIGHT\">Time:</TD><TD COLSPAN=3><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"16\"></TD></TR>\n";
+        print "<TR><TD>Technical:<input class=\"w3-checkbox\" type=\"checkbox\" name=\"TechOK\" value=\"$run\"</TD>\n";
+        print "<TD ALIGN=\"RIGHT\">Time:</TD><TD COLSPAN=2><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"7\"></TD></TR>\n";
         print "</TABLE>\n";
         print "</DIV>\n";
         print "<DIV class=\"w3-container w3-pink\">\n";
@@ -260,6 +261,10 @@ IF ($RunMoarch) {
                             break;
                     }
 
+                    IF (isset($TechOK) OR $TechOK > 0) {
+                        $technical = $tech;
+                    }
+
                     $Score = $subscore + $technical + $bonus;
 
                     IF ($Score == 0) {
@@ -331,6 +336,9 @@ IF ($RunMoarch) {
 
 
 // If $GoodRun is set, the score has been reviewed and confirmed.
+
+
+    // Claim 720105730  --  800-268-2525
 //
 //    IF ($run > 0 AND $GoodRun > 0) {
 //        $setRup = true; // testing peg
