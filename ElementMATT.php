@@ -122,7 +122,7 @@ IF ($RunMoarch) {
         print "<TD>Bounce<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"N\"></TD>\n";
         print "<TD>Dropout<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"D\"></TD>\n";
         print "<TD>P/T<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"P\"></TD></TR>\n";
-        print "<TR><TD>Technical:<input class=\"w3-checkbox\" type=\"checkbox\" name=\"TechOK\" value=\"$run\"</TD>\n";
+        print "<TR><TD>Tech:<input class=\"w3-check\" type=\"checkbox\" name=\"TechOK\" value=\"$run\" checked=\"checked\"></TD>\n";
         print "<TD ALIGN=\"RIGHT\">Time:</TD><TD COLSPAN=2><input class=\"w3-input\" name=\"MA3time\" type=\"text\" size=\"7\"></TD></TR>\n";
         print "</TABLE>\n";
         print "</DIV>\n";
