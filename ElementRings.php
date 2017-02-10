@@ -3,17 +3,14 @@
 session_start();
 include "ikeqcfuncs.inc";
 include "year.inc";
-$EName = "Sample Wars II";
-$RiderHonors = "Earl Sir";
-$RiderName = "Earl";
-$RiderID = 999;
-$RiderDVN = 1;
-$run = 999;
+// /Dev/Data is hardcoded here, actual use will pass this data via $_POST
+include "dev_data.inc";
+// End /Dev/Data
 $_SESSION['RiderHonors'] = $RiderHonors;
 $_SESSION['RiderName'] = $RiderName;
 $_SESSION['RiderID'] = $RiderID;
 $_SESSION['RiderDVN'] = $RiderDVN;
-$RunRings = true;
+$_SESSION['EName'] = $EName;
 
 IF ($RunRings) {
 
@@ -265,4 +262,10 @@ IF ($RunRings) {
 
     }
 
-} // End RunHeads
+}
+// Production fallback to main module if the module state is no longer true.
+// Disabled for development and debug.
+// ] ELSE { // End RunHeads
+// header('location: ' . '/sandbox/TOTF.php?FailReturn=1');
+// }
+

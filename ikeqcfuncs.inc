@@ -40,8 +40,8 @@ function ShowDebug($v1, $v2) {
 
     $Vars = array_diff($v1,$v2);
     print "<article class=\"w3-panel w3-black w3-text-amber\">\n";
+    print "<P>This section is for debugging purposes only and will not be present in the final version.</P>\n";
     print "<PRE>";
-    print "This section is for debugging purposes only and will not be present in the final version.<BR>\n";
     print "Scope:<BR>\n";
     print_r($Vars);
     print "POST:<BR>\n";

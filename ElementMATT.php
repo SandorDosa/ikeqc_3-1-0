@@ -5,13 +5,7 @@ include "ikeqcfuncs.inc";
 //include "year.inc";
 include "MA3.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
-$EName = "Sample Wars III";
-$RiderHonors = "Earl Sir";
-$RiderName = "Earl";
-$RiderID = 999;
-$RiderDVN = 1;
-$run = 999;
-$RunMoarch = true;
+include "dev_data.inc";
 // End /Dev/Data
 $_SESSION['RiderHonors'] = $RiderHonors;
 $_SESSION['RiderName'] = $RiderName;
@@ -30,8 +24,6 @@ IF ($RunMoarch) {
     IF (!isset($review) OR $review < 0) {
 
         OpenHTML($_SESSION['EName']);
-
-        print "<body style=\"max-width:400px\">\n";
 
         ShowCaution();
 
@@ -379,4 +371,10 @@ IF ($RunMoarch) {
 //
 //    }
 //
-} // End RunReeds
+}
+// Production fallback to main module if the module state is no longer true.
+// Disabled for development and debug.
+// ] ELSE { // End RunMA3
+// header('location: ' . '/sandbox/TOTF.php?FailReturn=1');
+// }
+
