@@ -1,5 +1,5 @@
 <?PHP
-
+$vars_start = get_defined_vars();
 session_start();
 include "ikeqcfuncs.inc";
 include "year.inc";
@@ -14,32 +14,81 @@ $_SESSION['EName'] = $EName;
 
 IF ($RunBirjas) {
 
+
     IF (!isset($review) OR $review < 0) {
 
         OpenHTML($_SESSION['EName']);
 
-        PageHeadRider("Birjas", "w3-panel");
+        PageHeadRider("Birjas", "w3-container w3-teal");
 
         ShowCaution();
 
         ShowError();
 
-        print "<section class=\"w3-container\">\n";
         print "<form name=\"birjas\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
         print "<div id=\"birjas\" class=\"w3-container w3-teal\">\n";
         print "<table class=\"w3-table w3-large\">\n";
-        print "<TR><TD colspan=4><H2>Birjas</H2></TD></TR>\n";
-        print "<TR><TD>First Pass:</TD><TD>One Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"O\"></TD>\n";
-        print "<TD>Two Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"T\"></TD>\n";
-        print "<TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"M\"></TD></TR>\n";
 
-        print "<TR><TD>Second Pass:</TD><TD>One Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"O\"></TD>\n";
-        print "<TD>Two Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"T\"></TD>\n";
-        print "<TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"M\"></TD></TR>\n";
+        IF (isset($BirjasEdit) OR $BirjasEdit > 0) {
 
-        print "<TR><TD>Third Pass:</TD><TD>One Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"O\"></TD>\n";
-        print "<TD>Two Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"T\"></TD>\n";
-        print "<TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"M\"></TD></TR>\n";
+            // Repopulates radio buttons from previous input.
+
+            SWITCH ($P1) {
+                CASE "O":
+                    $Pass1_O = "checked";
+                    BREAK;
+                CASE "T":
+                    $Pass1_T = "checked";
+                    BREAK;
+                DEFAULT:
+                    $Pass1_M = "checked";
+            }
+
+            SWITCH ($P2) {
+                CASE "O":
+                    $Pass2_O = "checked";
+                    BREAK;
+                CASE "T":
+                    $Pass2_T = "checked";
+                    BREAK;
+                DEFAULT:
+                    $Pass2_M = "checked";
+            }
+
+            SWITCH ($P3) {
+                CASE "O":
+                    $Pass3_O = "checked";
+                    BREAK;
+                CASE "T":
+                    $Pass3_T = "checked";
+                    BREAK;
+                DEFAULT:
+                    $Pass3_M = "checked";
+            }
+            unset($BirjasEdit);
+
+        } ELSE {
+            $Pass1_O = NULL;
+            $Pass1_T = NULL;
+            $Pass1_M = NULL;
+            $Pass2_O = NULL;
+            $Pass2_T = NULL;
+            $Pass2_M = NULL;
+            $Pass3_O = NULL;
+            $Pass3_T = NULL;
+            $Pass3_M = NULL;
+        }
+        print "<TR><TD>First Pass:</TD><TD>One Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"O\" $Pass1_O></TD>\n";
+        print "<TD>Two Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"T\" $Pass1_T></TD>\n";
+        print "<TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"M\" $Pass1_M></TD></TR>\n";
+
+        print "<TR><TD>Second Pass:</TD><TD>One Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"O\" $Pass2_O></TD>\n";
+        print "<TD>Two Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"T\" $Pass2_T></TD>\n";
+        print "<TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"M\" $Pass2_M></TD></TR>\n";
+
+        print "<TR><TD>Third Pass:</TD><TD>One Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"O\" $Pass3_O></TD>\n";
+        print "<TD>Two Hand<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"T\" $Pass3_T></TD>\n";
+        print "<TD>Miss<input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"M\" $Pass3_M></TD></TR>\n";
         print "</TABLE></div>\n";
         print "<DIV class=\"w3-container w3-blue\">\n";
         print "<input type=\"hidden\" name=\"review\" value=\"11\">\n";
@@ -105,12 +154,7 @@ IF ($RunBirjas) {
 
         OpenHTML($_SESSION['EName']);
 
-        IF (is_null($_SESSION['RiderHonors'])) {
-            printf("<H2>%s</H2>\n", $_SESSION['RiderName']);
-        } ELSE {
-            printf("<H2>%s %s</H2>\n", $_SESSION['RiderHonors'], $_SESSION['RiderName']);
-        }
-        print "</header>\n";
+        PageHeadRider("Birjas", "w3-container w3-teal");
 
         ShowCaution();
 
@@ -126,7 +170,8 @@ IF ($RunBirjas) {
         print "</TABLE></section>\n";
 
         print "<section class=\"w3-container w3-teal w3-padding-8\">\n";
-        print "<button class=\"w3-btn w3-red\" name=\"birjasEdit\" value=\"1\">EDIT SCORE</button>\n";
+        print "<button class=\"w3-btn w3-red\" name=\"BirjasEdit\" value=\"1\">EDIT SCORE</button>\n";
+        print "<button class=\"w3-btn w3-green\" name=\"BirjasOK\" value=\"1\">SUBMIT SCORE</button>\n";
         print "</section>\n";
 
         printf("<input type=\"hidden\" name=\"P1\" value=\"%s\">\n", $Pass1);
@@ -136,10 +181,13 @@ IF ($RunBirjas) {
         printf("<input type=\"hidden\" name=\"P2S\" value=\"%s\">\n", $P2score);
         printf("<input type=\"hidden\" name=\"P3S\" value=\"%s\">\n", $P3score);
         printf("<input type=\"hidden\" name=\"BirjasScore\" value=\"%s\">\n", $Score);
+        ShowDebug(get_defined_vars(),$vars_start);
         die;
 
 
     }
+
+
 
 
 }

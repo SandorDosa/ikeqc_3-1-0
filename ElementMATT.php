@@ -13,7 +13,6 @@ $_SESSION['RiderID'] = $RiderID;
 $_SESSION['RiderDVN'] = $RiderDVN;
 $_SESSION['EName'] = $EName;
 
-
 IF ($RunMoarch) {
 
     IF (isset($MA3Edit) OR $MA3Edit > 0) {
