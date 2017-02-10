@@ -1,37 +1,16 @@
-## Welcome to GitHub Pages
+At its inception in 1993 the Inter-Kingdom Equestrian Competition, or IKEqC as it became commonly known, set out to become the SCA Equestrian equivalent of the Inter-Kingdom Archery Competition.  
 
-You can use the [editor on GitHub](https://github.com/SandorDosa/ikeqc/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+In late AS XXXV (April 2001) Sandor launched Version 1 of the Scorekeeper website.  This first edition was rather simple, merely translating the spreadsheet to a web-native form.
+Within six months of the website going live, Sandor started development of Scorekeeper V2.  
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Version 2.0 launched with the TLD scaikeqc.org on first day of AS XXXVII, May 1st 2002.
 
-### Markdown
+Versions 2.2 and 2.4 were internal releases, it wasn't until 2007 with Version 2.7 that more games were added.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+In 2012 Sandor handed the project off to another person who focused on adding CSS support and getting the HTML up to date.
 
-```markdown
-Syntax highlighted code block
+Its now 2017 and its time for a top-down refresh.  Sandor is back and coding on the next version of the site and its scripts.
 
-# Header 1
-## Header 2
-### Header 3
+Version 3 will provide mobile support and mobile-enabled submission and event tracking pages as well as a general cleanup of 15 years of collected 'legacy code' including the the dreaded "mysql_query" problem.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SandorDosa/ikeqc/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+No personal information or security methods will be posted here.
