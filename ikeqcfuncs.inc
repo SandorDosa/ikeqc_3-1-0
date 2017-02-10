@@ -3,10 +3,12 @@
 function OpenHTML($c) {
 
     print "<!DOCTYPE html>\n";
-    print "<html>\n";
+    print "<html lang=\"en\">\n";
     print "<title>$c</title>\n";
-    print "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n";
+    print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
+    print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
+    print "<body style=\"max-width:400px\">\n";
 
 }
 
@@ -34,13 +36,18 @@ function ShowError() {
 
 }
 
-function ShowDebug() {
+function ShowDebug($v1, $v2) {
 
-    print "<article class=\"w3-panel w3-black w3-text-green\">\n";
+    $Vars = array_diff($v1,$v2);
+    print "<article class=\"w3-panel w3-black w3-text-amber\">\n";
     print "<PRE>";
+    print "This section is for debugging purposes only and will not be present in the final version.<BR>\n";
+    print "Scope:<BR>\n";
+    print_r($Vars);
+    print "POST:<BR>\n";
     print_r($_POST);
+    print "SESSION:\n";
     print_r($_SESSION);
-    var_dump(get_defined_vars());
     print "</article>\n";
 
 }
@@ -186,7 +193,7 @@ case 5:
 $GType = "County";
 break;
 case 6:
-$Gtype = "Duchy";
+$GType = "Duchy";
 break;
 default:
 $GType = "Unincorperated";
