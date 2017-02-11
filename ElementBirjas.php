@@ -23,8 +23,6 @@ IF ($RunBirjas) {
 
         ShowCaution();
 
-        ShowError();
-
         print "<form name=\"birjas\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
         print "<div id=\"birjas\" class=\"w3-container w3-teal\">\n";
         print "<table class=\"w3-table w3-large\">\n";
@@ -147,7 +145,7 @@ IF ($RunBirjas) {
 
         $Score = $P1score + $P2score + $P3score;
 
-        IF ($Score < 0) {
+        IF ($Score <= 0) {
             $Score = 0;
             $_SESSION['Caution'] = $_SESSION['Caution']."This run resulted in a score of ZERO.<BR>";
         }

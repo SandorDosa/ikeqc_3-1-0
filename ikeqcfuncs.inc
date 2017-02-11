@@ -4,7 +4,7 @@ function OpenHTML($c) {
 
     print "<!DOCTYPE html>\n";
     print "<html lang=\"en\">\n";
-    print "<title>$c</title>\n";
+    print "<title>$c at {$_SESSION['EName']}</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
@@ -16,7 +16,7 @@ function ShowCaution() {
 
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
 
-        print "<article class=\"w3-panel w3-yellow\">\n";
+        print "<article class=\"w3-container w3-yellow\">\n";
         print "<P>Take Note:<BR>\n";
         print "{$_SESSION['Caution']}</P></article>\n";
         $_SESSION['Caution'] = NULL;
@@ -28,7 +28,7 @@ function ShowError() {
 
     IF (isset($_SESSION['EntryError']) AND !is_null($_SESSION['EntryError'])) {
 
-        print "<article class=\"w3-panel w3-red\">\n";
+        print "<article class=\"w3-container w3-red\">\n";
         print "<P>You have an error in your input, please try again.<BR>\n";
         print "{$_SESSION['EntryError']}</P></article>\n";
         $_SESSION['EntryError'] = NULL;
@@ -39,7 +39,7 @@ function ShowError() {
 function ShowDebug($v1, $v2) {
 
     $Vars = array_diff($v1,$v2);
-    print "<article class=\"w3-panel w3-black w3-text-amber\">\n";
+    print "<article class=\"w3-panel w3-black w3-text-amber w3-left-align\">\n";
     print "<P>This section is for debugging purposes only and will not be present in the final version.</P>\n";
     print "<PRE>";
     print "Scope:<BR>\n";
@@ -82,6 +82,7 @@ function PageNoHeadRider($h) {
     }
     print "</header>\n";
 }
+
 
 function KingLook($a) {
 
