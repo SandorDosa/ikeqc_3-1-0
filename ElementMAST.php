@@ -4,7 +4,7 @@
 // --> ElementMAST.php (Mounted Archery Single Target)
 // -----> Structure complete, Integration Disable.
 // Sandor Dosa Feb 10, 2017
-// File version 0.4a
+// File version 0.5a
 // Ready for DB integration.
 
 $vars_start = get_defined_vars();
@@ -37,17 +37,17 @@ IF ($RunMoarch) {
 
         ShowError();
 
-        print "<form name=\"moarch\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
-
         MA1Header($S1);
+
+        print "<form name=\"MA1\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
 
         print "<div class=\"w3-container $S2 w3-center\"><P class=\"w3-text-white\"><H2>First Arrow</H2></div>\n";
         print "<div class=\"w3-display-container\">\n";
-        print "<img src=\"target_sm.png\" alt=\"Target\">\n";
+        print "<img src=\"target_sm.png\" alt=\"Archery Target\">\n";
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-dark-grey\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"G\"></TD>\n";
+        print "<TD class=\"w3-text-black\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"G\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"R\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"B\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"K\"></TD>\n";
@@ -93,7 +93,7 @@ IF ($RunMoarch) {
         print "<div class=\"w3-display-left w3-container\">\n";
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
-        print "<TD class=\"w3-text-light-grey\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"G\"></TD>\n";
+        print "<TD class=\"w3-text-black\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"G\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-black\">$Red<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"R\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-white\">$Blue<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"B\"></TD>\n";
         print "<TD></TD><TD class=\"w3-text-light-gray\">$Black<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass3\" value=\"K\"></TD>\n";
@@ -123,6 +123,11 @@ IF ($RunMoarch) {
 
     IF ($review > 0) {
 
+        IF (isset($TechOK) OR $TechOK > 0) {
+            $technical = $Tech;
+        } ELSE {
+            $technical = 0;
+        }
 
         $subscore = 0;
 
@@ -130,42 +135,38 @@ IF ($RunMoarch) {
 
             CASE "G":
                 $subscore = $subscore + $Gold;
-                $Arrow1 = "Gold";
+                $Arrow1 = "Gold (+$Gold)";
                 break;
             CASE "R":
                 $subscore = $subscore + $Red;
-                $Arrow1 = "Red";
+                $Arrow1 = "Red (+$Red)";
                 break;
             CASE "B":
                 $subscore = $subscore + $Blue;
-                $Arrow1 = "Blue";
+                $Arrow1 = "Blue (+$Blue)";
                 break;
             CASE "K":
                 $subscore = $subscore + $Black;
-                $Arrow1 = "Black";
+                $Arrow1 = "Black (+$Black)";
                 break;
             CASE "W":
                 $subscore = $subscore + $White;
-                $Arrow1 = "White";
+                $Arrow1 = "White (+$White)";
                 break;
             CASE ("N"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass one scored as a miss<BR>";
-                $Arrow1 = "Miss(Bounce)";
+                $Arrow1 = "Bounce ($Bounce)";
                 break;
             CASE ("D"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass one scored as a miss<BR>";
-                $Arrow1 = "Miss(Dropout)";
+                $Arrow1 = "Dropout ($Dropout)";
                 break;
             CASE ("P"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass one scored as a miss<BR>";
-                $Arrow1 = "Miss(Passthru)";
+                $Arrow1 = "Passthru ($Passthru)";
                 break;
             CASE ("M"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass one scored as a miss<BR>";
                 $Arrow1 = "Miss";
                 break;
             DEFAULT:
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass one scored as a miss<BR>";
+                $_SESSION['Caution'] = $_SESSION['Caution'] . "Arrow one scored as a miss<BR>";
                 $Arrow1 = "Unknown";
                 break;
 
@@ -174,42 +175,38 @@ IF ($RunMoarch) {
 
             CASE "G":
                 $subscore = $subscore + $Gold;
-                $Arrow2 = "Gold";
+                $Arrow2 = "Gold (+$Gold)";
                 break;
             CASE "R":
                 $subscore = $subscore + $Red;
-                $Arrow2 = "Red";
+                $Arrow2 = "Red (+$Red)";
                 break;
             CASE "B":
                 $subscore = $subscore + $Blue;
-                $Arrow2 = "Blue";
+                $Arrow2 = "Blue (+$Blue)";
                 break;
             CASE "K":
                 $subscore = $subscore + $Black;
-                $Arrow2 = "Black";
+                $Arrow2 = "Black (+$Black)";
                 break;
             CASE "W":
                 $subscore = $subscore + $White;
-                $Arrow2 = "White";
+                $Arrow2 = "White (+$White)";
                 break;
             CASE ("N"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass two scored as a miss<BR>";
-                $Arrow2 = "Miss(Bounce)";
+                $Arrow2 = "Bounce ($Bounce)";
                 break;
             CASE ("D"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass two scored as a miss<BR>";
-                $Arrow2 = "Miss(Dropout)";
+                $Arrow2 = "Dropout ($Dropout)";
                 break;
             CASE ("P"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass two scored as a miss<BR>";
-                $Arrow2 = "Miss(Passthru)";
+                $Arrow2 = "Passthru ($Passthru)";
                 break;
             CASE ("M"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass two scored as a miss<BR>";
                 $Arrow2 = "Miss";
                 break;
             DEFAULT:
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass two scored as a miss<BR>";
+                $_SESSION['Caution'] = $_SESSION['Caution'] . "Arrow two scored as a miss<BR>";
                 $Arrow2 = "Unknown";
                 break;
 
@@ -218,68 +215,73 @@ IF ($RunMoarch) {
 
             CASE "G":
                 $subscore = $subscore + $Gold;
-                $Arrow3 = "Gold";
+                $Arrow3 = "Gold (+$Gold)";
                 break;
             CASE "R":
                 $subscore = $subscore + $Red;
-                $Arrow3 = "Red";
+                $Arrow3 = "Red (+$Red)";
                 break;
             CASE "B":
                 $subscore = $subscore + $Blue;
-                $Arrow3 = "Blue";
+                $Arrow3 = "Blue (+$Blue)";
                 break;
             CASE "K":
                 $subscore = $subscore + $Black;
-                $Arrow3 = "Black";
+                $Arrow3 = "Black (+$Black)";
                 break;
             CASE "W":
                 $subscore = $subscore + $White;
-                $Arrow3 = "White";
+                $Arrow3 = "White (+$White)";
                 break;
             CASE ("N"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass three scored as a miss<BR>";
-                $Arrow3 = "Miss(Bounce)";
+                $Arrow3 = "Bounce ($Bounce)";
                 break;
             CASE ("D"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass three scored as a miss<BR>";
-                $Arrow3 = "Miss(Dropout)";
+                $Arrow3 = "Dropout ($Dropout)";
                 break;
             CASE ("P"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass three scored as a miss<BR>";
-                $Arrow3 = "Miss(Passthru)";
+                $Arrow3 = "Passthru ($Passthru)";
                 break;
             CASE ("M"):
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass three scored as a miss<BR>";
                 $Arrow3 = "Miss";
                 break;
             DEFAULT:
-                $_SESSION['Caution'] = $_SESSION['Caution'] . "Pass three scored as a miss<BR>";
+                $_SESSION['Caution'] = $_SESSION['Caution'] . "Arrow three scored as a miss<BR>";
                 $Arrow3 = "Unknown";
                 break;
 
         }
 
-        IF (isset($TechOK) OR $TechOK > 0) {
-            $technical = $Tech;
-        }
-
         $Score = $subscore + $technical;
 
-        IF ($Bounce == 0 AND ($Pass1 == "N" OR $Pass2 == "N" OR $Pass3 == "N")) {
-            $_SESSION['Caution'] = $_SESSION['Caution']."Bounces are scored as misses.<BR>";
+
+        IF ($Pass1 == "N" OR $Pass2 == "N" OR $Pass3 == "N") {
+            IF ($Bounce > 0) {
+                $_SESSION['Caution'] = "Bounces are scored as $Bounce.<BR>" . $_SESSION['Caution'];
+            } ELSE {
+                $_SESSION['Caution'] = "Bounces are scored as misses.<BR>" . $_SESSION['Caution'];
+            }
         }
-        IF ($Dropout == 0 AND ($Pass1 == "D" OR $Pass2 == "D" OR $Pass3 == "D")) {
-            $_SESSION['Caution'] = $_SESSION['Caution']."Dropouts are scored as misses.<BR>";
+        IF ($Pass1 == "D" OR $Pass2 == "D" OR $Pass3 == "D") {
+            IF ($Dropout > 0) {
+                $_SESSION['Caution'] = "Dropouts are scored as $Dropout.<BR>" . $_SESSION['Caution'];
+            } ELSE {
+                $_SESSION['Caution'] = "Dropouts are scored as misses.<BR>" . $_SESSION['Caution'];
+            }
         }
-        IF ($Passthru == 0 AND ($Pass1 == "P" OR $Pass2 == "P" OR $Pass3 == "P")) {
-            $_SESSION['Caution'] = $_SESSION['Caution']."Passthrus are scored as misses.<BR>";
+        IF ($Pass1 == "P" OR $Pass2 == "P" OR $Pass3 == "P") {
+            IF ($Passthru > 0) {
+                $_SESSION['Caution'] = "Passthrus are scored as $Passthru.<BR>" . $_SESSION['Caution'];
+            } ELSE {
+                $_SESSION['Caution'] = "Passthrus are scored as misses.<BR>" . $_SESSION['Caution'];
+            }
         }
 
         IF ($Score == 0) {
             $_SESSION['Caution'] = $_SESSION['Caution'] . "This score is ZERO<BR>";
         }
 
-        OpenHTML($_SESSION['EName']);
+        OpenHTML("Mounted Archery Single Target");
 
         MA1Header($S1);
 
@@ -294,9 +296,13 @@ IF ($RunMoarch) {
         print "<TR><TD>First Arrow:</TD><TD>$Arrow1</TD></TR>\n";
         print "<TR><TD>Second Arrow:</TD><TD>$Arrow2</TD></TR>\n";
         print "<TR><TD>Third Arrow:</TD><TD>$Arrow3</TD></TR>\n";
+        IF ($TechOK > 0) {
+            print "<TR><TD>Technique:</TD><TD>OK (+$technical)</TD></TR>\n";
+        } ELSE {
+            print "<TR><TD>Technique:</TD><TD>NO</TD></TR>\n";
+        }
         print "</TABLE>\n";
-
-        print "<P>Having shot $Score for<br>Mounted Archery -- Single Shot.</P>\n";
+        print "<P>Having shot $Score for<br>Mounted Archery -- Single Target.</P>\n";
         print "</section>\n";
 
         print "<section class=\"w3-container $S7 w3-center w3-padding-8\">\n";
@@ -305,7 +311,8 @@ IF ($RunMoarch) {
         print"<input type=\"hidden\" name=\"MA1Pass1\" value=\"$Pass1\">\n";
         print"<input type=\"hidden\" name=\"MA1Pass2\" value=\"$Pass2\">\n";
         print"<input type=\"hidden\" name=\"MA1Pass3\" value=\"$Pass3\">\n";
-        print"<input type=\"hidden\" name=\"MA1Tech\" value=\"$TechOK\">\n";
+        print"<input type=\"hidden\" name=\"MA1Tech\" value=\"$technical\">\n";
+        print"<input type=\"hidden\" name=\"MA1TechOK\" value=\"$TechOK\">\n";
 
         print "<button class=\"w3-btn w3-red\" name=\"MA1Edit\" value=\"1\">EDIT SCORE</button>\n";
         print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
