@@ -1,12 +1,14 @@
 <?PHP
 
-function OpenHTML($c) {
+function OpenHTML($c1) {
 
     print "<!DOCTYPE html>\n";
-    print "<html>\n";
-    print "<title>$c</title>\n";
-    print "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n";
+    print "<html lang=\"en\">\n";
+    print "<title>$c1 at {$_SESSION['EName']}</title>\n";
+    print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
+    print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
+    print "<body style=\"max-width:400px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
 
 }
 
@@ -14,7 +16,7 @@ function ShowCaution() {
 
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
 
-        print "<article class=\"w3-panel w3-yellow\">\n";
+        print "<article class=\"w3-container w3-yellow\">\n";
         print "<P>Take Note:<BR>\n";
         print "{$_SESSION['Caution']}</P></article>\n";
         $_SESSION['Caution'] = NULL;
@@ -26,11 +28,27 @@ function ShowError() {
 
     IF (isset($_SESSION['EntryError']) AND !is_null($_SESSION['EntryError'])) {
 
-        print "<article class=\"w3-panel w3-red\">\n";
+        print "<article class=\"w3-container w3-red\">\n";
         print "<P>You have an error in your input, please try again.<BR>\n";
         print "{$_SESSION['EntryError']}</P></article>\n";
         $_SESSION['EntryError'] = NULL;
     }
+
+}
+
+function ShowDebug($v1, $v2) {
+
+    $Vars = array_diff($v1,$v2);
+    print "<article class=\"w3-panel w3-black w3-text-amber w3-left-align\">\n";
+    print "<P>This section is for debugging purposes only and will not be present in the final version.</P>\n";
+    print "<PRE>";
+    print "Scope:<BR>\n";
+    print_r($Vars);
+    print "POST:<BR>\n";
+    print_r($_POST);
+    print "SESSION:<BR>\n";
+    print_r($_SESSION);
+    print "</article>\n";
 
 }
 
@@ -64,6 +82,7 @@ function PageNoHeadRider($h) {
     }
     print "</header>\n";
 }
+
 
 function KingLook($a) {
 
@@ -175,7 +194,7 @@ case 5:
 $GType = "County";
 break;
 case 6:
-$Gtype = "Duchy";
+$GType = "Duchy";
 break;
 default:
 $GType = "Unincorperated";
