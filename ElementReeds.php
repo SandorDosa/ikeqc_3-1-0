@@ -1,8 +1,10 @@
 <?PHP
-
+$vars_start = get_defined_vars();
 session_start();
 include "ikeqcfuncs.inc";
 include "year.inc";
+include "reeds.inc";
+include "colors.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
 include "dev_data.inc";
 // End /Dev/Data
@@ -14,24 +16,25 @@ $_SESSION['EName'] = $EName;
 
 IF ($RunReeds) {
 
-    IF ($ReedsEdit > 0) {
+    IF ($DEdit > 0) {
         $run = $_SESSION['RiderID'];
         $review = -1;
+        unset($DEdit);
+        //TODO Breakout which boxes to check for the edit
     }
 
     IF (!isset($review) OR $review < 0) {
 
-        OpenHTML($_SESSION['EName']);
+        OpenHTML("Reed Chop");
 
-        PageHeadRider("Reed Chop", "w3-panel");
+        ReedsHeader($S1);
 
         ShowCaution();
 
         ShowError();
 
-        print "<section class=\"w3-container\">\n";
         print "<form name=\"reeds\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
-        print "<div id=\"Reeds\" class=\"w3-container w3-indigo\">\n";
+        print "<div id=\"Reeds\" class=\"w3-container $S2\">\n";
         print "<table class=\"w3-table w3-centered\"> \n";
         print "<TR>\n";
         print "<TD COLSPAN=3>Reeds</TD>\n";
@@ -42,44 +45,44 @@ IF ($RunReeds) {
         print "<TD>RIGHT</TD>\n";
         print "</TR>\n";
         print "<TR><TD ALIGN=RIGHT>\n";
-        print "<INPUT NAME=\"Reed2L\" class=\"w3-check\" type=\"checkbox\" value=\"15\">\n";
+        print "<INPUT NAME=\"Reed2L\" class=\"w3-check\" type=\"checkbox\" value=\"$L2\">\n";
         print "</TD><TD ALIGN=CENTER>\n";
         print "2 in\n";
         print "</TD><TD ALIGN=LEFT>\n";
-        print "<INPUT NAME=\"Reed2R\" class=\"w3-check\" type=\"checkbox\" value=\"15\">\n";
+        print "<INPUT NAME=\"Reed2R\" class=\"w3-check\" type=\"checkbox\" value=\"$R2\">\n";
         print "</TD></TR>\n";
         print "<TR><TD ALIGN=RIGHT>\n";
-        print "<INPUT NAME=\"Reed4L\" class=\"w3-check\" type=\"checkbox\" value=\"12\">\n";
+        print "<INPUT NAME=\"Reed4L\" class=\"w3-check\" type=\"checkbox\" value=\"$L4\">\n";
         print "</TD><TD ALIGN=CENTER>\n";
         print "4 in\n";
         print "</TD><TD ALIGN=LEFT>\n";
-        print "<INPUT NAME=\"Reed4R\" class=\"w3-check\" type=\"checkbox\" value=\"12\">\n";
+        print "<INPUT NAME=\"Reed4R\" class=\"w3-check\" type=\"checkbox\" value=\"$R4\">\n";
         print "</TD></TR>\n";
         print "<TR><TD ALIGN=RIGHT>\n";
-        print "<INPUT NAME=\"Reed6L\" class=\"w3-check\" type=\"checkbox\" value=\"9\">\n";
+        print "<INPUT NAME=\"Reed6L\" class=\"w3-check\" type=\"checkbox\" value=\"$L6\">\n";
         print "</TD><TD ALIGN=CENTER>\n";
         print "6 in\n";
         print "</TD><TD ALIGN=LEFT>\n";
-        print "<INPUT NAME=\"Reed6R\" class=\"w3-check\" type=\"checkbox\" value=\"9\">\n";
+        print "<INPUT NAME=\"Reed6R\" class=\"w3-check\" type=\"checkbox\" value=\"$R6\">\n";
         print "</TD></TR>\n";
         print "<TR><TD ALIGN=RIGHT>\n";
-        print "<INPUT NAME=\"Reed8L\" class=\"w3-check\" type=\"checkbox\" value=\"6\">\n";
+        print "<INPUT NAME=\"Reed8L\" class=\"w3-check\" type=\"checkbox\" value=\"$L8\">\n";
         print "</TD><TD ALIGN=CENTER>\n";
         print "8 in\n";
         print "</TD><TD ALIGN=LEFT>\n";
-        print "<INPUT NAME=\"Reed8R\" class=\"w3-check\" type=\"checkbox\" value=\"6\">\n";
+        print "<INPUT NAME=\"Reed8R\" class=\"w3-check\" type=\"checkbox\" value=\"$R8\">\n";
         print "</TD></TR>\n";
         print "<TR><TD ALIGN=RIGHT>\n";
-        print "<INPUT NAME=\"Reed9L\" class=\"w3-check\" type=\"checkbox\" value=\"3\">\n";
+        print "<INPUT NAME=\"Reed9L\" class=\"w3-check\" type=\"checkbox\" value=\"$L10\">\n";
         print "</TD><TD ALIGN=CENTER>\n";
         print "10in\n";
         print "</TD><TD ALIGN=LEFT>\n";
-        print "<INPUT NAME=\"Reed9R\" class=\"w3-check\" type=\"checkbox\" value=\"3\">\n";
+        print "<INPUT NAME=\"Reed9R\" class=\"w3-check\" type=\"checkbox\" value=\"$R10\">\n";
         print "</TD></TR></TABLE>\n"; // END of Reeds Cell
         print "</TABLE></DIV>\n";
 
         print "<input type=\"hidden\" name=\"run\" value=\"$run\">\n";
-        print "<button class=\"w3-btn w3-black\" name=\"review\" value=\"11\">Submit</button>\n";
+        print "<div class=\"w3-container $S3 w3-center\"><button class=\"w3-btn w3-black\" name=\"review\" value=\"11\">Submit</button></div>\n";
         die;
     }
 
@@ -88,71 +91,82 @@ IF ($RunReeds) {
     IF ($review > 0) {
         $Dsubscore = 0;
         $Dcount = 0;
+        $Chopped = NULL;
         IF (ISSET($Reed2L)) {
             $Dsubscore = $Dsubscore + $Reed2L;
             $Dcount++;
+            $Chopped = "L2 ";
         }
         IF (ISSET($Reed2R)) {
             $Dsubscore = $Dsubscore + $Reed2R;
             $Dcount++;
+            $Chopped = $Chopped . "R2 ";
         }
         IF (ISSET($Reed4L)) {
             $Dsubscore = $Dsubscore + $Reed4L;
             $Dcount++;
+            $Chopped = $Chopped . "L4 ";
         }
         IF (ISSET($Reed4R)) {
             $Dsubscore = $Dsubscore + $Reed4R;
             $Dcount++;
+            $Chopped = $Chopped . "R4 ";
         }
         IF (ISSET($Reed6L)) {
             $Dsubscore = $Dsubscore + $Reed6L;
             $Dcount++;
+            $Chopped = $Chopped . "L6 ";
         }
         IF (ISSET($Reed6R)) {
             $Dsubscore = $Dsubscore + $Reed6R;
             $Dcount++;
+            $Chopped = $Chopped . "R6 ";
         }
         IF (ISSET($Reed8L)) {
             $Dsubscore = $Dsubscore + $Reed8L;
             $Dcount++;
+            $Chopped = $Chopped . "L8 ";
         }
         IF (ISSET($Reed8R)) {
             $Dsubscore = $Dsubscore + $Reed8R;
             $Dcount++;
+            $Chopped = $Chopped . "R8 ";
         }
         IF (ISSET($Reed9L)) {
             $Dsubscore = $Dsubscore + $Reed9L;
             $Dcount++;
+            $Chopped = $Chopped . "L10 ";
         }
         IF (ISSET($Reed9R)) {
             $Dsubscore = $Dsubscore + $Reed9R;
             $Dcount++;
+            $Chopped = $Chopped . "R10 ";
         }
+
+
         $Dscore = $Dsubscore;
         IF ($Dcount == 0 OR $Dscore == 0) {
             $_SESSION['Caution'] = "No Reeds selected.  This score is ZERO<BR>";
         }
 
-        OpenHTML($_SESSION['EName']);
+        OpenHTML("Reed Chop");
 
-        PageHeadRider("Ring Tilt", "w3-panel");
+        ReedsHeader($S1);
 
         ShowCaution();
 
 
         print "<form name=\"reedsreview\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
 
-        print "<section class=\"w3-container w3-light-green\">\n";
+        print "<section class=\"w3-container $S2\">\n";
         print "<H2>Please Review:</H2>\n";
 
-        print "<P>Having chopped $Dcount reeds scoring $Dscore for the Reed Chop.</P>\n";
+        print "<P>Chopped $Dcount reeds ".$Chopped."scoring $Dscore for the Reed Chop.</P>\n";
         print "</section>\n";
 
-        print "<section class=\"w3-container w3-pale-yellow w3-padding-8\">\n";
-        print "<button class=\"w3-btn w3-red\" name=\"ReedsEdit\" value=\"1\">EDIT SCORE</button>\n";
-        print "</section>\n";
-
-        print "<section class=\"w3-container w3-pale-blue w3-padding-8\">\n";
+        print "<section class=\"w3-container $S3 w3-padding-8\">\n";
+        print "<button class=\"w3-btn w3-red\" name=\"DEdit\" value=\"1\">EDIT SCORE</button>\n";
+        print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
 
         printf("<input type=\"hidden\" name=\"Reed2L\" value=\"%s\">\n", $Reed2L);
         printf("<input type=\"hidden\" name=\"Reed2R\" value=\"%s\">\n", $Reed2R);
@@ -166,7 +180,7 @@ IF ($RunReeds) {
         printf("<input type=\"hidden\" name=\"Reed9R\" value=\"%s\">\n", $Reed9R);
         printf("<input type=\"hidden\" name=\"Dcount\" value=\"%s\">\n", $Dcount);
         printf("<input type=\"hidden\" name=\"Dscore\" value=\"%s\">\n", $Dscore);
-        print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
+        ShowDebug(get_defined_vars(),$vars_start);
         die;
     }
 

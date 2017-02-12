@@ -1,14 +1,14 @@
 <?PHP
 
-function OpenHTML($c) {
+function OpenHTML($c1) {
 
     print "<!DOCTYPE html>\n";
     print "<html lang=\"en\">\n";
-    print "<title>$c at {$_SESSION['EName']}</title>\n";
+    print "<title>$c1 at {$_SESSION['EName']}</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
-    print "<body style=\"max-width:400px\">\n";
+    print "<body style=\"max-width:400px; min-height: 100vh; background-color: steelblue;\">\n";
 
 }
 
@@ -46,7 +46,7 @@ function ShowDebug($v1, $v2) {
     print_r($Vars);
     print "POST:<BR>\n";
     print_r($_POST);
-    print "SESSION:\n";
+    print "SESSION:<BR>\n";
     print_r($_SESSION);
     print "</article>\n";
 

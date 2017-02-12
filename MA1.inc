@@ -1,11 +1,10 @@
 <?PHP
 // MA1.inc
-// Include file with the settings of scoring for 'Petite Mounted Archery' aka Single Shot
-// File v0.2a
-// Last Updated: 5 FEB 2017
+// Include file with the settings of scoring for 'Petite Mounted Archery' aka Single Target
+// File v0.3a
+// Last Updated: 10 FEB 2017
 // Sandor Dosa
 
-// NOTE: This is a six-fold increase above Grand Mounted Archery.
 
 $Gold = 30;                      //Code "G" Bullseye of Target
 $Red = 24;                       //Code "R" First Ring
