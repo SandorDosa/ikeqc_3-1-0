@@ -8,11 +8,6 @@ include "colors.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
 include "dev_data.inc";
 // End /Dev/Data
-$_SESSION['RiderHonors'] = $RiderHonors;
-$_SESSION['RiderName'] = $RiderName;
-$_SESSION['RiderID'] = $RiderID;
-$_SESSION['RiderDVN'] = $RiderDVN;
-$_SESSION['EName'] = $EName;
 
 IF ($RunReeds) {
 
@@ -82,7 +77,11 @@ IF ($RunReeds) {
         print "</TABLE></DIV>\n";
 
         print "<input type=\"hidden\" name=\"run\" value=\"$run\">\n";
-        print "<div class=\"w3-container $S3 w3-center\"><button class=\"w3-btn w3-black\" name=\"review\" value=\"11\">Submit</button></div>\n";
+        print "<DIV class=\"w3-container $S3 w3-center w3-padding-16\">\n";
+        print "<input type=\"hidden\" name=\"review\" value=\"11\">\n";
+        print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> -or- \n";
+        print "<button class=\"w3-btn w3-black\" name=\"run\" type=\"reset\" value=\"$run\">Reset</button>\n";
+        print "</DIV>\n";
         die;
     }
 
@@ -161,11 +160,11 @@ IF ($RunReeds) {
         print "<section class=\"w3-container $S2\">\n";
         print "<H2>Please Review:</H2>\n";
 
-        print "<P>Chopped $Dcount reeds ".$Chopped."scoring $Dscore for the Reed Chop.</P>\n";
+        print "<P>Chopped ".$Chopped."reeds scoring $Dscore for those $Dcount Reeds.</P>\n";
         print "</section>\n";
 
         print "<section class=\"w3-container $S3 w3-padding-8\">\n";
-        print "<button class=\"w3-btn w3-red\" name=\"DEdit\" value=\"1\">EDIT SCORE</button>\n";
+        print "<button class=\"w3-btn w3-red\" name=\"DEdit\" value=\"1\">EDIT SCORE</button> -or- \n";
         print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
 
         printf("<input type=\"hidden\" name=\"Reed2L\" value=\"%s\">\n", $Reed2L);

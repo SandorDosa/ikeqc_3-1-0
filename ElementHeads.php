@@ -8,11 +8,6 @@ include "colors.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
 include "dev_data.inc";
 // End /Dev/Data
-$_SESSION['RiderHonors'] = $RiderHonors;
-$_SESSION['RiderName'] = $RiderName;
-$_SESSION['RiderID'] = $RiderID;
-$_SESSION['RiderDVN'] = $RiderDVN;
-$_SESSION['EName'] = $EName;
 
 IF ($RunHeads) {
 
@@ -41,10 +36,11 @@ IF ($RunHeads) {
         print "<input name=\"Faults\" type=\"text\" width=\"100%\" placeholder='\"Penalty count\"'>\n";
         print "<P>Just the number of penalties, if any</P>\n";
         print "</div>\n";
-        print "<div class=\"w3-container w3-center $S4 w3-padding-8 w3-large\">\n";
-        print "<input type=\"hidden\" name=\"run\" value=\"$run\">\n";
-        print "<button class=\"w3-btn w3-black\" name=\"review\" value=\"11\">Submit</button>\n";
-        print "</div></body></html>\n";
+        print "<DIV class=\"w3-container w3-center $S4 w3-padding-8\">\n";
+        print "<input type=\"hidden\" name=\"review\" value=\"11\">\n";
+        print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> -or- \n";
+        print "<button class=\"w3-btn w3-black\" name=\"run\" type=\"reset\" value=\"$run\">Reset</button>\n";
+        print "</DIV>\n";
         die;
     }
 
@@ -103,7 +99,7 @@ IF ($RunHeads) {
                     print "</TABLE></section>\n";
 
                     print "<section class=\"w3-container $S3 w3-padding-8\">\n";
-                    print "<button class=\"w3-btn w3-red\" name=\"HEdit\" value=\"1\">EDIT SCORE</button>\n";
+                    print "<button class=\"w3-btn w3-red\" name=\"HEdit\" value=\"1\">EDIT SCORE</button> -or- \n";
                     print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
                     ShowDebug(get_defined_vars(),$vars_start);
                     print "</section>\n";

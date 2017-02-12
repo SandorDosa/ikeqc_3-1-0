@@ -8,7 +8,7 @@ function OpenHTML($c1) {
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
-    print "<body style=\"max-width:400px; min-height: 100vh; background-color: steelblue;\">\n";
+    print "<body style=\"max-width:400px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
 
 }
 

@@ -11,3 +11,10 @@ $RunRings = true;
 $RunReeds = true;
 $RunMoarch = true;
 $RunBirjas = true;
+
+$_SESSION['RiderHonors'] = $RiderHonors;
+$_SESSION['RiderName'] = $RiderName;
+$_SESSION['RiderID'] = $RiderID;
+$_SESSION['RiderDVN'] = $RiderDVN;
+$_SESSION['EName'] = $EName;
+$_SESSION['BG'] = $BG;

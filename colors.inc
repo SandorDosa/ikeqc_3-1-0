@@ -8,4 +8,6 @@ $S5 = "w3-pink"; // Submission/Reset buttons -- Diagnostic parent
 $S6 = "w3-indigo"; // Review leading cell
 $S7 = "w3-indigo"; // Review Submission/Edit buttons -- Diagnostic parent
 
+$BG = "steelblue";
+
 ?>

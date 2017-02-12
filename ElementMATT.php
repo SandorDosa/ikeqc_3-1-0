@@ -16,11 +16,6 @@ include "MA3.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
 include "dev_data.inc";
 // End /Dev/Data
-$_SESSION['RiderHonors'] = $RiderHonors;
-$_SESSION['RiderName'] = $RiderName;
-$_SESSION['RiderID'] = $RiderID;
-$_SESSION['RiderDVN'] = $RiderDVN;
-$_SESSION['EName'] = $EName;
 
 IF ($RunMoarch) {
 
@@ -42,9 +37,11 @@ IF ($RunMoarch) {
         print "<form name=\"MA3\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
 
         print "<div class=\"w3-container $S2 w3-center\"><P class=\"w3-text-white\"><H2>First Target</H2></div>\n";
+
         print "<div class=\"w3-display-container\">\n";
         print "<img src=\"target_sm.png\" alt=\"Archery Target\">\n";
         print "<div class=\"w3-display-left w3-container\">\n";
+
         print "<table class=\"w3-table w3-centered w3-xlarge w3-text-shadow\">\n";
         print "<TR class=\"w3-left-align\">\n";
         print "<TD class=\"w3-text-black\">$Gold<BR><input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"G\"></TD>\n";
@@ -55,8 +52,10 @@ IF ($RunMoarch) {
         print "<TD></TD>\n";
         print "</TR>\n";
         print "</TABLE>\n";
+
         print "</div>\n";
         print "</div>\n";
+
         print "<div id=\"MoArch\" class=\"w3-container $S2 w3-padding-8\">\n";
         print "Miss:<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"M\">\n";
         print "Bounce:<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"N\">\n";
@@ -115,11 +114,10 @@ IF ($RunMoarch) {
         print "<div class=\"w3-container $S4 w3-center\">Rider's technique correct:<input class=\"w3-check\" type=\"checkbox\" name=\"TechOK\" value=\"1\" checked=\"checked\"></div>\n";
         print "<DIV class=\"w3-container $S5 w3-center w3-padding-16\">\n";
         print "<input type=\"hidden\" name=\"review\" value=\"11\">\n";
-        print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> or \n";
+        print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> -or- \n";
         print "<button class=\"w3-btn w3-black\" name=\"run\" type=\"reset\" value=\"$run\">Reset</button>\n";
-        ShowDebug(get_defined_vars(),$vars_start);
         print "</DIV>\n";
-       die;
+        die;
     }
 
     // If $review is set, The run has been completed.
@@ -321,11 +319,11 @@ IF ($RunMoarch) {
                     print "<TR><TD>Second Target:</TD><TD>$Arrow2</TD></TR>\n";
                     print "<TR><TD>Third Target:</TD><TD>$Arrow3</TD></TR>\n";
                     IF ($bonus > 0) {
+                        print "<TR><TD>Time:</TD><TD>$MA3time</TD></TR>\n";
                         print "<TR><TD>Bonus:</TD><TD>$bonus</TD></TR>\n";
-                        print "<TR><TD>Time:</TD><TD>$MA3time</TD></TR>\n";
                     } ELSE {
-                        print "<TR><TD>Bonus:</TD><TD>none</TD></TR>\n";
                         print "<TR><TD>Time:</TD><TD>$MA3time</TD></TR>\n";
+                        print "<TR><TD>Bonus:</TD><TD>none</TD></TR>\n";
                     }
                     IF ($TechOK > 0) {
                         print "<TR><TD>Technique:</TD><TD>OK (+$technical)</TD></TR>\n";
@@ -346,7 +344,7 @@ IF ($RunMoarch) {
                     print"<input type=\"hidden\" name=\"MA3TechOK\" value=\"$TechOK\">\n";
                     print"<input type=\"hidden\" name=\"MA3time\" value=\"$MA3time\">\n";
 
-                    print "<button class=\"w3-btn w3-red\" name=\"MA3Edit\" value=\"1\">EDIT SCORE</button>\n";
+                    print "<button class=\"w3-btn w3-red\" name=\"MA3Edit\" value=\"1\">EDIT SCORE</button> -or- \n";
                     print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
                     ShowDebug(get_defined_vars(),$vars_start);
                     print "</section>\n";

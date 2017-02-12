@@ -16,12 +16,6 @@ include "MA1.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
 include "dev_data.inc";
 // End /Dev/Data
-$_SESSION['RiderHonors'] = $RiderHonors;
-$_SESSION['RiderName'] = $RiderName;
-$_SESSION['RiderID'] = $RiderID;
-$_SESSION['RiderDVN'] = $RiderDVN;
-$_SESSION['EName'] = $EName;
-
 IF ($RunMoarch) {
 
     IF ($MA1Edit > 0) {
@@ -112,9 +106,8 @@ IF ($RunMoarch) {
         print "<div class=\"w3-container $S4 w3-center\">Rider's technique correct:<input class=\"w3-check\" type=\"checkbox\" name=\"TechOK\" value=\"1\" checked=\"checked\"></div>\n";
         print "<DIV class=\"w3-container $S5 w3-center w3-padding-16\">\n";
         print "<input type=\"hidden\" name=\"review\" value=\"11\">\n";
-        print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> or \n";
+        print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> -or- \n";
         print "<button class=\"w3-btn w3-black\" name=\"run\" type=\"reset\" value=\"$run\">Reset</button>\n";
-        ShowDebug(get_defined_vars(),$vars_start);
         print "</DIV>\n";
        die;
     }
@@ -314,7 +307,7 @@ IF ($RunMoarch) {
         print"<input type=\"hidden\" name=\"MA1Tech\" value=\"$technical\">\n";
         print"<input type=\"hidden\" name=\"MA1TechOK\" value=\"$TechOK\">\n";
 
-        print "<button class=\"w3-btn w3-red\" name=\"MA1Edit\" value=\"1\">EDIT SCORE</button>\n";
+        print "<button class=\"w3-btn w3-red\" name=\"MA1Edit\" value=\"1\">EDIT SCORE</button> -or- \n";
         print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
         ShowDebug(get_defined_vars(),$vars_start);
         print "</section>\n";
