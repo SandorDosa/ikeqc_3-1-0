@@ -1,3 +1,8 @@
+#Upcoming Events
+
+[IKEqC Three-point-OH!](gulfwarsxxvi.md)
+
+###About:
 At its inception in 1993 the Inter-Kingdom Equestrian Competition, or IKEqC as it became commonly known, set out to become the SCA Equestrian equivalent of the Inter-Kingdom Archery Competition.  
 
 In late AS XXXV (April 2001) Sandor launched Version 1 of the Scorekeeper website.  This first edition was rather simple, merely translating the spreadsheet to a web-native form.
