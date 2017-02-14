@@ -1,7 +1,7 @@
 ---
 IKEqC Three-point-OH!
 ---
-#IKEqC Three-point-oh!
+
 There will be a class offered on the next generation of IKEqC at Gulf Wars XXVI.
 
 #AMAA (Ask Me ALMOST Anything)
