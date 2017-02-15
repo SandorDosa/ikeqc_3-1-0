@@ -1,6 +1,7 @@
 # Upcoming Events
 
-[Gulf Wars XXVI](http:/gulfwars.org)
+[IKEqC Three-point-OH!](gulfwarsxxvi) at [Gulf Wars XXVI](http://gulfwars.org)
+
 
 ###  About:
 At its inception in 1993 the Inter-Kingdom Equestrian Competition, or IKEqC as it became commonly known, set out to become the SCA Equestrian equivalent of the Inter-Kingdom Archery Competition.  
