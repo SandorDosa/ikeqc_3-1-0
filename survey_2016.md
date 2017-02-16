@@ -22,7 +22,7 @@ Survey Questions
 
 The two questions asked with their options (and the responses) were:
 
-## 1. Why do you want to participate in the Interkingdom Equestrian Competition?
+1. Why do you want to participate in the Interkingdom Equestrian Competition?
 
     > a. It is a way to measure my SCA equestrian skills and abilities – 79%
     >
@@ -30,7 +30,7 @@ The two questions asked with their options (and the responses) were:
     >
     > c. It is a way for me to compete against equestrians from other kingdoms – 59.7%
     >
-## 2. What Mounted Archery activity would you prefer to submit scores for the 2015/2016 IKEqC year?
+2. What Mounted Archery activity would you prefer to submit scores for the 2015/2016 IKEqC year?
 
     > a. Single shot – 14%
     >
