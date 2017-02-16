@@ -74,7 +74,7 @@ The focus on Mounted Archery and Birjas as new games seemed to take away from th
 
 # AS XLII
 
-Marguerite du Royon passed the baton to Svana Mjobeina who is best remembered for her handmade champion's prize of a bridal.  Birjas had still not taken off, worse, Mounted Archery was suffering as well.  The other three games were well represented in the scores submitted.
+Marguerite du Royon passed the baton to Svana Mjobeina who is best remembered for her handmade champion's prize of a Bridle.  Birjas had still not taken off, worse, Mounted Archery was suffering as well.  The other three games were well represented in the scores submitted.
 
 I was winding down my active support in the coding of things IKEqC, having found a deputy in Doucette de Verdun who was very interested in taking the framework of pages I had built 
 seven years before and make them look modern and implement a few changes that would future-proof the site for years to come.
@@ -82,6 +82,8 @@ seven years before and make them look modern and implement a few changes that wo
 # AS XLIV 
 
 Svana Mjobeina passed the baton to Doucette de Verdun, who after working on the website as my deputy had succeeded me in maintaining it.  I took on a new job mundanely that limited my ability to do things SCA altogether.
+
+Donwenna was deployed to the Middle-East in mundane military service during this time, and that left her with all she could handle just running the [Hunt Guild](http://www.huntguild.org) and the [An Tir Royal Equestrian Guild](http://www.equestrianguild.antir.sca.org/).
 
 # IKEqC interuptus...
 
@@ -91,9 +93,9 @@ There are only a handful of scores for AS XLVIII and XLIX, and none for AS L.  I
 
 # The Survey
 
-During the SCA's jubilee 50th year event, talk of things IKEqC was brought up.  Donwenna and administrators past were consulted on the state of the games, and even a new voice was heard, that of Dame Macha the Determined.  Donwenna, having had her job bring her back to where she could play in the SCA again, was getting asked by many people about the IKEqC.
+During the SCA's jubilee 50th year event, talk of things IKEqC was brought up.  Donwenna and administrators past were consulted on the state of the games, and even a new voice was heard, that of Dame Macha the Determined.  As Donwenna's deployement to the Middle East in mundane military service had concluded, she was getting asked by many people about the IKEqC.
 
-A [Survey](survey_2016) was sent out and the seventy or so responses were shockingly different that the small numbers of scores submitted to the IKEqC database in recent years would allude to.  Plans were made to revive the IKEqC.
+A [Survey](survey_2016) was sent out and the seventy or so responses were shockingly different than the small numbers of scores submitted to the IKEqC database in recent years would allude to.  Plans were made to revive the IKEqC.
 
 Donwenna and Macha reached out to me, and to others to help rebuild the IKEqC.
 
