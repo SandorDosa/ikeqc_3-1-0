@@ -4,7 +4,7 @@ title: Ring Tilt
 
 # Ring Tilt
 
-This untimed game has riders attempting to spear and collect on their lance, one of a pair of rings spaced out on three standards in a line.
+This untimed game has riders attempting to spear and collect on their lance, one of a pair of rings spaced out on three standards in a line, as they ride at their divisional gait: Walk, Trot, or Canter.
 
 These rings range from 1 inch to 6 inches in diameter and are placed so that a rider cannot take both rings.
 
