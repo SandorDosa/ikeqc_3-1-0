@@ -1,5 +1,5 @@
 ---
-title:IKEqC Three Point OH!
+title: IKEqC Three Point OH!
 ---
 
 # Three Point OH!
