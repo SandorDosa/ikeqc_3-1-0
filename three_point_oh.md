@@ -1,6 +1,7 @@
 ---
 title:IKEqC Three Point OH!
 ---
+
 # Three Point OH!
 If you've been reading through these pages, you no doubt have seen referenences to something called "IKEqC Three-point-OH!" and this is what it is.  
 
@@ -47,5 +48,6 @@ Version 3 will see the adoption of Mobile-friendly and even Mobile-First designs
 
 # Closing Thoughts
 
+These changes are about making things easier.  Easier to run.  Easier to find.  Easier to play.   It is our hope that with easier games will come more scores.  And if you look at the [survey](survey_2016) results, thats what people want out of the IKEqC.
 
-
+Sandor
