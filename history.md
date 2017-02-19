@@ -101,7 +101,7 @@ Donwenna and Macha reached out to me, and to others to help rebuild the IKEqC.
 
 # IKEqC Forward!
 
-As I write this, it is February 16, AS XLI (2017 Gregorian).  Its been almost sixteen years since I ran across Donwenna at the Equestrian barn at Gulf Wars X.  Plans are being made to make Gulf Wars XXVI the site of the IKEqC's phoenix-pyre.  Its all starting to come together to bring you back the tournament so many of you want to return.
+As I write this, it is February 16, AS LI (2017 Gregorian).  Its been almost sixteen years since I ran across Donwenna at the Equestrian barn at Gulf Wars X.  Plans are being made to make Gulf Wars XXVI the site of the IKEqC's phoenix-pyre.  I think thats rather fitting, because for me and scaikeqc.org thats where it began.  Its all starting to come together to bring you back the tournament so many of you want to return.
 
 I am hard at work building new mobile-friendly pages and scoring systems (EMiCs will be able to enter scores as their events progress, participants and fans can see these scores come in -- in near real time -- and use that to help cheer on their friends to victory or console them in defeat.
 
