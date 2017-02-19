@@ -56,7 +56,7 @@ New for AS XXXIX was [Mounted Archery](moarch).  As the fourth major IKEqC game,
 
 ScoreKeeper v2.3 handled the change without difficulty.  One of the more subtle changes to the IKEqC was tweaking of the scores, dropping of the time tables from the Heads scoring system, and general improvements to the way things were handled 'under-the-hood'.
 
-I might have been a bit optimistic to add a fourth game as the last addition -- Reed Chop -- was still not being widely offered at events.
+It might have been a bit optimistic to add a fourth game as the last addition -- Reed Chop -- was still not being widely offered at events.
 
 # AS XL Fortieth Year.
 
@@ -105,7 +105,7 @@ As I write this, it is February 16, AS LI (2017 Gregorian).  Its been almost six
 
 I am hard at work building new mobile-friendly pages and scoring systems (EMiCs will be able to enter scores as their events progress, participants and fans can see these scores come in -- in near real time -- and use that to help cheer on their friends to victory or console them in defeat.
 
-New features are being considered, and several will be talked about at Gulf Wars and in the future.  Things are looking bright for the IKEqC again, but to keep building this momentum we need the help of the SCA Equestrians too.  Tell the folks that run equestrian events that you want to run IKEqC games.  Let them know they can thread the IKEqC games into their Challenge Course, that they can pick and choose which games they want to try and offer too.
+New features are being considered, and several will be talked about at Gulf Wars and in the future.  Things are looking bright for the IKEqC again, but to keep building this momentum we need the help of the SCA Equestrians too.  Tell the folks that run equestrian events that you want to run IKEqC games.  Let them know they can thread the IKEqC games into their Challenge Course, that they can pick and choose which games they want to try and offer too.  For more specific details on what's on the horizon, head over [here](blue_sky)
 
 Where the IKEqC goes from here, who can say.  The IKEqC stands ready to support the tournament for you to participate in.
 
