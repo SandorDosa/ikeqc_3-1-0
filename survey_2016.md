@@ -46,6 +46,6 @@ The comments indicated that using Mounted Archery for the championship had disco
 
 Website:  [www.scaikeqc.org](http://scaikeqc.org)
 
-Yahoo groups:  [SCAIkeqcNewsAlerts] (https://groups.yahoo.com/neo/groups/SCAIKEqCnewsalerts/info)
+Yahoo groups:  [SCAIkeqcNewsAlerts](https://groups.yahoo.com/neo/groups/SCAIKEqCnewsalerts/info)
 
 FaceBook Group: SCA Interkingdom Equestrian Competition
