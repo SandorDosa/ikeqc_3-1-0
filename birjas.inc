@@ -1,7 +1,10 @@
 <?php
 
+
 $OH = 20;
 $TH = 30;
+
+$_SESSION['LastGame'] = "Birjas";
 
 function BirjasHeader($c) {
 

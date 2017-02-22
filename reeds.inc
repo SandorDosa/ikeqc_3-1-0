@@ -11,6 +11,8 @@ $L8 = 6;
 $R10 = 3;
 $L10 = 3;
 
+$_SESSION['LastGame'] = "Reed Chop";
+
 function ReedsHeader($c) {
 
     print "<div id=\"Reeds\" class=\"w3-container $c\">\n";

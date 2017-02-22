@@ -16,25 +16,21 @@ include "MA1.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
 include "dev_data.inc";
 // End /Dev/Data
-IF ($RunMoarch) {
+IF ($_SESSION['RunMA1']) {
 
+    
     IF ($MA1Edit > 0) {
         $run = $_SESSION['RiderID'];
         $review = -1;
     }
 
     IF (!isset($review) OR $review < 0) {
-
         OpenHTML("Mounted Archery Single Target");
-
-        ShowCaution();
-
-        ShowError();
-
+    
         MA1Header($S1);
-
+    
         print "<form name=\"MA1\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
-
+    
         print "<div class=\"w3-container $S2 w3-center\"><P class=\"w3-text-white\"><H2>First Arrow</H2></div>\n";
         print "<div class=\"w3-display-container\">\n";
         print "<img src=\"target_sm.png\" alt=\"Archery Target\">\n";
@@ -57,7 +53,7 @@ IF ($RunMoarch) {
         print "Drop:<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"D\">\n";
         print "P/T:<input class=\"w3-radio\" type=\"radio\" name=\"Pass1\" value=\"P\">\n";
         print "</DIV>\n";
-
+    
         print "<div class=\"w3-container $S3 w3-center\"><P class=\"w3-text-white\"><H2>Second Arrow</H2></div>\n";
         print "<div class=\"w3-display-container\">\n";
         print "<img src=\"target_sm.png\" alt=\"Archery Target\">\n";
@@ -80,7 +76,7 @@ IF ($RunMoarch) {
         print "Drop:<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"D\">\n";
         print "P/T:<input class=\"w3-radio\" type=\"radio\" name=\"Pass2\" value=\"P\">\n";
         print "</DIV>\n";
-
+    
         print "<div class=\"w3-container $S4 w3-center\"><H2 class=\"w3-text-white\"><H2>Third Arrow</H2></div>\n";
         print "<div class=\"w3-display-container\">\n";
         print "<img src=\"target_sm.png\" alt=\"Archery Target\">\n";
@@ -109,7 +105,8 @@ IF ($RunMoarch) {
         print "<button class=\"w3-btn w3-white\" name=\"run\" type=\"submit\" value=\"$run\">Submit</button> -or- \n";
         print "<button class=\"w3-btn w3-black\" name=\"run\" type=\"reset\" value=\"$run\">Reset</button>\n";
         print "</DIV>\n";
-       die;
+        ShowDebug(get_defined_vars(),$vars_start);
+        die;
     }
 
     // If $review is set, The run has been completed.
@@ -278,7 +275,7 @@ IF ($RunMoarch) {
 
         MA1Header($S1);
 
-        ShowCaution();
+        
 
         print "<form name=\"MA1review\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
 

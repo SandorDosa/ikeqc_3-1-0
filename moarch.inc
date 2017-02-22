@@ -17,4 +17,5 @@ $Passthru = 0;                   //Shots that pass thru the target
 $Dropout = 0;                    //Shots that strike, stick for a moment and then drop out
 $Technical = 0;                  //Score added for proper control and technical form (i.e. consolation point(s)
 
+
 ?>

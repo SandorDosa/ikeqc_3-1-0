@@ -1,4 +1,5 @@
 <?php
+
 $db = mysql_connect("localhost", "scaikeqc_sb", "Kni1ghts");
 mysql_select_db("scaikeqc_sandbox",$db);
 $pgyear="lii";

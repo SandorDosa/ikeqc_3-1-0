@@ -5,7 +5,6 @@
 // Last Updated: 10 FEB 2017
 // Sandor Dosa
 
-
 $Gold = 30;                      //Code "G" Bullseye of Target
 $Red = 24;                       //Code "R" First Ring
 $Blue = 18;                      //Code "B" Second Ring
@@ -15,6 +14,8 @@ $Bounce = 0;                     //Code "N" Shots that strike but do not stick i
 $Passthru = 0;                   //Code "P" Shots that pass thru the target
 $Dropout = 0;                    //Code "D" Shots that strike, stick for a moment and then drop out
 $Tech = 10;                      //Score added for proper control and technical form (i.e. consolation point(s)
+
+$_SESSION['LastGame'] = "Mounted Archery -- Single Target";
 
 function MA1Header($c) {
 
@@ -31,5 +32,3 @@ function MA1Header($c) {
     print "</TABLE>\n";
     print "</DIV>\n";
 }
-
-?>

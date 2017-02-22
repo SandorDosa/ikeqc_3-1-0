@@ -1,5 +1,84 @@
 <?PHP
 
+
+function NameTest($n) {
+    // This function tests for common Titles at the begining of a Participant's name.
+    // Titles or Honors should go in a different blank so we test for it.
+    // Because of the fuzzy nature of this test, we can only warn of the discovery and not kick it back as in error just
+    //   in case the title we test for shares the first few letters with an otherwise valid name.
+    $EntryCaution = 0;
+    SWITCH ($n) {
+        CASE strncasecmp($n, "king", 4):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "queen", 5):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "princ", 5):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "duke", 4):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "dutchess", 8):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "earl", 4):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "viscount", 7):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "count", 5):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "baron", 5):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "sir ", 4):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "dame ", 5):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "master", 6):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "mistress", 8):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "squire", 6):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "protege", 7):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+        CASE strncasecmp($n, "apprentice", 10):
+            $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
+            $EntryCaution++;
+            BREAK;
+            
+    }
+    
+    return ($EntryCaution);
+    
+}
+
 function OpenHTML($c1) {
 
     print "<!DOCTYPE html>\n";
@@ -9,25 +88,16 @@ function OpenHTML($c1) {
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"max-width:400px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
-
-}
-
-function ShowCaution() {
-
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
-
+        
         print "<article class=\"w3-container w3-yellow\">\n";
         print "<P>Take Note:<BR>\n";
         print "{$_SESSION['Caution']}</P></article>\n";
         $_SESSION['Caution'] = NULL;
     }
-
-}
-
-function ShowError() {
-
+    
     IF (isset($_SESSION['EntryError']) AND !is_null($_SESSION['EntryError'])) {
-
+        
         print "<article class=\"w3-container w3-red\">\n";
         print "<P>You have an error in your input, please try again.<BR>\n";
         print "{$_SESSION['EntryError']}</P></article>\n";
@@ -35,6 +105,8 @@ function ShowError() {
     }
 
 }
+
+
 
 function ShowDebug($v1, $v2) {
 
@@ -70,6 +142,14 @@ function PageHeadRider($f,$g) {
         printf("<H2>%s %s</H2>\n", $_SESSION['RiderHonors'], $_SESSION['RiderName']);
     }
     print "</header>\n";
+}
+
+function AnnounceRider() {
+    IF (is_null($_SESSION['RiderHonors'])) {
+        printf("%s\n", $_SESSION['RiderName']);
+    } ELSE {
+        printf("%s %s\n", $_SESSION['RiderHonors'], $_SESSION['RiderName']);
+    }
 }
 
 function PageNoHeadRider($h) {

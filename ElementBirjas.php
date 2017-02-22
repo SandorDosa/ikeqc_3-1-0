@@ -10,7 +10,8 @@ include "dev_data.inc";
 // End /Dev/Data
 
 
-IF ($RunBirjas) {
+
+IF ($_SESSION['RunBirjas']) {
 
 
     IF (!isset($review) OR $review < 0) {
@@ -19,7 +20,7 @@ IF ($RunBirjas) {
 
         BirjasHeader($S1);
 
-        ShowCaution();
+        
 
         print "<form name=\"birjas\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
         print "<div id=\"birjas\" class=\"w3-container $S2\">\n";
@@ -151,7 +152,7 @@ IF ($RunBirjas) {
 
         BirjasHeader($S1);
 
-        ShowCaution();
+        
 
         print "<form name=\"birjasreview\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
 

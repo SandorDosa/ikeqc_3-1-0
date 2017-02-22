@@ -17,7 +17,8 @@ include "MA3.inc";
 include "dev_data.inc";
 // End /Dev/Data
 
-IF ($RunMoarch) {
+
+IF ($_SESSION['RunMA3']) {
 
     IF ($MA3Edit > 0) {
         $run = $_SESSION['RiderID'];
@@ -28,9 +29,9 @@ IF ($RunMoarch) {
 
         OpenHTML("Mounted Archery Triple Target");
 
-        ShowCaution();
+        
 
-        ShowError();
+        
 
         MA3Header($S1);
 
@@ -305,9 +306,9 @@ IF ($RunMoarch) {
 
                     MA3Header($S1);
 
-                    ShowCaution();
+                    
 
-                    ShowError();
+                    
 
                     print "<form name=\"MA3review\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
 
@@ -383,7 +384,7 @@ IF ($RunMoarch) {
 // If $GoodRun is set, the score has been reviewed and confirmed.
 
 
-    // Claim 720105730  --  800-268-2525
+
 //
 //    IF ($run > 0 AND $GoodRun > 0) {
 //        $setRup = true; // testing peg

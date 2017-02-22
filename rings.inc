@@ -15,7 +15,7 @@ $L6 = 4;
 
 $All_Big = 0; // Proposed bonus for taking all three big rings on both sides
 
-
+$_SESSION['LastGame'] = "Ring Tilt";
 
 function RingsHeader($c) {
 

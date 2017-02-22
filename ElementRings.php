@@ -9,7 +9,8 @@ include "colors.inc";
 include "dev_data.inc";
 // End /Dev/Data
 
-IF ($RunRings) {
+
+IF ($_SESSION['RunRings']) {
 
     IF (isset($REdit)) {
         $run = $_SESSION['RiderID'];
@@ -24,9 +25,9 @@ IF ($RunRings) {
 
         RingsHeader($S1);
 
-        ShowCaution();
+        
 
-        ShowError();
+        
 
         print "<form name=\"rings\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
         print "<div id=\"Rings\" class=\"w3-container $S2\">\n";
@@ -213,7 +214,7 @@ IF ($RunRings) {
 
         RingsHeader($S1);
 
-        ShowCaution();
+        
 
 
         print "<form name=\"ringsreview\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";

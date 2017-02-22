@@ -17,6 +17,8 @@ $Tech = 10;                 //Score added for proper control and technical form 
 $bonus_gate = 15;               //The time in seconds that must be beaten to earn bonus score
 $bonus_method = "R";       //Method for scoring bonus, STRICT = whole integer only / R = remainder
 
+$_SESSION['LastGame'] = "Mounted Archery -- Triple Target";
+
 function MA3Header($c) {
 
     print "<div id=\"MA1\" class=\"w3-container $c\">\n";
@@ -32,5 +34,3 @@ function MA3Header($c) {
     print "</TABLE>\n";
     print "</DIV>\n";
 }
-
-?>
