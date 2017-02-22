@@ -31,6 +31,7 @@ IF (isset($FailReturn)) {
         OpenHTML($S7);
         
         $setz = mysql_query("UPDATE events_temp SET Erun='X' WHERE EID='{$_SESSION['EID']}'", $db);
+        $setzz = mysql_query("UPDATE events SET Estatus='X' WHERE EID='{$_SESSION['EID']}'", $db);
         
         
         print "<DIV CLASS=\"w3-panel w3-red w3-jumbo\"><P>Sorry folks, something broke that Sandor will have to fix.<BR>Anything written prior to the crash is still there, but you should finish the tournament on paper.<BR>Remember there are static score calculator scripts at <A HREF=\"http://scaikeqc.org/tools\">here</A>.</P></DIV>\n";
@@ -204,25 +205,25 @@ IF ($_SESSION['EID'] > 0) {
         IF ($R = mysql_fetch_array($setr)) {
             $EP = mysql_num_rows($setr);
             do {
-                IF ($_SESSION['EHS'] == 'Y' AND $R[1] == 'Y') {
+                IF ($_SESSION['EHS'] == 'Y' AND $R['EHS'] == 'Y') {
                     $EHS++;
                 }
-                IF ($_SESSION['EHL'] == 'Y' AND $R[1] == 'Y') {
+                IF ($_SESSION['EHL'] == 'Y' AND $R['EHL'] == 'Y') {
                     $EHL++;
                 }
-                IF ($_SESSION['ER'] == 'Y' AND $R[2] == 'Y') {
+                IF ($_SESSION['ER'] == 'Y' AND $R['ER'] == 'Y') {
                     $ER++;
                 }
-                IF ($_SESSION['ED'] == 'Y' AND $R[3] == 'Y') {
+                IF ($_SESSION['ED'] == 'Y' AND $R['ED'] == 'Y') {
                     $ED++;
                 }
-                IF ($_SESSION['EMS'] == 'Y' AND $R[4] == 'Y') {
+                IF ($_SESSION['EMS'] == 'Y' AND $R['EMS'] == 'Y') {
                     $EMS++;
                 }
-                IF ($_SESSION['EMT'] == 'Y' AND $R[4] == 'Y') {
+                IF ($_SESSION['EMT'] == 'Y' AND $R['EMT'] == 'Y') {
                     $EMT++;
                 }
-                IF ($_SESSION['EB'] == 'Y' AND $R[5] == 'Y') {
+                IF ($_SESSION['EB'] == 'Y' AND $R['EB'] == 'Y') {
                     $EB++;
                 }
             } while ($R = mysql_fetch_array($setr));
@@ -237,25 +238,39 @@ IF ($_SESSION['EID'] > 0) {
         $_SESSION['EPcount'] = $EP;
         IF (isset($EHS)) {
             $_SESSION['EHScount'] = $EHS;
+        } ELSE {
+            $_SESSION['EHScount'] = -1;
         }
         IF (isset($EHL)) {
             $_SESSION['EHLcount'] = $EHL;
+        } ELSE {
+            $_SESSION['EHLcount'] = -1;
         }
         IF (isset($ER)) {
             $_SESSION['ERcount'] = $ER;
+        } ELSE {
+            $_SESSION['ERcount'] = -1;
         }
         IF (isset($ED)) {
             $_SESSION['EDcount'] = $ED;
+        } ELSE {
+            $_SESSION['EDcount'] = -1;
         }
         IF (isset($EMS)) {
             $_SESSION['EMScount'] = $EMS;
+        } ELSE {
+            $_SESSION['EMScount'] = -1;
         }
         IF (isset($EMT)) {
             $_SESSION['EMTcount'] = $EMT;
+        } ELSE {
+            $_SESSION['EMTcount'] = -1;
         }
         IF (isset($EB)) {
 
             $_SESSION['EBcount'] = $EB;
+        } ELSE {
+            $_SESSION['EBcount'] = -1;
         }
 
     }
