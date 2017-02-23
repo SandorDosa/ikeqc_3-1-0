@@ -83,7 +83,7 @@ function OpenHTML($c1) {
 
     print "<!DOCTYPE html>\n";
     print "<html lang=\"en\">\n";
-    print "<title>$c1 at {$_SESSION['EName']}</title>\n";
+    print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
@@ -105,8 +105,6 @@ function OpenHTML($c1) {
     }
 
 }
-
-
 
 function ShowDebug($v1, $v2) {
 
@@ -162,7 +160,6 @@ function PageNoHeadRider($h) {
     }
     print "</header>\n";
 }
-
 
 function KingLook($a) {
 

@@ -32,22 +32,17 @@ IF (isset($PName)) {
         
                 PageHead("New Rider", "w3-container $S2");
         
-                
-        
-                
-        
                 print "<DIV CLASS=\"w3-container $S3\">\n";
                 print "<H2>Close matches:</H2>\n";
                 print "<P>If the rider you are trying to enter is listed below by any name you recognize, you do not need to enter them again.<BR>\n";
                 print "If a rider wishes to make changes to their details, it can be handled by visiting the Rider's portal.<BR>\n";
-                print "For this event, please use the Rider's existing name, and make adjustments at your liesure.</P>";
+                print "For this event, please use the Rider's existing name, and make adjustments later.</P>";
                 print "<TABLE CLASS=\"w3-table w3-striped\">\n";
                 print "<TR CLASS=\"w3-border-bottom\"><TD>SCA Name</TD><TD>Common Alias</TD><TD>Also Known As</TD><TD>Mundanly Known AS</TD></TR>\n";
                 do {
                     print "<TR><TD>$A[1]</TD><TD>$A[2]</TD><TD>$A[3]</TD><TD>$A[4]</TD></TR>\n";
                 } while ($A = mysql_fetch_array($seta));
-                print ""
-        
+                // print "";  ** Work stopped at this point
             }
     
         }
