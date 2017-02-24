@@ -87,7 +87,7 @@ function OpenHTML($c1) {
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
-    print "<body style=\"max-width:400px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
+    print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
         
         print "<article class=\"w3-container w3-yellow\">\n";
@@ -143,6 +143,10 @@ function PageHeadRider($f,$g) {
 }
 
 function AnnounceRider() {
+    IF (is_null($_SESSION['RiderName'])) {
+        print "Nothing to display.";
+        return;
+    }
     IF (is_null($_SESSION['RiderHonors'])) {
         printf("%s\n", $_SESSION['RiderName']);
     } ELSE {

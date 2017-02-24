@@ -6,9 +6,8 @@ include "year.inc";
 include "h21.inc";
 include "colors.inc";
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
-include "dev_data.inc";
+// include "dev_data.inc";
 // End /Dev/Data
-
 
 IF ($_SESSION['RunH21']) {
 
@@ -23,11 +22,7 @@ IF ($_SESSION['RunH21']) {
         OpenHTML("Behead the Enemy");
 
         HeadsHeader($S1);
-
         
-
-        
-
         print "<form name=\"heads\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
         print "<div id=\"Heads\" class=\"w3-container w3-center $S2 w3-padding-8 w3-large\">\n";
         print "<input name=\"Htime\" type=\"text\" width=\"100%\" placeholder=\"Time(format ###.##)\"><BR>\n";
@@ -55,6 +50,9 @@ IF ($_SESSION['RunH21']) {
                     IF (!isset($Faults)) {
                         $FP = 0;
                     } ELSE {
+                        IF ($Faults > 9) {
+                            $_SESSION['Caution'] = "Did the rider score that many faults or did you count by tens?<BR>";
+                        }
                         $FP = $Faults * $Penalty;
                     }
                     SWITCH ($_SESSION['RiderDVN']) {
@@ -76,17 +74,15 @@ IF ($_SESSION['RunH21']) {
 
                     IF ($Score < 0) {
                         $Score = 0;
-                        $_SESSION['Caution'] = "This run resulted in a score of ZERO.<BR>";
+                        $_SESSION['Caution'] = "This run resulted in a score of ZERO.<BR>Zero scores are not recorded.<BR>";
+                        $DQ = "Z";
                     }
 
                     OpenHTML("Behead the Enemy");
-
-                    HeadsHeader($S1);
-
                     
-
+                    HeadsHeader($S1);
+                    
                     print "<form name=\"headsreview\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
-
                     print "<section class=\"w3-container $S2\">\n";
                     print "<H2>Please Review:</H2>\n";
                     print "<TABLE class=\"w3-table\">\n";
@@ -98,24 +94,22 @@ IF ($_SESSION['RunH21']) {
                     }
                     print "<TR><TD>SCORE:</TD><TD>$Score</TD></TR>\n";
                     print "</TABLE></section>\n";
-
                     print "<section class=\"w3-container $S3 w3-padding-8\">\n";
+                    print "<input type=\"hidden\" name=\"score\" value=\"$Score\">\n";
+                    print "<input type=\"hidden\" name=\"time\" value=\"$Htime\">\n";
+                    print "<input type=\"hidden\" name=\"faults\" value=\"$Faults\">\n";
+                    print "<input type=\"hidden\" name=\"DQ\" value=\"$DQ\">\n";
                     print "<button class=\"w3-btn w3-red\" name=\"HEdit\" value=\"1\">EDIT SCORE</button> -or- \n";
                     print "<button class=\"w3-btn w3-lime\" name=\"GoodRun\" value=\"1\">CONFIRM</button>\n";
-                    ShowDebug(get_defined_vars(),$vars_start);
+                    //ShowDebug(get_defined_vars(),$vars_start);
                     print "</section>\n";
                     die;
-
-
                 } ELSE {
                     $_SESSION['EntryError'] = "Time is not in the correct format.<BR> Example of Format: 75.50<BR>";
                 }
-
             } ELSE {
                 $_SESSION['EntryError'] = "Time is not in the correct format.<BR> Example of Format: 75.50<BR>";
-
             }
-
         } ELSE {
             $_SESSION['EntryError'] = "You did not enter a time.\n";
         }
@@ -123,10 +117,11 @@ IF ($_SESSION['RunH21']) {
         die;
     }
 
-
+    IF ($GoodRun == 1) {
+        $results1 = mysql_query("INSERT INTO heads_short (PID,HID,KID,EID,DVN,SHStime,SHSpenalty,SHSscore,SHSDQ,SHSseen,SHSyear) 
+VALUES ({$_SESSION['PID']},{$_SESSION['HID']},{$_SESSION['KID']},{$_SESSION['Event']}) ");
+        $results2 = mysql_query("UPDATE events_temp SET SHSscore = ")
+    }
+    
 }
-// Production fallback to main module if the module state is no longer true.
-// Disabled for development and debug.
-// ] ELSE { // End RunHeads
-// header('location: ' . '/sandbox/TOTF.php?FailReturn=1');
-// }
+
