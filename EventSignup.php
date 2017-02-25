@@ -13,8 +13,8 @@
 $vars_start = get_defined_vars();
 session_start();
 include "year.inc";
-include "ikeqcfuncs.inc";
 include "colors.inc";
+include "ikeqcfuncs.inc";
 include "event_signup.inc";
 
 IF ($Closeout == 333) {
@@ -42,11 +42,11 @@ IF (!isset($_SESSION['Event']) OR $_SESSION['Event'] <= 0) {
     
             OpenHTML("Rider Registration Kiosk");
     
-            print "<header class=\"w3-panel $S1\">\n";
+            print "<header class=\"w3-container $S1\">\n";
             print "<H2>Kiosk Initalization:</H2>\n";
             print "</header>\n";
     
-            print "<section class=\"w3=panel $S2\">\n";
+            print "<section class=\"w3=container $S2\">\n";
             print "<P>Once the event is regisitered to the Kiosk, riders may begin signing up.<HR>If the machine stays idle for too long (20 minutes without any use, the session may expire and you will need to setup the event again.</P>\n";
             print "</section>\n";
     
@@ -88,7 +88,7 @@ IF (!isset($_SESSION['Event']) OR $_SESSION['Event'] <= 0) {
 			header('Location: '.$_SERVER['PHP_SELF']);
 			die;
 		} ELSE {
-			echo "Something didn't work.\n";
+			print "Something didn't work Line 91.\n";
 			print "<article class=\"w3-card w3-orange\">";
 			print "<PRE>\n";
 			ShowDebug(get_defined_vars(),$vars_start);
@@ -116,11 +116,11 @@ IF ($_SESSION['Rider'] <= 0) {
 
         ShowProgBar($S1);
 
-        print "<header class=\"w3-panel $S2\">\n";
+        print "<header class=\"w3-container $S2\">\n";
 		print "<H1>Rider Search:</H1>\n";
 		print "</header>\n";
 
-        print "<section class=\"w3-panel $S3\">\n";
+        print "<section class=\"w3-container $S3\">\n";
         print "<P>Please enter first few letters of your name.  Omit all titles (don't worry, we'll show them later).</P><br>\n";
         print "<P>Alternatively you may enter your mundane name if we have it on file.</P>\n";
         print "</section>\n";
@@ -170,11 +170,11 @@ IF ($_SESSION['Rider'] <= 0) {
 
             ShowProgBar($S1);
             
-            print "<header class=\"w3-panel $S2\">\n";
+            print "<header class=\"w3-container $S2\">\n";
             print "<H1>Rider Selection:</H1>\n";
             print "</header>\n";
 
-            print "<section class=\"w3-panel $S3\">\n";
+            print "<section class=\"w3-container $S3\">\n";
             print "<H2>Please Select the Rider below:</H2>\n";
             print "<P>A pair of asterisks next to a name, indicates that name was found by an alternate name.\n";
             print "</section>\n";
@@ -230,7 +230,7 @@ IF ($_SESSION['Rider'] <= 0) {
         die;
     } ELSE { // This is the desired outcome
         OpenHTML("ERROR!");
-        print "<H1>Something didn't work</H1>\n";
+        print "<H1>Something didn't work Line 233</H1>\n";
         print "<article class=\"w3-card w3-red\">";
         ShowDebug(get_defined_vars(),$vars_start);
         print "</article>\n";
@@ -343,7 +343,7 @@ IF (!isset($_SESSION['Horse']) OR $_SESSION['Horse'] <= 0) {
 		header('Location: '.$_SERVER['PHP_SELF']);
 	} ELSE {
         OpenHTML("ERROR!");
-        print "<H1>Something didn't work</H1>\n";
+        print "<H1>Something didn't work Line 346</H1>\n";
         print "<article class=\"w3-card w3-red\">";
         ShowDebug(get_defined_vars(),$vars_start);
         print "</article>\n";
@@ -448,7 +448,7 @@ IF ($_SESSION['Games'] <= 0) {
         IF ($EMS) {
             $_SESSION['MASTYes'] = 'Y';
         } ELSE {
-            $_SESSION['MASTYesYes'] = 'N';
+            $_SESSION['MASTYes'] = 'N';
         }
         IF ($EMT) {
             $_SESSION['MATTYes'] = 'Y';
@@ -481,7 +481,7 @@ IF ($_SESSION['Games'] <= 0) {
             die;
         } ELSE {
             OpenHTML("ERROR!");
-        print "<H1>Something didn't work</H1>\n";
+        print "<H1>Something didn't work Line 484</H1>\n";
         print "<article class=\"w3-card w3-red\">";
         ShowDebug(get_defined_vars(),$vars_start);
         print "</article>\n";
@@ -492,7 +492,7 @@ IF ($_SESSION['Games'] <= 0) {
 
 	} ELSE {
         OpenHTML("ERROR!");
-        print "<H1>Something didn't work</H1>\n";
+        print "<H1>Something didn't work Line 495</H1>\n";
         print "<article class=\"w3-card w3-red\">";
         ShowDebug(get_defined_vars(),$vars_start);
         print "</article>\n";
@@ -518,7 +518,7 @@ IF (!isset($_SESSION['Confirm']) OR $_SESSION['Confirm'] <= 0) {
     print "<section class=\"w3-panel $S3\">\n";
 	print "<form name=\"KioskReview\" method=\"POST\" action=\"{$_SERVER['PHP_SELF']}\">\n";
 
-    print "<table class=\"w3-table-all\"> "; // TODO Sanitize internal data from display after testing.
+    print "<table class=\"w3-table w3-bordered\"> "; // TODO Sanitize internal data from display after testing.
     print "<TR><TD colspan=2>{$_SESSION['EventName']}</TD></TR>\n";
 
     print "<TR><TD colspan=2>{$_SESSION['RiderName']}</TD></TR>\n";
@@ -606,30 +606,45 @@ IF (!isset($_SESSION['Confirm']) OR $_SESSION['Confirm'] <= 0) {
         print "<p>No event specific hashtag has been suggested.<br>\n";
         print "Please consider using #IKEqC in your social media posts.</p>\n";
     }
-
+    print "<P><HR>\n";
     $_SESSION['Confirm'] = $_SESSION['Event'];
+    print "Confirm = ".$_SESSION['Confirm'];
 	printf("<input type=\"hidden\" name=\"EID\" value=\"%s\">\n", $_SESSION['Event']);
+	print "Event: ".$_SESSION['Event']."<BR>\n";
 	printf("<input type=\"hidden\" name=\"PID\" value=\"%s\">\n", $_SESSION['Rider']);
+	print "Rider: ".$_SESSION['Rider']."<BR>\n";
     printf("<input type=\"hidden\" name=\"HID\" value=\"%s\">\n", $_SESSION['Horse']);
+    print "Horse: ".$_SESSION['Horse']."<BR>\n";
     printf("<input type=\"hidden\" name=\"DVN\" value=\"%s\">\n", $_SESSION['DVN']);
+    print "DVN: ".$_SESSION['DVN']."<BR>\n";
     printf("<input type=\"hidden\" name=\"EHS\" value=\"%s\">\n", $_SESSION['HSYes']);
+    print "Heads Short? ".$_SESSION['HSYes']."<BR>\n";
     printf("<input type=\"hidden\" name=\"EHL\" value=\"%s\">\n", $_SESSION['HLYes']);
+    print "Heads Long? ".$_SESSION['HLYes']."<BR>\n";
 	printf("<input type=\"hidden\" name=\"ER\" value=\"%s\">\n", $_SESSION['RingsYes']);
+	print "Rings? ".$_SESSION['RingsYes']."<BR>\n";
 	printf("<input type=\"hidden\" name=\"ED\" value=\"%s\">\n", $_SESSION['ReedsYes']);
+	print "Reeds? ".$_SESSION['ReedsYes']."<BR>\n";
     printf("<input type=\"hidden\" name=\"EMS\" value=\"%s\">\n", $_SESSION['MASTYes']);
+    print "MAST? ".$_SESSION['MASTYes']."<BR>\n";
     printf("<input type=\"hidden\" name=\"EMT\" value=\"%s\">\n", $_SESSION['MATTYes']);
+    print "MATT? ".$_SESSION['MATTYes']."<BR>\n";
 	printf("<input type=\"hidden\" name=\"EB\" value=\"%s\">\n", $_SESSION['BirjasYes']);
+	print "Birjas? ".$_SESSION['BirjasYes']."<HR>\n";
 
 	print "<P><button class=\"w3-btn w3-red\">THIS IS CORRECT.  Register me.</button></p>\n";
     print "</form>\n";
     print "</P>\n";
+    die;
 } // Review form
 
 // At this point, the rider, division, horse, and games have all been set and confirmed.
 
 IF ($_SESSION['Confirm'] > 0 ) {
- 	$I = "INSERT INTO events_temp (EID,PID,HID,DVN,EHS,EHL,ER,ED,EMS,EMT,EB) VALUES ($EID,$PID,$HID,$DVN,'$EHS','$EHL','$ER','$ED','$EMS','$EMT','$EB') ";
-    $seti = @mysql_query($I, $db);
+    $_SESSION['Confirm'] = -1;
+    print "<HR>EID,PID,HID,DVN,EHS,EHL,ER,ED,EMS,EMT,EB<HR>\n";
+    print "$EID,$PID,$HID,$DVN,'$EHS','$EHL','$ER','$ED','$EMS','$EMT','$EB'<HR>\n";
+    $seti = @mysql_query("INSERT INTO events_temp (EID,PID,HID,DVN,EHS,EHL,ER,ED,EMS,EMT,EB) VALUES ($EID,$PID,$HID,$DVN,'$EHS','$EHL','$ER','$ED','$EMS','$EMT','$EB')", $db);
  	IF ($seti) {
 
  	    OpenHTML("Registration Successful");
@@ -647,13 +662,18 @@ IF ($_SESSION['Confirm'] > 0 ) {
 		print "</P>\n";
 		print "</div>\n";
 		print "<section class=\"w3-container $S4\">\n";
-		print "<P>If there are no more Riders to register<BR>\n";
+		// print "<P>If there are no more Riders to register<BR>\n";
 		print "<button class=\"w3-btn w3-red\" name=\"Closeout\" value=\"333\">CLOSE REGISTRATION AND LOGOUT</button></p>\n";
-        ShowDebug(get_defined_vars(),$vars_start);
+        print $seti;
+        print "<HR>\n";
+        print mysql_stat($db);
+        print "<HR>\n";
+		ShowDebug(get_defined_vars(),$vars_start);
 		die;
 	} ELSE {
-		echo "Something didn't work.\n";
+		print "Something didn't work Line 655.\n";
 		print "<article class=\"w3-card w3-orange\">";
+		print mysql_error();
         ShowDebug(get_defined_vars(),$vars_start);
 		print "<A HREF=\"".$_SERVER['PHP_SELF']."?Reset=1\">Click here to start over</A>\n";
 		die;

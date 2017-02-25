@@ -6,10 +6,9 @@
  * Time: 4:33 AM
  */
 
-
+$_SESSION['BG'] = $BG;
 
 function MasterReset() {
-
     $_SESSION['Confirm'] = -1;
     $_SESSION['Event'] = -1;
     $_SESSION['EventName'] = NULL;
@@ -35,7 +34,6 @@ function MasterReset() {
     $_SESSION['MATTYes'] = 'N';
     $_SESSION['BirjasYes'] = 'N';
     $_SESSION['Reset'] = -1;
-
 }
 
 function NextEntry() {
@@ -63,5 +61,4 @@ function ShowProgBar($c) {
     print "<div class=\"w3-progress-container\">\n";
     print "<div class=\"w3-progressbar w3-blue\" style=\"width:{$_SESSION['Progbar']}%\">\n";
     print "</div><br>\n";
-
 }
