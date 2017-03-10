@@ -60,5 +60,5 @@ function ShowProgBar($c) {
     print "</div>\n";
     print "<div class=\"w3-progress-container\">\n";
     print "<div class=\"w3-progressbar w3-blue\" style=\"width:{$_SESSION['Progbar']}%\">\n";
-    print "</div><br>\n";
+    print "<HR></div><br>\n";
 }

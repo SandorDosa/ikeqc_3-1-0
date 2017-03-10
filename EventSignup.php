@@ -17,26 +17,26 @@ include "colors.inc";
 include "ikeqcfuncs.inc";
 include "event_signup.inc";
 
-IF ($Closeout == 333) {
-    $EID = $_SESSION['Event'];
-    session_destroy();
-    header('Location: /sandbox/WatchEvent.php?Event=$EID');
-    die;
-}
+//IF ($Closeout == 333) {
+//    $EID = $_SESSION['Event'];
+//    session_destroy();
+//    header('Location: /sandbox/WatchEvent.php?Event=$EID');
+//    die;
+//}
 
-IF ($Reset == 1) { // Master Reset
+IF ($_POST['Reset'] == 1 OR $_GET['Reset'] == 1) { // Master Reset
     MasterReset();
     header('Location: '.$_SERVER['PHP_SELF']);
 } // Master Reset (All)
 
-IF ($Reset == 22) { // Reset for another entry
+IF ($_POST['Reset'] == 22) { // Reset for another entry
     NextEntry();
     header('Location: '.$_SERVER['PHP_SELF']);
 } // Reset all Rider/Horse varibles
 
 IF (!isset($_SESSION['Event']) OR $_SESSION['Event'] <= 0) {
 
-    IF (!isset($kiosk) OR $kiosk <= 0) {
+    IF (!isset($_POST['kiosk']) OR $_POST['kiosk'] <= 0) {
         $sete = mysql_query("SELECT * FROM events WHERE Estatus = 'O'", $db);
         IF ($E = mysql_fetch_array($sete)) {
     
@@ -47,20 +47,21 @@ IF (!isset($_SESSION['Event']) OR $_SESSION['Event'] <= 0) {
             print "</header>\n";
     
             print "<section class=\"w3=container $S2\">\n";
-            print "<P>Once the event is regisitered to the Kiosk, riders may begin signing up.<HR>If the machine stays idle for too long (20 minutes without any use, the session may expire and you will need to setup the event again.</P>\n";
+            print "<P>Once the event is registered to the Kiosk, riders may begin signing up.<HR>If the kiosk stays idle for 20 minutes without any use the session will expire and you will need to setup the event again.</P>\n";
             print "</section>\n";
     
-            print "<form name=\"KioskMode\" method=\"POST\" action=\"{$_SERVER['PHP_SELF']}\">\n";
+            print "<form name=\"kiosk\" method=\"POST\" action=\"{$_SERVER['PHP_SELF']}\">\n";
             print "<select class=\"w3-select\" name=\"kiosk\">\n";
             do {
                 printf("<OPTION VALUE=\"%s\">%s\n", $E[0], $E[2]);
             } while ($E = mysql_fetch_row($sete));
             echo "</SELECT>\n<BR>\n";
             print "<p><button class=\"w3-btn w3-lime\">Register</button></p>\n";
+            print "<HR><P>If your event is not listed in the drop down above, it may not have been registered, might be locked for maintence or some other issue.  Contact [authority] for more information and run your event on paper.</P>\n";
             die;
         } ELSE {
             $_SESSION['EntryError'] = "<P>No open events found in the system.<BR>";
-            $_SESSION['Caution'] = "<P>Contact [authority] for posible last-minute registration.<BR>Failing that, you will need to run your event on paper and report later.<BR>";
+            $_SESSION['Caution'] = "<P>Contact [authority] for possible last-minute registration.<BR>Failing that, you will need to run your event on paper and report later.<BR>";
             OpenHTML("No Event Data");
             ShowDebug(get_defined_vars(),$vars_start);
             die;
@@ -70,7 +71,8 @@ IF (!isset($_SESSION['Event']) OR $_SESSION['Event'] <= 0) {
 
     // Kiosk is set to the correct event.
 
-    IF ($kiosk > 0 ) {
+    IF ($_POST['kiosk'] > 0 ) {
+        $kiosk = $_POST['kiosk'];
 		$sete = mysql_query("SELECT EID,Ename,EMID,EHS,EHL,ER,ED,EMS,EMT,EB,EHash FROM events WHERE EID = '$kiosk'", $db);
 		IF ($E = mysql_fetch_array($sete)) {
 			$_SESSION['Event'] = $E[0];
@@ -88,7 +90,7 @@ IF (!isset($_SESSION['Event']) OR $_SESSION['Event'] <= 0) {
 			header('Location: '.$_SERVER['PHP_SELF']);
 			die;
 		} ELSE {
-			print "Something didn't work Line 91.\n";
+			print "Something didn't work Line 93.\n";
 			print "<article class=\"w3-card w3-orange\">";
 			print "<PRE>\n";
 			ShowDebug(get_defined_vars(),$vars_start);
@@ -104,14 +106,14 @@ IF (!isset($_SESSION['Event']) OR $_SESSION['Event'] <= 0) {
 
 IF ($_SESSION['Rider'] <= 0) {
 
-    IF ($Rin == 999 AND $Rout == 0) {
-        unset($Rin);
-        unset($Rout);
+    IF (($_GET['Rin'] == 999 AND $_GET['Rout'] == 0) OR ($_POST['Rin'] == 999 AND $_POST['Rout'] == 0)) {
+        // This trap reloads the page with clears the _GET and _POST so that new data can be entered without destroying the session.
+        // There is nothing to see here, just a redirect to the base script.
         header('Location: '.$_SERVER['PHP_SELF']);
         die;
     } // This clears the last search and permits a new search
 
-    IF (!isset($Rin)) {
+    IF (!isset($_POST['Rin'])) {
         OpenHTML("Rider Registration");
 
         ShowProgBar($S1);
@@ -149,15 +151,21 @@ IF ($_SESSION['Rider'] <= 0) {
 
     // $Rin is set with the search input from the participant
 
-    IF ($Rout <= 0) {
-
+    IF (!isset($_POST['Rout']) OR $_POST['Rout'] <= 0) {
+        IF (!isset($_POST['Rout'])) {
+            $Rout = 0;
+        } ELSE {
+            $Rout = $_POST['Rout'];
+        }
+        $Rin = $_POST['Rin'];
         IF (strlen(trim($Rin)) < 1 ) {  // If no search string is supplied, dump the whole list at the participant.
-            $_SESSION['Caution'] = "<P>No search terms supplied, defaulting to entire list.<BR>";
+            $_SESSION['Caution'] = "<P>No search terms supplied, Displaying entire list.<BR>";
             $setr = mysql_query("SELECT PID,Pname,Pcka,Paka,Pmka FROM riders WHERE Pret = 'N' ORDER BY Pname", $db);
         } ELSEIF (strlen(trim($Rin)) > 6) { // If more than 5 characters are supplied, trim the search string to 5 characters.
+            $_SESSION['Caution'] = "Search term was trimmed to improve results.<BR>";
             $Rin = "%".substr($Rin, 0, 5) . "%";
-            $Rindx = soundex($Rin) . "%";
-            $setr = mysql_query("SELECT PID,Pname,Pcka,Paka,Pmka FROM riders WHERE Pret = 'N' AND ( PName LIKE '$Rin' OR Pcka LIKE '$Rin' OR Paka LIKE '$Rin' OR Pmka LIKE '$Rin' OR PSdx LIKE '$Rindx' ) ORDER BY Pname", $db);
+            $Rindx = soundex($_POST['Rin']) . "%";
+            $setr = mysql_query("SELECT PID,Pname,Pcka,Paka,Pmka FROM riders WHERE Pret = 'N' AND ( PName LIKE '{$_POST['Rin']}' OR Pcka LIKE '$Rin' OR Paka LIKE '$Rin' OR Pmka LIKE '$Rin' OR PSdx LIKE '$Rindx' ) ORDER BY Pname", $db);
         } ELSE { // If the participant followed directions, their search string needs no processing.
             $Rin = "%".$Rin . "%";
             $Rindx = soundex($Rin) . "%";
@@ -176,7 +184,7 @@ IF ($_SESSION['Rider'] <= 0) {
 
             print "<section class=\"w3-container $S3\">\n";
             print "<H2>Please Select the Rider below:</H2>\n";
-            print "<P>A pair of asterisks next to a name, indicates that name was found by an alternate name.\n";
+            print "<P>A pair of asterisks next to a name, indicates a rider found under an alternate name.\n";
             print "</section>\n";
 
             print "<form name=\"KioskRider2\" method=\"POST\" action=\"{$_SERVER['PHP_SELF']}\">\n";
@@ -195,7 +203,7 @@ IF ($_SESSION['Rider'] <= 0) {
                     printf("<OPTION VALUE=\"%s\">%s **\n", $R[0], $R[3]);
                 }
 
-                IF (!is_null($R['Pmka']) OR !empty($R['Pmka'])) { // Pmka should NOT be NULL or empty but might be, if not we add it to the list but showing rider.PName and  with double asterisks
+                IF (!is_null($R['Pmka']) OR !empty($R['Pmka'])) { // Pmka should NOT be NULL or empty but might be, if not we add it to the list but showing rider.PName and with double asterisks
                     printf("<OPTION VALUE=\"%s\">%s **\n", $R[0], $R[1]);
                 }
 
@@ -203,7 +211,7 @@ IF ($_SESSION['Rider'] <= 0) {
 
             print "<OPTION VALUE=\"0\">-=Search Again=-\n"; // Last option is to search again in case the right rider isn't found.
             echo "</SELECT>\n<BR>\n";
-            print "<P>A pair of asterisks next to a name, indicates that name was found searching against an alternate or mundane name.\n";  // Important notices often bear repeating.
+            print "<P>A pair of asterisks next to a name, indicates a rider found under an alternate name.\n";  // Important notices often bear repeating.
             print "<p><button class=\"w3-btn w3-lime\">CONTINUE</button></p>\n";
             print "</form>\n";
             ShowDebug(get_defined_vars(),$vars_start);
@@ -213,17 +221,17 @@ IF ($_SESSION['Rider'] <= 0) {
             header('Location: '.$_SERVER['PHP_SELF']."?Rin=999&Rout=0"); //TODO TEST THIS!
         } // Rider Selection, with an error trap for a bad search or searching for a rider not in the system.
         // TODO NEW RIDER SECTION
-        // If search again was choosen, the section loops, otherwise $Rout is set with the PID of the rider being registered.
+        // If search again was choosen, the section loops, otherwise $_POST['Rout'] is set with the PID of the rider being registered.
 
     }
 
     // $Rin is set to 999 and $Rout is set to the PID of the rider being registered
 
-    IF ($Rout == -1 AND $Rin == 999) { // New Rider Section
+    IF ($_POST['Rout'] == -1 AND $_POST['Rin'] == 999) { // New Rider Section
         
-    } // New Rider Section
+    } // New Rider Section --  Presently empty
     
-    IF ($Rout > 0 AND $Rin == 999) {  //Updates the Progress bar
+    IF ($_POST['Rout'] > 0 AND $_POST['Rin'] == 999) {  //Updates the Progress bar
         $_SESSION['Rider'] = $Rout;
         $_SESSION['Progbar'] = 40;
         header('Location: ' . $_SERVER['PHP_SELF']);
@@ -244,14 +252,14 @@ IF ($_SESSION['Rider'] <= 0) {
 
 IF (!isset($_SESSION['Horse']) OR $_SESSION['Horse'] <= 0) {
 
-    IF ($Hin == 999 AND $Hout == 0) { // Seb-section Reset
-        unset($Hin);
-        unset($Hout);
+    IF (($_GET['Hin'] == 999 AND $_GET['Hout'] == 0) OR ($_POST['Hin'] == 999 AND $_POST['Hout'] == 0)) { // Seb-section Reset
+        // This trap reloads the page with clears the _GET and _POST so that new data can be entered without destroying the session.
+        // There is nothing to see here, just a redirect to the base script.
         header('Location: '.$_SERVER['PHP_SELF']);
         die;
     } // Reset horse search
 
-	IF (!isset($Hin)) {
+	IF (!isset($_POST['Hin'])) {
 
         OpenHTML("Horse Registration");
 
@@ -274,21 +282,27 @@ IF (!isset($_SESSION['Horse']) OR $_SESSION['Horse'] <= 0) {
 
 	// $Hin is set with the Search string from the Participant
 
-	IF ($Hout <= 0) {
+    IF (!isset($_POST['Hout']) OR $_POST['Hout'] <= 0) {
+        IF (!isset($_POST['Hout'])) {
+            $Hout = 0;
+        } ELSE {
+            $Hout = $_POST['Hout'];
+        }
+        $Hin = $_POST['Hin'];
 
-		IF (strlen(trim($Hin)) < 1 ) { // If there is no search string, dump the whole table at the participant.
-			$_SESSION['Caution'] = "No search terms supplied, defaulting to entire list.<BR>";
+        IF (strlen(trim($Hin)) < 1 ) { // If there is no search string, dump the whole table at the participant.
+            $_SESSION['Caution'] = "No search terms supplied, displaying entire list.<BR>";
             $seth = mysql_query("SELECT HID,HName,Hrent,HOwner,HHome FROM horses WHERE Hret = 'N' ORDER BY HName", $db);
-		} ELSEIF (strlen(trim($Hin)) > 6) { // If the search string is too long, trim it, and search.
-            $_SESSION['Caution'] = "Search terms have been trimmed to improve results.<BR>";
+        } ELSEIF (strlen(trim($Hin)) > 6) { // If the search string is too long, trim it, and search.
+            $_SESSION['Caution'] = "Search term was trimmed to improve results.<BR>";
             $Hin = "%". substr($Hin, 0, 5) . "%";
-			$seth = mysql_query("SELECT HID,HName,Hrent,HOwner,HHome FROM horses WHERE Hret = 'N' AND HName LIKE '$Hin' ORDER BY HName", $db);
-		} ELSE { // If directions were followed, search.
-			$Hin = "%".$Hin . "%";
-			$seth = mysql_query("SELECT HID,HName,Hrent,HOwner,HHome FROM horses WHERE Hret = 'N' AND HName LIKE '$Hin' ORDER BY HName", $db);
-		} // Find the horses
+            $seth = mysql_query("SELECT HID,HName,Hrent,HOwner,HHome FROM horses WHERE Hret = 'N' AND HName LIKE '$Hin' ORDER BY HName", $db);
+        } ELSE { // If directions were followed, search.
+            $Hin = "%".$Hin . "%";
+            $seth = mysql_query("SELECT HID,HName,Hrent,HOwner,HHome FROM horses WHERE Hret = 'N' AND HName LIKE '$Hin' ORDER BY HName", $db);
+        } // Find the horses
 
-		IF ($H = mysql_fetch_array($seth)) {
+        IF ($H = mysql_fetch_array($seth)) {
 
             OpenHTML("Horse Registration");
 
@@ -330,15 +344,15 @@ IF (!isset($_SESSION['Horse']) OR $_SESSION['Horse'] <= 0) {
             $_SESSION['Caution'] = "Your search yielded no results.<BR>Search again or select \"ADD NEW HORSE\"<BR>";
             header('Location: '.$_SERVER['PHP_SELF']."?Hin=999&Hout=0"); //TODO TEST THIS!
         } // Horse Selection with error trap for bad search or a horse not in the database
-        
+
         // TODO NEW HORSE SECTION
-        
-	} // Horse Selection
+
+    } // Horse Selection
 
 	// $Hout is set to HID of the horse being registered
 
-	IF ($Hout > 0 AND $Hin = 999) { //Updates the Progress bar
-		$_SESSION['Horse'] = $Hout;
+	IF ($_POST['Hout'] > 0 AND $_POST['Hin = 999']) { //Updates the Progress bar
+		$_SESSION['Horse'] = $_POST['Hout'];
 		$_SESSION['Progbar'] = 60;
 		header('Location: '.$_SERVER['PHP_SELF']);
 	} ELSE {
@@ -358,7 +372,12 @@ IF (!isset($_SESSION['Horse']) OR $_SESSION['Horse'] <= 0) {
 
 IF ($_SESSION['Games'] <= 0) {
 
-	IF (!isset($Gin) OR $Gin <= 0) {
+	IF (!isset($_POST['Gin']) OR $_POST['Gin'] <= 0) {
+	    IF (!isset($_POST['Gin'])) {
+	        $Gin = 0;
+        } ELSE {
+	        $Gin = $_POST['Gin'];
+        } // Kludge to repair $Globals=ON legacy code
 		OpenHTML("Games Selection");
 
 		ShowProgBar($S1);

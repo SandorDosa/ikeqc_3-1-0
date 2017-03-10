@@ -11,9 +11,10 @@
 
 session_start();
 include "year.inc";
+include "colors.inc";
 include "ikeqcfuncs.inc";
 
-IF (isset($approve)) {
+IF (isset($_POST['approve'])) {
     $QueryUp = stripcslashes($_SESSION['EditQuery']);
     $setc = mysql_query($QueryUp, $db);
     IF ($setc) {
@@ -27,35 +28,36 @@ IF (isset($approve)) {
     }
     header('Location: '.$_SERVER['PHP_SELF']);
     die;
-}
+} // Sets the record as APPROVED
 
-IF (isset($pend)) {
+IF (isset($_POST['pend'])) {
     IF ($OldStatus != "P") {
         $setc = mysql_query("UPDATE edit_riders SET modStatus=\"P\" WHERE EditID=$OldEditID", $db);
         IF ($setc) {
             $_SESSION['LastEdit'] = $OldEditID;
         }
     } ELSE {
-        print $QueryUp;
+        //print $QueryUp;
         print_r($_SESSION);
-        die(mysql_error());    }
+        die(mysql_error());
+    }
     header('Location: '.$_SERVER['PHP_SELF']);
     die;
-}
+} // Sets the record as PENDED
 
-IF (isset($reject)) {
+IF (isset($_POST['reject'])) {
     $setc = mysql_query("UPDATE edit_riders SET modStatus=\"X\" WHERE EditID=$OldEditID", $db);
     IF ($setc) {
         $_SESSION['LastEdit'] = $_POST['OldEditID'];
     } ELSE {
-        print $QueryUp;
+        //print $QueryUp;
         print_r($_SESSION);
         die(mysql_error());    }
     header('Location: '.$_SERVER['PHP_SELF']);
     die;
-}
+} // Sets the record as REJECT
 
-IF (isset($EditID)) {
+IF (isset($_POST['EditID'])) {
     $setb = mysql_query("SELECT * FROM edit_riders WHERE EditID = '$EditID'", $db);
     IF ($B = mysql_fetch_array($setb)) {
         $King = KingLook($B[18]);
@@ -63,23 +65,19 @@ IF (isset($EditID)) {
         $HG = GroupLook($B[20]);
         $HGNew = GroupLook($B[21]);
 
-        print "<!DOCTYPE html>\n";
-        print "<html>\n";
-        print "<title>Rider Edit Approval Page</title>\n";
-        print "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n";
-        print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
+        OpenHTML("Rider Edit Approval Page");
 
-        print "<header class=\"w3-panel\">\n";
+        print "<header class=\"w3-container $S1\">\n";
         print "<H1>Rider Edits:</H1>\n";
         print "</header>\n";
 
         print "<form name=\"edits\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
 
-        print "<section class\"w3-container\">\n";
+        print "<section class=\"w3-container $S2\">\n";
         print "<table class=\"w3-table\">\n";  // Three pane overwindow
-        printf("<TR><TD>EditID:%s</TD><TD><H2>Current</H2></TD><TD><H2>Requested Edits</H2></TD></TR>\n", $B[0], stripslashes($B[2]));
+        print "<TR><TD>EditID:$B[0]</TD><TD><H2>Current</H2></TD><TD><H2>Requested Edits</H2></TD></TR>\n";
         print "<TR><TD>\n";
-        print "<table class=\"w3-table-all\">\n"; // Left pane, Headers
+        print "<table class=\"w3-table\">\n"; // Left pane, Headers
         print "<TR><TD ALIGN=RIGHT>Name</TD></TR>\n";
         print "<TR><TD ALIGN=RIGHT>CKA</TD></TR>\n";
         print "<TR><TD ALIGN=RIGHT>AKA</TD></TR>\n";
