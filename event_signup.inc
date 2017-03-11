@@ -22,7 +22,7 @@ function MasterReset() {
     $_SESSION['EventEMIC'] = NULL;
     $_SESSION['EOHeads'] = -1;
     $_SESSION['EORings'] = -1;
-    $_SESSION['EOreeDs'] = -1;
+    $_SESSION['EOReeds'] = -1;
     $_SESSION['EOMoarch'] = -1;
     $_SESSION['EOBirjas'] = -1;
     $_SESSION['Hashtag'] = "#IKEqC";

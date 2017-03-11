@@ -397,94 +397,98 @@ IF ($_SESSION['Games'] <= 0) {
             print "<input class=\"w3-check\" name=\"EHS\" type=\"checkbox\" checked=\"checked\"><label class=\"w3-validate\">Behead the Enemy -- 21'</label><BR>\n";
         } ELSE {
             print "<input class=\"w3-check\" name=\"EHSno\" type=\"checkbox\" disabled><label>Behead the Enemy -- 21'</label><BR>\n";
-        }
+        } // Heads Short
         IF ($_SESSION['EOHeadsLong'] == 'Y') {
             print "<input class=\"w3-check\" name=\"EHL\" type=\"checkbox\" checked=\"checked\"><label class=\"w3-validate\">Behead the Enemy -- 30'</label><BR>\n";
         } ELSE {
             print "<input class=\"w3-check\" name=\"EHLno\" type=\"checkbox\" disabled><label>Behead the Enemy -- 30'</label><BR>\n";
-        }
+        } // Heads Long
 		IF ($_SESSION['EORings'] == 'Y') {
 			print "<input class=\"w3-check\" name=\"ER\" type=\"checkbox\" checked=\"checked\"><label class=\"w3-validate\">Ring Tilt</label><BR>\n";
 		} ELSE {
 			print "<input class=\"w3-check\" name=\"ERno\" type=\"checkbox\" disabled><label>Ring Tilt</label><BR>\n";
-		}
-		IF ($_SESSION['EOreeDs'] == 'Y') {
+		} // Rings
+		IF ($_SESSION['EOReeds'] == 'Y') {
 			print "<input class=\"w3-check\" name=\"ED\" type=\"checkbox\" checked=\"checked\"><label class=\"w3-validate\">Reed Chop</label><BR>\n";
 		} ELSE {
 			print "<input class=\"w3-check\" name=\"EDno\" type=\"checkbox\" disabled><label>Reed Chop</label><BR>\n";
-		}
+		} // Reeds
         IF ($_SESSION['EOMASingle'] == 'Y') {
             print "<input class=\"w3-check\" name=\"EMS\" type=\"checkbox\" checked=\"checked\"><label class=\"w3-validate\">Mounted Archery -- Single Target</label><BR>\n";
         } ELSE {
             print "<input class=\"w3-check\" name=\"EMSno\" type=\"checkbox\" disabled><label>Mounted Archery -- Single Target</label><BR>\n";
-        }
+        } // Mounted Archery Single
         IF ($_SESSION['EOMATriple'] == 'Y') {
             print "<input class=\"w3-check\" name=\"EMT\" type=\"checkbox\" checked=\"checked\"><label class=\"w3-validate\">Mounted Archery -- Triple Target</label><BR>\n";
         } ELSE {
             print "<input class=\"w3-check\" name=\"EMTno\" type=\"checkbox\" disabled><label>Mounted Archery -- Triple Target</label><BR>\n";
-        }
+        } // Mounted Archery Triple
 		IF ($_SESSION['EOBirjas'] == 'Y') {
 			print "<input class=\"w3-check\" name=\"EB\" type=\"checkbox\" checked=\"checked\"><label class=\"w3-validate\">Birjas</label><BR>\n";
 		} ELSE {
 			print "<input class=\"w3-check\" name=\"EBno\" type=\"checkbox\" disabled><label>Birjas</label><BR>\n";
-		}
+		} // Birjas
+
         print "<P>Please unselect any game in which you will not participate.</P><BR>\n";
         print "</article></section>\n";
         print "<section class=\"w3-container $S5\">\n";
         print "<P>Please indicate your Divisional Choice:<BR>\n";
-        print "<input class=\"w3-radio\" type=\"radio\" name=\"DVN\" value=\"1\">Walk<BR>\n";
+        print "<input class=\"w3-radio\" type=\"radio\" name=\"DVN\" value=\"1\" checked>Walk<BR>\n";
         print "<input class=\"w3-radio\" type=\"radio\" name=\"DVN\" value=\"2\">Trot<BR>\n";
         print "<input class=\"w3-radio\" type=\"radio\" name=\"DVN\" value=\"3\">Canter\n";
         print "</section>\n";
         print "<section class=\"w3-container $S6\">\n";
 		print "<P><button class=\"w3-btn w3-yellow\">CONTINUE</button></p>\n";
 		print "</section>\n";
-		ShowDebug(get_defined_vars(),$vars_start);
+		// ShowDebug(get_defined_vars(),$vars_start);
 		die;
 	}  // Participant chooses Divison and which of the offered games at the Event they will run.
 
-	IF ($Gin == 999) {
-        IF ($EHS) {
+	IF ($_POST['Gin'] == 999) {
+
+        IF ($_POST['EHS']) {
             $_SESSION['HSYes'] = 'Y';
         } ELSE {
             $_SESSION['HSYes'] = 'N';
-        }
-        IF ($EHL) {
+        } // Heads Short
+        IF ($_POST['EHL']) {
             $_SESSION['HLYes'] = 'Y';
         } ELSE {
             $_SESSION['HLYes'] = 'N';
-        }
-		IF ($ER) {
+        } // Heads Long
+		IF ($_POST['ER']) {
 			$_SESSION['RingsYes'] = 'Y';
 		} ELSE {
 			$_SESSION['RingsYes'] = 'N';
-		}
-		IF ($ED) {
+		}  // Rings
+		IF ($_POST['ED']) {
 			$_SESSION['ReedsYes'] = 'Y';
 		} ELSE {
 			$_SESSION['ReedsYes'] = 'N';
-		}
-        IF ($EMS) {
+		}  // Reeds
+        IF ($_POST['EMS']) {
             $_SESSION['MASTYes'] = 'Y';
         } ELSE {
             $_SESSION['MASTYes'] = 'N';
-        }
-        IF ($EMT) {
+        } // Mounted Archery Single
+        IF ($_POST['EMT']) {
             $_SESSION['MATTYes'] = 'Y';
         } ELSE {
             $_SESSION['MATTYes'] = 'N';
-        }
-		IF ($EB) {
+        } // Mounted Archery Triple
+		IF ($_POST['EB']) {
 			$_SESSION['BirjasYes'] = 'Y';
 		} ELSE {
 			$_SESSION['BirjasYes'] = 'N';
-		}
+		}  // Birjas
+
         $setc = mysql_query("SELECT PName FROM riders WHERE PID = {$_SESSION['Rider']} LIMIT 1 ", $db);
         IF ($C = mysql_fetch_array($setc)) {
             $_SESSION['RiderName'] = $C[0];
         } ELSE {
             $_SESSION['RiderName'] = "Error";
         }
+
         $setcc = mysql_query("SELECT HName FROM horses WHERE HID = {$_SESSION['Horse']} LIMIT 1", $db);
         IF ($CC = mysql_fetch_array($setcc)) {
             $_SESSION['HorseName'] = $CC[0];
@@ -494,19 +498,18 @@ IF ($_SESSION['Games'] <= 0) {
 
         IF ($_SESSION['RiderName'] != "Error" AND $_SESSION['HorseName'] != "Error") { //TODO TEST THIS
             $_SESSION['Games'] = 1;
-            $_SESSION['DVN'] = $DVN;
+            $_SESSION['DVN'] = $_POST['DVN'];
             $_SESSION['Progbar'] = 80;
             header('Location: '.$_SERVER['PHP_SELF']);
             die;
         } ELSE {
             OpenHTML("ERROR!");
-        print "<H1>Something didn't work Line 484</H1>\n";
-        print "<article class=\"w3-card w3-red\">";
-        ShowDebug(get_defined_vars(),$vars_start);
-        print "</article>\n";
-        print "<A HREF=\"" . $_SERVER['PHP_SELF'] . "?Reset=1\">Click here to start over</A>\n";
-        die;
-
+            print "<H1>Something didn't work Line 484</H1>\n";
+            print "<article class=\"w3-card w3-red\">";
+            ShowDebug(get_defined_vars(),$vars_start);
+            print "</article>\n";
+            print "<A HREF=\"" . $_SERVER['PHP_SELF'] . "?Reset=1\">Click here to start over</A>\n";
+            die;
         } // Processing data and loating final review, with error traps for bad data.
 
 	} ELSE {
@@ -565,58 +568,72 @@ IF (!isset($_SESSION['Confirm']) OR $_SESSION['Confirm'] <= 0) {
         print "<TR><TD>Behead the Enemy -- 21'</TD>";
         IF ($_SESSION['HSYes'] == 'Y') {
             print "<TD>Accepted</TD></TR>\n";
+        } ELSEIF ($_SESSION['EOHeadsShort'] != 'Y') {
+            print "<TD>Not offered</TD></TR>\n";
         } ELSE {
             print "<TD>Declined</TD></TR>\n";
         }
-    }
+    } // Heads Short
     IF ($_SESSION['EOHeadsLong'] == 'Y') {
         print "<TR><TD>Behead the Enemy -- 30'</TD>";
         IF ($_SESSION['HLYes'] == 'Y') {
             print "<TD>Accepted</TD></TR>\n";
+        } ELSEIF ($_SESSION['EOHeadsLong'] != 'Y') {
+            print "<TD>Not offered</TD></TR>\n";
         } ELSE {
             print "<TD>Declined</TD></TR>\n";
         }
-    }
+    } // Heads Long
     IF ($_SESSION['EORings'] == 'Y') {
         print "<TR><TD>Ring Tilt</TD>";
         IF ($_SESSION['RingsYes'] == 'Y') {
             print "<TD>Accepted</TD></TR>\n";
+        } ELSEIF ($_SESSION['EORings'] != 'Y') {
+            print "<TD>Not offered</TD></TR>\n";
         } ELSE {
             print "<TD>Declined</TD></TR>\n";
         }
-    }
+    } // Rings
     IF ($_SESSION['EOReeds'] == 'Y') {
         print "<TR><TD>Reed Chop</TD>";
         IF ($_SESSION['ReedsYes'] == 'Y') {
             print "<TD>Accepted</TD></TR>\n";
+        } ELSEIF ($_SESSION['EOReeds'] != 'Y') {
+            print "<TD>Not offered</TD></TR>\n";
         } ELSE {
             print "<TD>Declined</TD></TR>\n";
         }
-    }
+    } // Reeds
     IF ($_SESSION['EOMAST'] == 'Y') {
         print "<TR><TD>Mounted Archery -- Single Target</TD>";
         IF ($_SESSION['MASTYes'] == 'Y') {
             print "<TD>Accepted</TD></TR>\n";
+        } ELSEIF ($_SESSION['EOMAST'] != 'Y') {
+            print "<TD>Not offered</TD></TR>\n";
         } ELSE {
             print "<TD>Declined</TD></TR>\n";
         }
-    }
+    } // Mounted Archery Single
     IF ($_SESSION['EOMATT'] == 'Y') {
         print "<TR><TD>Mounted Archery -- Triple Target</TD>";
         IF ($_SESSION['MATTYes'] == 'Y') {
             print "<TD>Accepted</TD></TR>\n";
+        } ELSEIF ($_SESSION['EOMATT'] != 'Y') {
+            print "<TD>Not offered</TD></TR>\n";
         } ELSE {
             print "<TD>Declined</TD></TR>\n";
         }
-    }
+    } // Mounted Archery Triple
     IF ($_SESSION['EOBirjas'] == 'Y') {
         print "<TR><TD>Birjas</TD>";
         IF ($_SESSION['BirjasYes'] == 'Y') {
             print "<TD>Accepted</TD></TR>\n";
+        } ELSEIF ($_SESSION['EOBirjas'] != 'Y') {
+            print "<TD>Not offered</TD></TR>\n";
         } ELSE {
             print "<TD>Declined</TD></TR>\n";
         }
-    }
+    } // Birjas
     print "</TABLE><HR>\n";
 
     IF (!is_null($_SESSION['Hashtag'])) {
@@ -625,7 +642,7 @@ IF (!isset($_SESSION['Confirm']) OR $_SESSION['Confirm'] <= 0) {
         print "<p>No event specific hashtag has been suggested.<br>\n";
         print "Please consider using #IKEqC in your social media posts.</p>\n";
     }
-    print "<P><HR>\n";
+    print "<HR><P>\n";
     $_SESSION['Confirm'] = $_SESSION['Event'];
     print "Confirm = ".$_SESSION['Confirm'];
 	printf("<input type=\"hidden\" name=\"EID\" value=\"%s\">\n", $_SESSION['Event']);
@@ -649,11 +666,10 @@ IF (!isset($_SESSION['Confirm']) OR $_SESSION['Confirm'] <= 0) {
     printf("<input type=\"hidden\" name=\"EMT\" value=\"%s\">\n", $_SESSION['MATTYes']);
     print "MATT? ".$_SESSION['MATTYes']."<BR>\n";
 	printf("<input type=\"hidden\" name=\"EB\" value=\"%s\">\n", $_SESSION['BirjasYes']);
-	print "Birjas? ".$_SESSION['BirjasYes']."<HR>\n";
+	print "Birjas? ".$_SESSION['BirjasYes']."<HR></P>\n";
 
 	print "<P><button class=\"w3-btn w3-red\">THIS IS CORRECT.  Register me.</button></p>\n";
     print "</form>\n";
-    print "</P>\n";
     die;
 } // Review form
 
@@ -661,8 +677,22 @@ IF (!isset($_SESSION['Confirm']) OR $_SESSION['Confirm'] <= 0) {
 
 IF ($_SESSION['Confirm'] > 0 ) {
     $_SESSION['Confirm'] = -1;
-    print "<HR>EID,PID,HID,DVN,EHS,EHL,ER,ED,EMS,EMT,EB<HR>\n";
-    print "$EID,$PID,$HID,$DVN,'$EHS','$EHL','$ER','$ED','$EMS','$EMT','$EB'<HR>\n";
+
+    $EID = $_POST['EID'];
+    $PID = $_POST['PID'];
+    $HID = $_POST['HID'];
+    $DVN = $_POST['DVN'];
+    $EHS = $_POST['EHS'];
+    $EHL = $_POST['EHL'];
+    $ER = $_POST['ER'];
+    $ED = $_POST['ED'];
+    $EMS = $_POST['EMS'];
+    $EMT = $_POST['EMT'];
+    $EB = $_POST['EB'];
+
+    OpenHTML("Processing");
+
+    // print "$EID,$PID,$HID,$DVN,'$EHS','$EHL','$ER','$ED','$EMS','$EMT','$EB'<HR>\n";
     $seti = @mysql_query("INSERT INTO events_temp (EID,PID,HID,DVN,EHS,EHL,ER,ED,EMS,EMT,EB) VALUES ($EID,$PID,$HID,$DVN,'$EHS','$EHL','$ER','$ED','$EMS','$EMT','$EB')", $db);
  	IF ($seti) {
 
@@ -682,12 +712,12 @@ IF ($_SESSION['Confirm'] > 0 ) {
 		print "</div>\n";
 		print "<section class=\"w3-container $S4\">\n";
 		// print "<P>If there are no more Riders to register<BR>\n";
-		print "<button class=\"w3-btn w3-red\" name=\"Closeout\" value=\"333\">CLOSE REGISTRATION AND LOGOUT</button></p>\n";
-        print $seti;
-        print "<HR>\n";
-        print mysql_stat($db);
-        print "<HR>\n";
-		ShowDebug(get_defined_vars(),$vars_start);
+		// print "<button class=\"w3-btn w3-red\" name=\"Closeout\" value=\"333\">CLOSE REGISTRATION AND LOGOUT</button></p>\n";
+        // print $seti;
+//        print "<HR>\n";
+//        print mysql_stat($db);
+//        print "<HR>\n";
+//		ShowDebug(get_defined_vars(),$vars_start);
 		die;
 	} ELSE {
 		print "Something didn't work Line 655.\n";
