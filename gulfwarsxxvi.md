@@ -1,15 +1,24 @@
 ---
-title: IKEqC Three-point-OH!
+title: Gulf Wars XXVI
 ---
 
-# IKEqC Three-point-OH!
+# Its a wrap folks!
 
-There will be a class offered on the next generation of IKEqC at Gulf Wars XXVI.  As part of the class several folks will be asked to participate as mock EMiCs or Riders in a mock event.  Scores will be entered as the class watches and we will see together who will 'win' the mock event.  Be sure to bring your elfboxes(tablets) and tailless farspeakers(smart phones)!
+It was so wonderful getting to see everyone and talk IKEqC and even -- with a help from a new friend -- ride a little.
 
-# AMAA (Ask Me ALMOST Anything)
-Sandor will be there and will have a host of information about the system, its use, and more imporantly will be available for questions about the system and the choices that were made that went into the design.
+We came back from war with a new perspective on a few things and we are going to be using that to make things a little more simple and a little clearer.
 
-# Bug Hunt
-A 'bug hunt' will be hosted and Sandor will offer a prize to the best bug found in his own work (please be gentle on the ego folks).
+Donwenna managed to Facebook Live most of the class and I have posted a [gallery of some of the 1k+ pictures](http://arconian.com/sandor) I took at the war.
+
+## After-effects of IKEqC Three-point-OH!
+
+As a direct result from the class, there are several points that will get addressed.
+
+* Behead the Enemy pattern clarifaction -- This is in process now.
+* Two Handed Birjas changes  -- This may result in two handed Birjas being dropped for LII.
+* Specific language edits in various places -- This will be an ongoing process for the next little bit.
+* Alterations in Mounted Archery rules based on our experiances running a Mounted Archery Single Target course, mostly about course setup and rider instructions.
+* Alterations to scoring sheets based on Sandor's experiances in keeping the scores for the MAST course
+* A lot of good feedback from a number of folks, more whom than I remember names for.  Thank you all!
 
 [Gulf Wars XXVI](http://www.gulfwars.org/)
