@@ -20,26 +20,59 @@ include "ikeqcfuncs.inc";
 
 // Top
 
+SWITCH ((isset($_GET['FailReturn']) AND !is_empty OR isset($_POST['FailReturn'])) {
+    CASE $_GET['FailReturn'] == 1:
+        $FailReturn = 1;
+        $FailCount = 1;
+        BREAK;
+    CASE $_GET['FailReturn'] == 2:
+        $FailReturn = 2;
+        $FailCount = 2;
+        BREAK;
+    CASE $_GET['FailReturn'] > 2:
+        $FailReturn = 99;
+        $FailCount = 99;
+        BREAK;
+    CASE $_POST['FailReturn'] == 1:
+        $FailReturn = 1;
+        $FailCount = 1.2;
+        BREAK;
+    CASE $_POST['FailReturn'] == 2:
+        $FailReturn = 2;
+        $FailCount = 2.2;
+        BREAK;
+    CASE $_POST['FailReturn'] > 2:
+        $FailReturn = 98;
+        $FailCount = 98;
+        BREAK;
+    DEFAULT:
+        $FailReturn = NULL;
+        unset($FailReturn);
+        $FailCount = NULL;
+        unset($FailCount);
+        BREAK;
+} // Kludge to fix Globals=ON bad legacy
+
 IF (isset($FailReturn)) {
     IF ($FailReturn == 1) {
         $_SESSION['EntryError'] = "You shouldn't be seeing this.<BR>If you are, then something serious has broken.<BR>Any data entered but not yet saved has been lost.<BR>\n";
     }
-    
+
     IF ($FailReturn == 2) {
         $_SESSION['EntryError'] = "Fatal error.\n";
         $_SEESION['Caution'] = "The system is no long stable enough to be used at this time.<BR>Contact Sandor as soon as your situation allows.<BR>Please continue running your event on paper.<BR>\n";
         OpenHTML($S7);
-        
+
         $setz = mysql_query("UPDATE events SET Estatus='X' WHERE EID='{$_SESSION['EID']}'", $db);
-        
-        
+
+
         print "<DIV CLASS=\"w3-panel w3-red w3-jumbo\"><P>Sorry folks, something broke that Sandor will have to fix.<BR>Anything written prior to the crash is still there, but you should finish the tournament on paper.<BR>Remember there are static score calculator scripts at <A HREF=\"http://scaikeqc.org/tools\">here</A>.</P></DIV>\n";
-        
+
         Print "<DIV CLASS=\"w3-container w3-yellow w3-large\"><P>The following data will likely be of use to Sandor.  Please take a screenshot of it to add to your crash report, thank you.</P>\n";
-        
+
         ShowDebug(get_defined_vars(),$vars_start);
         print "</DIV><DIV CLASS=\"w3-container w3-amber\"><P>Data Dump complete.</P></DIV>";
-        
+
         session_destroy();
         session_unset();
         die("Process Terminated");

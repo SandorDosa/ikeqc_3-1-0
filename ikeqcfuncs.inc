@@ -85,7 +85,7 @@ function OpenHTML($c1) {
     print "<html lang=\"en\">\n";
     print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
-    print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n";
+    print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/w3css/4/w3pro.css\">\n";
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
