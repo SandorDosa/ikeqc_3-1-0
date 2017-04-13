@@ -21,10 +21,12 @@ IF (isset($PName)) {
     $PSDXT = soundex($PName);
     
     
-    $seta = mysql_query("SELECT PID,PName,Pcka,Paka,Pmka,PSdx FROM riders WHERE (PName LIKE '$PNT' OR Pcka LIKE '$PNT' OR Paka LIKE '$PNT' OR Pcka LIKE '$PNT' OR Pcka LIKE '$PCT' OR Pcka LIKE '$PAT' OR Paka LIKE '$PNT' OR Paka LIKE '$PCT' OR Paka LIKE '$PAT' OR Pmka LIKE '$PMT' OR PSdx LIKE '$PSDXT') ORDER BY PID", $db);
-    IF ($A = mysql_fetch_array($seta)) {
+//    $seta = mysql_query("SELECT PID,PName,Pcka,Paka,Pmka,PSdx FROM riders WHERE (PName LIKE '$PNT' OR Pcka LIKE '$PNT' OR Paka LIKE '$PNT' OR Pcka LIKE '$PNT' OR Pcka LIKE '$PCT' OR Pcka LIKE '$PAT' OR Paka LIKE '$PNT' OR Paka LIKE '$PCT' OR Paka LIKE '$PAT' OR Pmka LIKE '$PMT' OR PSdx LIKE '$PSDXT') ORDER BY PID", $db);
+    $seta = mysqli_query($db_alt,"SELECT PID,PName,Pcka,Paka,Pmka,PSdx FROM riders WHERE (PName LIKE '$PNT' OR Pcka LIKE '$PNT' OR Paka LIKE '$PNT' OR Pcka LIKE '$PNT' OR Pcka LIKE '$PCT' OR Pcka LIKE '$PAT' OR Paka LIKE '$PNT' OR Paka LIKE '$PCT' OR Paka LIKE '$PAT' OR Pmka LIKE '$PMT' OR PSdx LIKE '$PSDXT') ORDER BY PID");
+
+    IF ($A = mysqli_fetch_array($seta)) {
         IF ($A) {
-            IF (mysql_num_rows($A) > 0) {
+            IF (mysqli_fetch_array($A) > 0) {
                 // TODO Finish Dupe name routine
                 $_SESSION['Caution'] = $_SESSION['Caution']."There are one or more riders in our database with similar names.<BR>Please double check the list and make sure you are not adding a duplicate.<HR>\n";
         
@@ -41,7 +43,7 @@ IF (isset($PName)) {
                 print "<TR CLASS=\"w3-border-bottom\"><TD>SCA Name</TD><TD>Common Alias</TD><TD>Also Known As</TD><TD>Mundanly Known AS</TD></TR>\n";
                 do {
                     print "<TR><TD>$A[1]</TD><TD>$A[2]</TD><TD>$A[3]</TD><TD>$A[4]</TD></TR>\n";
-                } while ($A = mysql_fetch_array($seta));
+                } while ($A = mysqli_fetch_array($seta));
                 // print "";  ** Work stopped at this point
             }
     

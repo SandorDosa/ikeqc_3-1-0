@@ -1,5 +1,6 @@
 <?PHP
 
+// This is an include with many common custom functions.  It should be called by every script in the IKEqC stack.
 
 function NameTest($n) {
     // This function tests for common Titles at the begining of a Participant's name.
@@ -167,121 +168,119 @@ function PageNoHeadRider($h) {
 
 function KingLook($a) {
 
-switch($a) {
+    switch($a) {
 
-case 1:
-$Kingdom = "An Tir";
-$KingWeb = "http://www.antir.sca.org";
-break;
-case 2:
-$Kingdom = "Ansteorra";
-$KingWeb = "http://www.ansteorra.org";
-break;
-case 3:
-$Kingdom = "Artemisia";
-$KingWeb = "http://www.artemisia.sca.org";
-break;
-case 4:
-$Kingdom = "Atenveldt";
-$KingWeb = "http://www.atenveldt.org";
-break;
-case 5:
-$Kingdom = "Atlantia";
-$KingWeb = "http://www.atlantia.sca.org";
-break;
-case 6:
-$Kingdom = "Aethelmearc";
-$KingWeb = "http://www.aethelmearc.org";
-break;
-case 7:
-$Kingdom = "Caid";
-$KingWeb = "http://www.sca-caid.org";
-break;
-case 8:
-$Kingdom = "Calontir";
-$KingWeb = "http://calontir.sca.org";
-break;
-case 9:
-$Kingdom = "Drachenwald";
-$KingWeb = "http://www.drachenwald.sca.org";
-break;
-case 10:
-$Kingdom = "Ealdormere";
-$KingWeb = "http://www.ealdormere.sca.org";
-break;
-case 11:
-$Kingdom = "East";
-$KingWeb = "http://www.eastkingdom.org";
-break;
-case 12:
-$Kingdom = "Middle";
-$KingWeb = "http://www.midrealm.org";
-break;
-case 13:
-$Kingdom = "Meridies";
-$KingWeb = "http://www.meridies.org";
-break;
-case 14:
-$Kingdom = "Outlands";
-$KingWeb = "http://www.outlands.org";
-break;
-case 15:
-$Kingdom = "Trimaris";
-$KingWeb = "http://www.trimaris.org";
-break;
-case 16:
-$Kingdom = "West";
-$KingWeb = "http://www.westkingdom.org";
-break;
-case 17:
-$Kingdom = "Northshield";
-$KingWeb = "http://www.northshield.org";
-break;
-case 18:
-$Kingdom = "Gleann Abhann";
-$KingWeb = "http://gleannabhann.net";
-break;
-case 19:
-$Kingdom = "Lochac";
-$KingWeb = "http://www.sca.org.au/lochac";
-break;
-case 20:
-$Kingdom = "Avacal";
-$KingWeb = "http://www.avacal.org/SitePages/Home.aspx";
-break;
-default:
-$Kingdom = "Here be dragons";
-$KingWeb = "http://www.sca.org";
-break;
-}
-return array($Kingdom, $KingWeb);
+        case 1:
+            $Kingdom = "An Tir";
+            $KingWeb = "http://www.antir.sca.org";
+            break;
+        case 2:
+            $Kingdom = "Ansteorra";
+            $KingWeb = "http://www.ansteorra.org";
+            break;
+        case 3:
+            $Kingdom = "Artemisia";
+            $KingWeb = "http://www.artemisia.sca.org";
+            break;
+        case 4:
+            $Kingdom = "Atenveldt";
+            $KingWeb = "http://www.atenveldt.org";
+            break;
+        case 5:
+            $Kingdom = "Atlantia";
+            $KingWeb = "http://www.atlantia.sca.org";
+            break;
+        case 6:
+            $Kingdom = "Aethelmearc";
+            $KingWeb = "http://www.aethelmearc.org";
+            break;
+        case 7:
+            $Kingdom = "Caid";
+            $KingWeb = "http://www.sca-caid.org";
+            break;
+        case 8:
+            $Kingdom = "Calontir";
+            $KingWeb = "http://calontir.sca.org";
+            break;
+        case 9:
+            $Kingdom = "Drachenwald";
+            $KingWeb = "http://www.drachenwald.sca.org";
+            break;
+        case 10:
+            $Kingdom = "Ealdormere";
+            $KingWeb = "http://www.ealdormere.sca.org";
+            break;
+        case 11:
+            $Kingdom = "East";
+            $KingWeb = "http://www.eastkingdom.org";
+            break;
+        case 12:
+            $Kingdom = "Middle";
+            $KingWeb = "http://www.midrealm.org";
+            break;
+        case 13:
+            $Kingdom = "Meridies";
+            $KingWeb = "http://www.meridies.org";
+            break;
+        case 14:
+            $Kingdom = "Outlands";
+            $KingWeb = "http://www.outlands.org";
+            break;
+        case 15:
+            $Kingdom = "Trimaris";
+            $KingWeb = "http://www.trimaris.org";
+            break;
+        case 16:
+            $Kingdom = "West";
+            $KingWeb = "http://www.westkingdom.org";
+            break;
+        case 17:
+            $Kingdom = "Northshield";
+            $KingWeb = "http://www.northshield.org";
+            break;
+        case 18:
+            $Kingdom = "Gleann Abhann";
+            $KingWeb = "http://gleannabhann.net";
+            break;
+        case 19:
+            $Kingdom = "Lochac";
+            $KingWeb = "http://www.sca.org.au/lochac";
+            break;
+        case 20:
+            $Kingdom = "Avacal";
+            $KingWeb = "http://www.avacal.org/SitePages/Home.aspx";
+            break;
+        default:
+            $Kingdom = "Here be dragons";
+            $KingWeb = "http://www.sca.org";
+            break;
+    }
+    return array($Kingdom, $KingWeb);
 }
 
 function GroupLook($b) {
-switch($b) {
-case 1:
-$GType = "Canton";
-break;
-case 2:
-$GType = "College";
-break;
-case 3:
-$GType = "Shire";
-break;
-case 4:
-$GType = "Barony";
-break;
-case 5:
-$GType = "County";
-break;
-case 6:
-$GType = "Duchy";
-break;
-default:
-$GType = "Unincorperated";
-break;
+    switch($b) {
+        case 1:
+            $GType = "Canton";
+            break;
+        case 2:
+            $GType = "College";
+            break;
+        case 3:
+            $GType = "Shire";
+            break;
+        case 4:
+            $GType = "Barony";
+            break;
+//        case 5:
+//            $GType = "County";
+//            break;
+//        case 6:
+//            $GType = "Duchy";
+//            break;
+        default:
+            $GType = "Unincorporated";
+            break;
+    }
+    return $GType;
 }
-return $GType;
-}
-
-?>
