@@ -80,25 +80,28 @@ function NameTest($n) {
     
 }
 
-function OpenHTML($c1) {
+function OpenHTML($c1) { //For all of the pages that deal with data entry.
 
     print "<!DOCTYPE html>\n";
     print "<html lang=\"en\">\n";
     print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
-    print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/w3css/4/w3pro.css\">\n";
+    //print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/w3css/4/w3pro.css\">\n"; // original
+    print "<link rel=\"stylesheet\" href=\"w3css_4_local.css\">\n"; // local copy of the v4 W3css
+    print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
-    print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
+    print "<body style=\"min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
+    // print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
-        
+
         print "<article class=\"w3-container w3-yellow\">\n";
         print "<P>Take Note:<BR>\n";
         print "{$_SESSION['Caution']}</P></article>\n";
         $_SESSION['Caution'] = NULL;
     }
-    
+
     IF (isset($_SESSION['EntryError']) AND !is_null($_SESSION['EntryError'])) {
-        
+
         print "<article class=\"w3-container w3-red\">\n";
         print "<P>You have an error in your input, please try again.<BR>\n";
         print "{$_SESSION['EntryError']}</P></article>\n";
@@ -106,6 +109,19 @@ function OpenHTML($c1) {
     }
 
 }
+
+function OpenTOP($c1) { //For all of the front-of-the-house pages
+
+    print "<!DOCTYPE html>\n";
+    print "<html lang=\"en\">\n";
+    print "<title>$c1</title>\n";
+    print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
+    print "<link rel=\"stylesheet\" href=\"w3css_4_local.css\">\n"; // local copy of the v4 W3css
+    print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
+    print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
+    print "<body>\n";
+}
+
 
 function ShowDebug($v1, $v2) {
 
