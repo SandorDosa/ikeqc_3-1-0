@@ -3,7 +3,7 @@
 // This is an include with many common custom functions.  It should be called by every script in the IKEqC stack.
 
 function NameTest($n) {
-    // This function tests for common Titles at the begining of a Participant's name.
+    // This function tests for common Titles at the beginning of a Participant's name.
     // Titles or Honors should go in a different blank so we test for it.
     // Because of the fuzzy nature of this test, we can only warn of the discovery and not kick it back as in error just
     //   in case the title we test for shares the first few letters with an otherwise valid name.
@@ -25,7 +25,7 @@ function NameTest($n) {
             $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
             $EntryCaution++;
             BREAK;
-        CASE strncasecmp($n, "dutchess", 8):
+        CASE strncasecmp($n, "dutc", 4):
             $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
             $EntryCaution++;
             BREAK;
@@ -33,7 +33,7 @@ function NameTest($n) {
             $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
             $EntryCaution++;
             BREAK;
-        CASE strncasecmp($n, "viscount", 7):
+        CASE strncasecmp($n, "visc", 4):
             $_SESSION['Caution'] = "It appears as if you have indicated the rider's titles in their name.<BR>Please insure that only the rider's name appears in the Name blank, their titles should go in the Honors blank.<BR>\n";
             $EntryCaution++;
             BREAK;
@@ -78,7 +78,7 @@ function NameTest($n) {
     
     return ($EntryCaution);
     
-}
+} // This test is to look for common titles listed before a Rider's name.
 
 function OpenHTML($c1) { //For all of the pages that deal with data entry.
 
@@ -108,7 +108,7 @@ function OpenHTML($c1) { //For all of the pages that deal with data entry.
         $_SESSION['EntryError'] = NULL;
     }
 
-}
+} // For all of the back-of-the-house pages.
 
 function OpenTOP($c1) { //For all of the front-of-the-house pages
 
@@ -120,14 +120,13 @@ function OpenTOP($c1) { //For all of the front-of-the-house pages
     print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body>\n";
-}
-
+} // For all of the Front-of-the-house Pages
 
 function ShowDebug($v1, $v2) {
 
     $Vars = array_diff($v1,$v2);
     print "<article class=\"w3-panel w3-black w3-text-amber w3-left-align\">\n";
-    print "<P>This section is for debugging purposes only and will not be present in the final version.</P>\n";
+    print "<P>This section is for debugging purposes only.</P>\n";
     print "<PRE>";
     print "Scope:<BR>\n";
     print_r($Vars);
@@ -137,7 +136,7 @@ function ShowDebug($v1, $v2) {
     print_r($_SESSION);
     print "</article>\n";
 
-}
+} // Variable and Array dump for Debug purposes.
 
 function PageHead($d,$e) {
 
@@ -145,7 +144,7 @@ function PageHead($d,$e) {
     print "<H1>$d</H1>\n";
     print "</header>\n";
 
-}
+} // Generic Header.  Depreciated?
 
 function PageHeadRider($f,$g) {
 
@@ -157,7 +156,7 @@ function PageHeadRider($f,$g) {
         printf("<H2>%s %s</H2>\n", $_SESSION['RiderHonors'], $_SESSION['RiderName']);
     }
     print "</header>\n";
-}
+} // Header with Rider display
 
 function AnnounceRider() {
     IF (is_null($_SESSION['RiderName'])) {
@@ -169,7 +168,7 @@ function AnnounceRider() {
     } ELSE {
         printf("%s %s\n", $_SESSION['RiderHonors'], $_SESSION['RiderName']);
     }
-}
+} // Rider display without headers, for use other than the top of pages.
 
 function PageNoHeadRider($h) {
 
@@ -180,7 +179,7 @@ function PageNoHeadRider($h) {
         printf("<H2>%s %s</H2>\n", $_SESSION['RiderHonors'], $_SESSION['RiderName']);
     }
     print "</header>\n";
-}
+} // Rider Display without headers but with customized container type and style.
 
 function KingLook($a) {
 
@@ -272,7 +271,7 @@ function KingLook($a) {
             break;
     }
     return array($Kingdom, $KingWeb);
-}
+} // Kingdom Lookup.
 
 function GroupLook($b) {
     switch($b) {
@@ -299,4 +298,4 @@ function GroupLook($b) {
             break;
     }
     return $GType;
-}
+} // Group Type lookup.

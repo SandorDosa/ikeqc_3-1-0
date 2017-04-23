@@ -14,11 +14,11 @@ IF (isset($PName)) {
         $_SESSION['Caution'] = "It appears you have placed the Rider's honors before their name.<BR>Please EDIT your input and put the Rider's honors in the correct place.<HR>\n";
     }
     
-    $PNT = substr($PName, 0, 5)."%";
-    $PCT = "%".substr($Pcka, 0, 5)."%";
-    $PAT = "%".substr($Paka, 0, 5)."%";
-    $PMT = substr($Pmka, 0, 5)."%";
-    $PSDXT = soundex($PName);
+    $PNT = substr($PName, 0, 5)."%";    // 'Participant Name Trimmed'
+    $PCT = "%".substr($Pcka, 0, 5)."%"; // 'Participant Commonly-Known-As Trimmed'
+    $PAT = "%".substr($Paka, 0, 5)."%"; // 'Participant Also-Known-As Trimmed'
+    $PMT = substr($Pmka, 0, 5)."%";     // 'Participant Mundanly-Known-As Trimmed'
+    $PSDXT = soundex($PName);                        // 'Participant Soundex()'
     
     
 //    $seta = mysql_query("SELECT PID,PName,Pcka,Paka,Pmka,PSdx FROM riders WHERE (PName LIKE '$PNT' OR Pcka LIKE '$PNT' OR Paka LIKE '$PNT' OR Pcka LIKE '$PNT' OR Pcka LIKE '$PCT' OR Pcka LIKE '$PAT' OR Paka LIKE '$PNT' OR Paka LIKE '$PCT' OR Paka LIKE '$PAT' OR Pmka LIKE '$PMT' OR PSdx LIKE '$PSDXT') ORDER BY PID", $db);
