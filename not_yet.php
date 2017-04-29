@@ -30,7 +30,7 @@ print "<article class=\"w3-col m9 l10 w3-theme\">\n"; // Content
 
 print "<div class=\"w3-panel w3-theme-l2 w3-border w3-margin\">\n";
 print "<H3>This Feature not available yet...</H3>\n";
-print "<p>Sandor is working hard to implelement all sorts of new things on the website.<br>Please check back later for all the great features we have planned.\n";
+print "<p>Sandor is working hard to implement all sorts of new things on the website.<br>Please check back later for all the great features we have planned.\n";
 print "<a href=\"http://scaikeqc.org/index.php\">Click here to return to the main page.</a></p>\n";
 print "</div>\n";
 

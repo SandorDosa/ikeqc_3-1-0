@@ -1,0 +1,44 @@
+I have six functionally identical PHP code blocks (one is included below) that each display the Top 5 performances for one of six games.  Rather than hard code the order these results display on the master page, I need to dynamically change the order these six PHP blocks are displayed on the output HTML.
+
+I had tried wrapping the PHP code into a `function`, but have had issues with the `variable` containing the database connector not being out-of-scope inside a `function` declared in an `include` other than the include that defines the `variable`.
+
+If I can not excucite SQL queries from within a custom function, that is stored in a separate include, how else could I pull and process the data from the MySQL server and yet build the six blocks of data, ordered based on the dynamic index?
+
+Here is the SQL query I am using to generate the average score.  There are six games so there will be a separate query for each.
+
+    $my_var1 = mysqli_query($connection, "SELECT AVG(score) FROM (SELECT g1_score AS score FROM game_1) TMP");
+
+Here is one of the display code blocks:
+
+    print "<p>Game 1</p>\n";
+    print "<table style='margin: 0 auto;'>\n";
+    $count = 0;
+    $A = mysqli_query($connection, "SELECT players.Pname,game_1.g1_score,game_1.DVN FROM players LEFT JOIN game_1 ON players.PID = game_1.PID WHERE game_1.g1_seen = 'Y' ORDER BY game_1.g1_score DESC LIMIT 5");
+    IF ($AA = mysqli_fetch_array($A)) {
+      do {
+    	  print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
+    	  SWITCH ($AA[2]) {
+    		  CASE 1:
+    			  print "<td class='w3-theme-d5'>Advanced</td>\n";
+    			  break;
+    		  CASE 2:
+    			  print "<td class='w3-theme-d5'>Intermediate</td>\n";
+    			  break;
+    		  CASE 3:
+    			  print "<td class='w3-theme-d5'>Beginner</td>\n";
+    			  break;
+    		  DEFAULT:
+    			  print "<td class='w3-theme-d5'>Beginner</td>\n";
+    			  break;
+    	  }
+    	  $count++;
+      } while ($AA = mysqli_fetch_array($A));
+
+    }
+    IF ($count < 5) {
+      do {
+    	  print "<tr><td colspan='3'>[Your name could be here]</td></tr>\n";
+    	  $count++;
+      } while ($count < 5);
+    }
+    print "</table>\n";

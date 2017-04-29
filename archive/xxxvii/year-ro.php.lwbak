@@ -1,0 +1,9 @@
+<?php
+$db = mysql_connect("localhost", "arconian_db1", "kni1ght");
+mysql_select_db("arconian_ikeqc",$db);
+$pgyear="xxxvii";
+$ucyear="XXXVII";
+$anyear="37";
+$gyear="2002";
+$gpyear="2003";
+?>

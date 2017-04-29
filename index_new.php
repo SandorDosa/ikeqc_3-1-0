@@ -11,7 +11,7 @@ include "ikeqcfuncs.inc";
 include "colors.inc";
 include "index_funcs.inc";
 
-$db_alt = mysqli_connect("localhost","scaikeqc_sb","Kni1ghts", "scaikeqc_sandbox");
+$db_3 = mysqli_connect("localhost","scaikeqc_sb","Kni1ghts", "scaikeqc_sandbox");
 
 OpenTOP("IKEqC AS LII");
 
@@ -24,7 +24,7 @@ print "<section class=\"w3-row w3-theme\">\n"; // Banner
     print "<p>In the Fifty-Second Year of the Society of Creative Anachronism</p>\n";
       print "<div class=\"w3-bar w3-center\">\n"; // Quick Links
       print "<a href=\"https://sandordosa.github.io/ikeqc_lii\" class=\"w3-bar-item w3-button w3-mobile\">Rules</a>\n";
-      print "<a href=\"http://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Downloads</a>\n";
+      print "<a href=\"http://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Forms/Downloads</a>\n";
       print "<a href=\"http://scaikeqc.org/blog/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Blog</a>\n";
       print "</div>"; // End Quick Links
   print "</article>\n"; // End Title block
@@ -43,24 +43,142 @@ print "<section class=\"w3-row w3-theme\">\n"; // Main window
     print "</div>\n"; // TODO Pull this block from WordPress content rather than hardcode.
 
     print "<section class=\"w3-container w3-center\">\n"; // Top 5 grid
+      // TODO Add section re-arranger code based on average of all scores in each game
+      // Something like this: >>> 'SELECT AVG(score) FROM (SELECT SMTscore AS score FROM ma_triple) TMP'; <<<
       print "<article class=\"w3-row\">\n";
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-          t5_heads_short();
+          print "<p>Reed Chop<br>\n";
+          print "<table style='margin: 0 auto;'>\n";
+          $count = 0;
+          $A = mysqli_query($db_alt, "SELECT riders.Pname,reeds.SDscore FROM riders LEFT JOIN reeds ON riders.PID = reeds.PID WHERE reeds.SDseen = 'Y' ORDER BY reeds.SDscore DESC LIMIT 5");
+          IF ($AA = mysqli_fetch_array($A)) {
+              do {
+                  print "<tr><td align='left'>{$AA[0]}</td><td align='right'>{$AA[1]}</td></tr>\n";
+                  $count++;
+              } while ($AA = mysqli_fetch_array($A));
+
+          }
+          IF ($count < 5) {
+              do {
+                  print "<tr><td colspan='2' align='center'>[Your name could be here]</td></tr>\n";
+                  $count++;
+              } while ($count < 5);
+          }
+          print "</table>\n";
         print "</div>\n";
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-          t5_heads_long();
+          print "<p>Behead the Enemy - Long<br>\n";
+          print "<table style='margin: 0 auto;'>\n";
+          $count = 0;
+          $A = mysqli_query($db_alt, "SELECT riders.Pname,heads_long.SHLscore FROM riders LEFT JOIN heads_long ON riders.PID = heads_long.PID WHERE heads_long.SHLseen = 'Y' ORDER BY heads_long.SHLscore DESC LIMIT 5");
+          IF ($AA = mysqli_fetch_array($A)) {
+              do {
+                  print "<tr><td align='left'>{$AA[0]}</td><td align='right'>{$AA[1]}</td></tr>\n";
+                  $count++;
+              } while ($AA = mysqli_fetch_array($A));
+
+          }
+          IF ($count < 5) {
+              do {
+                  print "<tr><td colspan='2' align='center'>[Your name could be here]</td></tr>\n";
+                  $count++;
+              } while ($count < 5);
+          }
+          print "</table>\n";
         print "</div>\n";
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-          t5_rings();
+          print "<p>Ring Tilt<br>\n";
+          print "<table style='margin: 0 auto;'>\n";
+          $count = 0;
+          $A = mysqli_query($db_alt, "SELECT riders.Pname,rings.SRscore FROM riders LEFT JOIN rings ON riders.PID = rings.PID WHERE rings.SRseen = 'Y' ORDER BY rings.SRscore DESC LIMIT 5");
+          IF ($AA = mysqli_fetch_array($A)) {
+              do {
+                  print "<tr><td align='left'>{$AA[0]}</td><td align='right'>{$AA[1]}</td></tr>\n";
+                  $count++;
+              } while ($AA = mysqli_fetch_array($A));
+
+          }
+          IF ($count < 5) {
+              do {
+                  print "<tr><td colspan='2' align='center'>[Your name could be here]</td></tr>\n";
+                  $count++;
+              } while ($count < 5);
+          }
+          print "</table>\n";
         print "</div>\n";
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-          t5_reeds();
+          print "<p>Reed Chop<br>\n";
+          print "<table style='margin: 0 auto;'>\n";
+          $count = 0;
+          $A = mysqli_query($db_alt, "SELECT riders.Pname,reeds.SDscore FROM riders LEFT JOIN reeds ON riders.PID = reeds.PID WHERE reeds.SDseen = 'Y' ORDER BY reeds.SDscore LIMIT 5");
+          IF ($AA = mysqli_fetch_array($A)) {
+              do {
+                  print "<tr><td align='left'>{$AA[0]}</td><td align='right'>{$AA[1]}</td></tr>\n";
+                  $count++;
+              } while ($AA = mysqli_fetch_array($A));
+
+          }
+          IF ($count < 5) {
+              do {
+                  print "<tr><td colspan='2' align='center'>[Your name could be here]</td></tr>\n";
+                  $count++;
+              } while ($count < 5);
+          }
+          print "</table>\n";
         print "</div>\n";
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-          t5_ma_single();
+          print "<p>Mounted Archery - Single<br>\n";
+          print "<table style='margin: 0 auto;'>\n";
+          $count = 0;
+          $A = mysqli_query($db_alt, "SELECT riders.Pname,ma_single.SMSscore FROM riders LEFT JOIN ma_single ON riders.PID = ma_single.PID WHERE ma_single.SMSseen = 'Y' ORDER BY ma_single.SMSscore DESC LIMIT 5");
+          IF ($AA = mysqli_fetch_array($A)) {
+              do {
+                  print "<tr><td align='left'>{$AA[0]}</td><td align='right'>{$AA[1]}</td></tr>\n";
+                  $count++;
+              } while ($AA = mysqli_fetch_array($A));
+
+          }
+          IF ($count < 5) {
+              do {
+                  print "<tr><td colspan='2' align='center'>[Your name could be here]</td></tr>\n";
+                  $count++;
+              } while ($count < 5);
+          }
+          print "</table>\n";
         print "</div>\n";
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-          t5_ma_triple();
+          print "<p>Mounted Archery - Triple<br>\n";
+          print "<table style='margin: 0 auto;'>\n";
+          $count = 0;
+          $A = mysqli_query($db_3, "SELECT riders.Pname,ma_triple.SMTscore,ma_triple.DVN FROM riders LEFT JOIN ma_triple ON riders.PID = ma_triple.PID WHERE ma_triple.SMTseen = 'Y' ORDER BY ma_triple.SMTscore DESC LIMIT 5");
+          IF ($AA = mysqli_fetch_array($A)) {
+              do {
+                  print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
+                  SWITCH ($AA[2]) {
+                      CASE 1:
+                          print "<td class='w3-theme-d5'>Canter</td>\n";
+                          break;
+                      CASE 2:
+                          print "<td class='w3-theme-d5'>Trot</td>\n";
+                          break;
+                      CASE 3:
+                          print "<td class='w3-theme-d5'>Walk</td>\n";
+                          break;
+                      DEFAULT:
+                          print "<td class='w3-theme-d5'>Walk</td>\n";
+                          break;
+                  }
+                  $count++;
+              } while ($AA = mysqli_fetch_array($A));
+
+          }
+          IF ($count < 5) {
+              do {
+                  print "<tr><td colspan='3'>[Your name could be here]</td></tr>\n";
+                  $count++;
+              } while ($count < 5);
+          }
+          print "</table>\n";
         print "</div>\n";
       print "</article>\n";
     print "</section>\n";
