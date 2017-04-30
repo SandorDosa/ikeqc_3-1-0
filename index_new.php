@@ -54,8 +54,19 @@ print "<section class=\"w3-row w3-theme\">\n"; // Main window
     $MAST_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SMSscore AS score FROM ma_single) TMP");
     $MATT_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SMTscore AS score FROM ma_triple) TMP");
 
-    //
+    // SELECT c1,c2 FROM
+    // ( SELECT QUOTE('heads') AS c1,AVG(hscore) AS c2 FROM ( SELECT SHscore AS hscore FROM heads) tmp1 ) tmp2
+    // UNION ALL
+    // ( SELECT QUOTE('rings') AS c1,AVG(rscore) AS c2 FROM ( SELECT SRscore AS rscore FROM rings) tmp3 )
+    // UNION ALL
+    // ( SELECT QUOTE('reeds') AS c1,AVG(dscore) AS c2 FROM ( SELECT SDscore AS dscore FROM reeds) tmp5 )
+    // UNION ALL
+    // ( SELECT QUOTE('moarch') AS c1,AVG(mscore) AS c2 FROM ( SELECT SMscore AS mscore FROM moarch) tmp7 )
+    // ORDER BY c2 DESC
 
+    // IF ($HS_1) {
+
+    // }
 
 
 
