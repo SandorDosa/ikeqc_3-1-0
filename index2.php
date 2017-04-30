@@ -36,34 +36,9 @@ print "<section class=\"w3-row w3-theme\">\n"; // Main window
 
     include "special_notice.inc"; // Check for a special notice and display it.
 
-    print "<div class=\"w3-panel w3-theme-l2 w3-border w3-margin\">\n";
-      print "<H3>Blog Article</H3>\n";
-      print "<em>Byline</em>\n";
-      print "<p>Lorum Ipsum Dolar Sit Lorum Ipsum Dolar Sit Lorum Ipsum Dolar Sit Lorum Ipsum Dolar Sit Lorum Ipsum Dolar Sit Lorum Ipsum Dolar Sit...</p>\n";
-    print "</div>\n"; // TODO Pull this block from WordPress content rather than hardcode.
-
     print "<section class=\"w3-container w3-center\">\n"; // Top 5 grid
       // TODO Add section re-arranger code based on average of all scores in each game
       // Something like this: >>> 'SELECT AVG(score) FROM (SELECT SMTscore AS score FROM ma_triple) TMP'; <<<
-
-    // Average Score Queries
-    $HS_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SHLscore AS score FROM heads_long) TMP");
-    $HL_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SHSscore AS score FROM heads_short) TMP");
-    $R_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SRscore AS score FROM rings) TMP");
-    $D_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SDscore AS score FROM reeds) TMP");
-    $MAST_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SMSscore AS score FROM ma_single) TMP");
-    $MATT_1 = mysqli_query($db_alt, "SELECT AVG(score) FROM (SELECT SMTscore AS score FROM ma_triple) TMP");
-
-    //
-
-
-
-
-
-
-
-
-
       print "<article class=\"w3-row\">\n";
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
           print "<p>Reed Chop<br>\n";
@@ -85,6 +60,9 @@ print "<section class=\"w3-row w3-theme\">\n"; // Main window
           }
           print "</table>\n";
         print "</div>\n";
+
+
+
         print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
           print "<p>Behead the Enemy - Long<br>\n";
           print "<table style='margin: 0 auto;'>\n";
@@ -206,10 +184,21 @@ print "<section class=\"w3-row w3-theme\">\n"; // Main window
   print "<article class=\"w3-col m3 l2 w3-theme\">\n"; // Sidebar begins
 
     print "<div class=\"w3-panel w3-theme-l2 w3-center\">\n";
-      print "<strong>Kingdom Standings</strong>\n";
-      print "<p>[1st place]</p>\n";
-      print "<p>[2nd place]</p>\n";
-      print "<p>[3rd place]</p>\n";
+      //print "<strong>Kingdom Standings</strong>\n";
+      //print "<p>[1st place]</p>\n";
+      //print "<p>[2nd place]</p>\n";
+      //print "<p>[3rd place]</p>\n";
+        require('../blog/wp-blog-header.php');//link to your blog-header.php using relative path
+    print "<H2>From the blog...</H2>\n";
+    $args = array( 'numberposts' => 1, 'post_status'=>"publish",'post_type'=>"post",'orderby'=>"post_date");
+    $postslist = get_posts( $args );
+      foreach ($postslist as $post) :  setup_postdata($post);
+        print "<h3>".get_the_title()."</h3>\n";
+        print "<p>\n".get_the_excerpt()."<hr>\n";
+        print "<a href=\"".get_the_permalink()."\">Read the full post</a><br>Posted on: ".get_the_date();
+        print "</p>\n";
+      endforeach;
+
     print "</div>\n"; // TODO Kingdom Standings function
     print "<div class=\"w3-panel w3-theme-l4 w3-center\">\n";
       print "<strong>Scores Archive</strong>\n";
