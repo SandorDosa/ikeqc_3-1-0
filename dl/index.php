@@ -33,7 +33,13 @@ print "<H3>Available Downloads</H3>\n";
 print "<p><a href=\"IKEqC_LII_r52-4.pdf\">Rules and Regulations for AS LII</a> -- Publication date April 30, 2017 (rev 52.4)<br>\n";
 print "<a href=\"IKEqCMainSignoff-ASLII.pdf\">EMiCs Signoff sheet for AS LII</a> -- Publication date April 30, 2017 (rev 52.2)<br>\n";
 print "<a href=\"IKEqCParticipantRoster-ASLII.pdf\">Participant Roster sheet for AS LII</a> -- Publication date April 30, 2017 (rev 52.2)<br>\n";
-print "Scoresheets for AS LII are undergoing the last stage of completition and were not avilable at press time, we expect them to be here by May 5th.</p>\n";
+print "<a href=\"IKEqCScoresheetBeheadTheEnemy2017v2.1.pdf\">Behead the Enemy Scoresheet</a> -- Publication date May 5, 2017 (Note on form which course length)<br>\n";
+print "<a href=\"IKEqCScoresheetRingTilt-ASLII.pdf\">Ring Tilt Scoresheet</a> -- Publication date May 5, 2017<br>\n";
+print "<a href=\"IKEqCScoresheetReedChop-ASLII.pdf\">Reed Chop Scoresheet</a> -- Publication date May 5, 2017<br>\n";
+print "<a href=\"IKEqCScoresheetArcherySingleShot-ASLII.pdf\">Mounted Archery Single Target</a> -- Publication date May 5, 2017<br>\n";
+print "<a href=\"IKEqCScoresheetArcheryTripleShot-ASLII.pdf\">Mounted Archery Triple Target</a> -- Publication date May 5, 2017</p>\n";
+
+print "<hr>\n";
 print "<p><a href=\"http://scaikeqc.org/index.php\">Click here to return to the main page.</a></p>\n";
 print "</div>\n";
 

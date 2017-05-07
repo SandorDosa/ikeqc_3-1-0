@@ -315,8 +315,7 @@ function arc_list() {
     print "<a href=\"http://scaikeqc.org/archive/xxxvii\">XXXVII</a><br>\n";
     print "<a href=\"http://scaikeqc.org/archive/xxxvi\">XXXVI</a><br>\n";
     print "<a href=\"http://scaikeqc.org/archive/xxxv\">XXXV</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/index-2.html\">Archive Home</a><br>\n";
-    print "No scores are available for years not listed.</p>\n";
+    print "<a href=\"http://scaikeqc.org/archive/index-2.html\">Archive Home</a></p>\n";
 } // Organized list of Archive links
 
 function hoofer() {
