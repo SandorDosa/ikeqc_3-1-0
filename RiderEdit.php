@@ -19,7 +19,15 @@ session_start();
 include "year.inc";
 include "ikeqcfuncs.inc";
 
-IF ($Reset == 1) {
+
+
+IF (isset($_GET['Reset']) AND !is_null($_GET['Reset'])) {
+    $Reset = $_GET['Reset'];
+}
+
+
+
+IF (($_GET['Reset'] == 1) OR ($_POST['Reset'] == 1)) {
     $_SESSION['PIDx'] = -1;
     $_SESSION['xPID'] = -1;
 }

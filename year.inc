@@ -1,10 +1,11 @@
 <?php
 
-$db = mysql_connect("localhost", "scaikeqc_sb", "Kni1ghts");
-mysql_select_db("scaikeqc_sandbox",$db);
+//$db = mysql_connect("localhost", "scaikeqc_sb", "Kni1ghts");
+//mysql_select_db("scaikeqc_sandbox",$db);
 
 $db_alt = mysqli_connect("localhost","scaikeqc_sb","Kni1ghts", "scaikeqc_sandbox");
 $db_old = mysqli_connect("localhost","scaikeqc_sb","Kni1ghts", "scaikeqc_ikeqc");
+$db_3 = mysqli_connect("localhost","scaikeqc_sb","Kni1ghts","scaikeqc_three");
 
 $pgyear="lii";
 $lastyear="li";
