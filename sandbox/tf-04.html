@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- TF-04.html -->
+<!-- Temeplate form -->
+<html>
+<title>EXPERIMENTAL NEW FORM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<!-- <body style="max-width:600px"> -->
+
+<header class="w3-container w3-teal">
+  <h1>Sandboxed Data Entry</h1>
+    <p>This page is designed for use on smartphone screens.  Excessive whitespace on larger clients is a byproduct of this and will be dealt with in due course.</p>
+
+</header>
+
+
+<form method="post" action="tf-04a.php">
+
+	<div id="Rider" class="w3-container w3-red w3-responsive">
+   		<H2>Select the Rider</H2>
+   		<SELECT NAME="Pname"><OPTION VALUE="XXX">Select Rider<OPTION VALUE="XXX">-----
+			<OPTION VALUE="NEW">**NEW RIDER**
+			<OPTION VALUE="XXX">-----
+			<OPTION VALUE="306">Johanna
+			<OPTION VALUE="83">Aaron MacGregor
+			<OPTION VALUE="424">Abu Malik al Haddad
+			<OPTION VALUE="170">Acelin, Lady
+			<OPTION VALUE="78">Adrielle Kerrec
+			<OPTION VALUE="25">Aedan mac Suibne
+			<OPTION VALUE="301">Aesceline
+			<OPTION VALUE="24">Aeschine
+			<OPTION VALUE="114">Zuriel Nightshade
+			<OPTION VALUE="XXX">-----
+			<OPTION VALUE="NEW">**NEW RIDER**
+		</SELECT>
+	</div>
+
+  	<div id="Horse" class="w3-container w3-orange w3-responsive">
+		<H2>Select the Horse</H2>
+		<SELECT NAME="Hname"><OPTION VALUE="XXX">Select Horse<OPTION VALUE="XXX">-----
+			<OPTION VALUE="NEW">**NEW HORSE**
+			<OPTION VALUE="12">Unknown Mount
+			<OPTION VALUE="XXX">-----
+			<OPTION VALUE="103">Ace
+			<OPTION VALUE="170">Alamar
+			<OPTION VALUE="195">Alamar
+			<OPTION VALUE="40">Amadaes
+			<OPTION VALUE="46">Andre
+			<OPTION VALUE="99">Angel
+			<OPTION VALUE="118">Angelina
+			<OPTION VALUE="64">Yasser
+			<OPTION VALUE="236">Zeus' Dream
+			<OPTION VALUE="280">Zia
+			<OPTION VALUE="XXX">-----<OPTION VALUE="NEW">**NEW HORSE**
+		</SELECT>
+	</div>
+
+<!-- HEADS -->
+	<div id="Heads" class="w3-container w3-light-blue">
+    	 <table class="w3-table w3-centered"> 
+			<TR>
+			<TD class="w3-centered">Heads</TD>
+			</TR> 
+			<TR class="w3-blue">
+			<TD>Min<BR><input name="MINS" type="text" size="1" value="0" valign=top></TD>
+			<TD><H2>:</H2></TD>
+			<TD>Sec<BR><input name="SECS" type="text" size="2" value="00"></TD>
+			<TD><H2>.</H2></TD>
+			<TD>Tenths<BR><input name="TENS" type="text" size="1" value="0"></TD>
+			<TD>Hundredths<BR><input name="HUNS" type="text" size="1" value="0"></TD>
+			</TR>
+			<TR>
+			<TD COLSPAN=6>Penaltes: <input name="Penalty" type="text" size="2" value="00"></TD>
+			</TR>
+		</TABLE>
+	</div>
+
+<!-- Rings -->
+	<div id="Rings" class="w3-container w3-indigo">
+    	 <table class="w3-table w3-centered"> 
+			<TR>
+			<TD>Rings</TD>
+			</TR>
+			<TR>
+			<TD>LEFT SIDE</TD>
+			<TD>RIGHT SIDE</TD>
+			</TR>
+
+			<TR>
+			<TD>
+			6" <INPUT NAME="Ring6L" class="w3-check" type="checkbox" value="4"> - OR - 
+			
+			<INPUT NAME="Ring1L" class="w3-check" type="checkbox" value="4" value="20"> 1" 
+			</TD>
+			<TD>
+			1" <INPUT NAME="Ring1R" class="w3-check" type="checkbox" value="4" value="20"> - OR - 
+			<INPUT NAME="Ring6R" class="w3-check" type="checkbox" value="4" value="4"> 6" 
+			</TD>
+			</TR>
+			
+			<TR>
+			<TD>
+			5" <INPUT NAME="Ring5L" class="w3-check" type="checkbox" value="6"> - OR - 
+			<INPUT NAME="Ring2L" class="w3-check" type="checkbox" value="15"> 2" 
+			</TD>
+			<TD>
+			2" <INPUT NAME="Ring2R" class="w3-check" type="checkbox" value="15"> - OR - 
+			<INPUT NAME="Ring5R" class="w3-check" type="checkbox" value="6"> 5" 
+			</TD>
+			</TR>
+			<TR>
+			<TD>
+			4" <INPUT NAME="Ring4L" class="w3-check" type="checkbox"  value="8"> - OR - 
+			<INPUT NAME="Ring3L" class="w3-check" type="checkbox"  value="10"> 3" 
+			</TD>
+			<TD>
+			3" <INPUT NAME="Ring3R" class="w3-check" type="checkbox"  value="10"> - OR - 
+			<INPUT NAME="Ring4R" class="w3-check" type="checkbox"  value="8"> 4" 
+			</TD>
+			</TR>
+		</TABLE>
+	</div>
+
+<!-- Reeds -->
+	<div id="Reeds" class="w3-container w3-cyan">
+    	<table class="w3-table w3-centered"> 
+			<TR>
+			<TD>Reeds</TD>
+			</TR>
+			<TR>
+			<TD>LEFT</TD>
+			<TD>LANE</TD>
+			<TD>RIGHT</TD>
+			</TR>
+			
+			<TR>
+			<TD><INPUT NAME="Reed2L" class="w3-check" type="checkbox"  value="15"></TD>
+			<TD>
+			2"</TD>
+			<TD><INPUT NAME="Reed2R" class="w3-check" type="checkbox"  value="15"></TD>
+			</TR>
+			
+			<TR>
+			<TD><INPUT NAME="Reed4L" class="w3-check" type="checkbox"  value="12"></TD>
+			<TD>
+			4"</TD>
+			<TD><INPUT NAME="Reed4R" class="w3-check" type="checkbox"  value="12"></TD>
+			</TR>
+			
+			<TR>
+			<TD><INPUT NAME="Reed6L" class="w3-check" type="checkbox"  value="9"></TD>
+			<TD>
+			6"</TD>
+			<TD><INPUT NAME="Reed6R" class="w3-check" type="checkbox"  value="9"></TD>
+			</TR>
+			
+			<TR>
+			<TD><INPUT NAME="Reed8L" class="w3-check" type="checkbox"  value="6"></TD>
+			<TD>
+			8"</TD>
+			<TD><INPUT NAME="Reed8R" class="w3-check" type="checkbox"  value="6"></TD>
+			</TR>
+			
+			<TR>
+			<TD><INPUT NAME="Reed9L" class="w3-check" type="checkbox"  value="3"></TD>
+			<TD>
+			10"</TD>
+			<TD><INPUT NAME="Reed9R" class="w3-check" type="checkbox"  value="3"></TD>
+			</TR>
+		</TABLE>
+	</div>
+
+<!-- MoArch-->
+	<div id="MoArch" class="w3-container w3-blue">
+		<table class="w3-table w3-blue w3-centered"> 
+			<TR>
+			<TD>Mounted Archery</TD>
+			</TR>
+			<TR>
+			<TD>First Pass: <input name="MApass1" type="text" size="2" value="0"></TD>
+			</TR>
+			<TR>
+			<TD>Second Pass: <input name="MApass2" type="text" size="2" value="0"></TD>
+			</TR>
+			<TR>
+			<TD>Third Pass: <input name="MApass3" type="text" size="2" value="0"></TD>
+			</TR>
+		</TABLE>
+  </div>
+
+
+	<div id="Birjas" class="w3-container w3-purple">
+		<table class="w3-table w3-centered"> 
+			<TR>
+			<TD>Birjas</TD>
+			</TR>
+			<TR>
+			
+			<TD>First Pass: <input name="Bpass1" type="text" size="2" value="0"></TD>
+			</TR>
+			
+			<TR>
+			<TD>Second Pass: <input name="Bpass2" type="text" size="2" value="0"></TD>
+			</TR>
+			
+			<TR>
+			<TD>Third Pass: <input name="Bpass3" type="text" size="2" value="0"></TD>
+			</TR>
+		</TABLE>
+	</div>
+
+	<div id="FormEnd" class="w3-container w3-centered w3-yellow">
+		<input type="submit" value="submit">
+	</div>
+
+</form>
+
+
+<footer class="w3-container w3-teal">
+  <h5>This is only a test</h5>
+  <p>Had this been a real form, you would have to logged in to use it.</p>
+</footer>
+
+</body>
+</html>
+
