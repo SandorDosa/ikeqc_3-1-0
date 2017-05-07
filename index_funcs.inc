@@ -14,14 +14,28 @@ function t5_heads_short($db_3) {
     $A = mysqli_query($db_3, "SELECT riders.Pname,heads_short.SHSscore FROM riders LEFT JOIN heads_short ON riders.PID = heads_short.PID WHERE heads_short.SHSseen = 'Y' ORDER BY heads_short.SHSscore DESC LIMIT 5");
     IF ($AA = mysqli_fetch_array($A)) {
         do {
-            print "<tr><td>{$AA[0]}</td><td>{$AA[1]}</td></tr>\n";
+            print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
+            SWITCH ($AA[2]) {
+                CASE 1:
+                    print "<td class='w3-theme-d5'>Canter</td>\n";
+                    break;
+                CASE 2:
+                    print "<td class='w3-theme-d5'>Trot</td>\n";
+                    break;
+                CASE 3:
+                    print "<td class='w3-theme-d5'>Walk</td>\n";
+                    break;
+                DEFAULT:
+                    print "<td class='w3-theme-d5'>Walk</td>\n";
+                    break;
+            }
             $count++;
         } while ($AA = mysqli_fetch_array($A));
 
     }
     IF ($count < 5) {
         do {
-            print "<tr><td colspan='2'>[Your name could be here]</td></tr>\n";
+            print "<tr><td colspan='3'>[Your name could be here]</td></tr>\n";
             $count++;
         } while ($count < 5);
     }
