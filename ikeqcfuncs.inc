@@ -321,8 +321,10 @@ function arc_list() {
 function hoofer() {
     print "<section class=\"w3-container w3-theme-d5 w3-center\">\n";
         print "<div class=\"w3-bar w3-center\">\n"; // Quick Links
-            print "<a href=\"https://sandordosa.github.io/ikeqc_lii\" class=\"w3-bar-item w3-button w3-mobile\">Rules</a>\n";
+            print "<a href=\"http://scaikeqc.org/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Home</a>\n";
+            print "<a href=\"http://scaikeqc.org/rules/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Rules</a>\n";
             print "<a href=\"http://scaikeqc.org/dl/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Downloads</a>\n";
+            print "<a href=\"http://scaikeqc.org/exp.php\" class=\"w3-bar-item w3-button w3-mobile\">Experiments</a>\n";
             print "<a href=\"http://scaikeqc.org/archive/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Scores Archive</a>\n";
             print "<a href=\"http://scaikeqc.org/blog/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Blog</a>\n";
             print "<a href=\"http://scaikeqc.org/contact.php\" class=\"w3-bar-item w3-button w3-mobile\">Contact Us</a>\n";
