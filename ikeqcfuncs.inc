@@ -350,7 +350,7 @@ function halter() {
             print "</div>"; // End Quick Links
         print "</article>\n"; // End Title block
     print "</section>\n"; // End Banner block
-}
+} // Containerized header section with links.
 
 
 

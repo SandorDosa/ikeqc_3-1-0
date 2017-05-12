@@ -5,6 +5,7 @@
  * Date: 4/5/17
  * Time: 1:01 PM
  */
+
 $vars_start = get_defined_vars();
 session_start();
 include "year.inc";
@@ -18,7 +19,7 @@ OpenTOP("IKEqC AS LII");
 halter();
 
 
-print "<section class=\"w3-row w3-theme\">\n"; // Main window
+print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
 
   print "<article class=\"w3-col m9 l10 w3-theme\">\n"; // Content
 
