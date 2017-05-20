@@ -92,21 +92,7 @@ function OpenHTML($c1) { //For all of the pages that deal with data entry.
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     // print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
-    IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
 
-        print "<article class=\"w3-container w3-yellow\">\n";
-        print "<P>Take Note:<BR>\n";
-        print "{$_SESSION['Caution']}</P></article>\n";
-        $_SESSION['Caution'] = NULL;
-    }
-
-    IF (isset($_SESSION['EntryError']) AND !is_null($_SESSION['EntryError'])) {
-
-        print "<article class=\"w3-container w3-red\">\n";
-        print "<P>You have an error in your input, please try again.<BR>\n";
-        print "{$_SESSION['EntryError']}</P></article>\n";
-        $_SESSION['EntryError'] = NULL;
-    }
 
 } // For all of the back-of-the-house pages.
 
@@ -121,6 +107,24 @@ function OpenTOP($c1) { //For all of the front-of-the-house pages
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: #FFCC00;\">\n";
 } // For all of the Front-of-the-house Pages
+
+function ShowAlarms() {
+    IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
+
+        print "<article class=\"w3-container w3-blue-grey\">\n";
+        print "<P>Take Note:<BR>\n";
+        print "{$_SESSION['Caution']}</P></article>\n";
+        $_SESSION['Caution'] = NULL;
+    }
+
+    IF (isset($_SESSION['EntryError']) AND !is_null($_SESSION['EntryError'])) {
+
+        print "<article class=\"w3-container w3-red\">\n";
+        print "<P>You have an error in your input, please try again.<BR>\n";
+        print "{$_SESSION['EntryError']}</P></article>\n";
+        $_SESSION['EntryError'] = NULL;
+    }
+}
 
 function ShowDebug($v1, $v2) {
 

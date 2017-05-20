@@ -15,12 +15,35 @@
 $vars_start = get_defined_vars();
 session_start();
 include "year.inc";
-include "colors.inc";
 include "ikeqcfuncs.inc";
 
 // Top
 
-SWITCH ((isset($_GET['FailReturn']) AND !is_empty OR isset($_POST['FailReturn'])) {
+IF (isset($_GET['FailReturn'])) {
+    $g_FailReturn = $_GET['FailReturn'];
+} // Check for $_GET Fail var
+
+IF (isset($_POST['FailReturn'])) {
+    $p_FailReturn = $_POST['FailReturn'];
+} // Check for $_POST Fail var
+
+// Assign Local vars from POST
+IF (isset($_POST['next'])) {
+    $next = $_POST['next'];
+}
+IF (isset($_POST['Ein'])) {
+    $Ein = $_POST['Ein'];
+}
+IF (isset($_POST['$Eout'])) {
+    $Eout = $_POST['$Eout'];
+}
+IF (isset($_POST['Ecode'])) {
+    $Ecode = $_POST['Ecode'];
+}
+// END Assign Local vars
+
+
+SWITCH ( isset($g_FailReturn) OR isset($p_FailReturn)) {
     CASE $_GET['FailReturn'] == 1:
         $FailReturn = 1;
         $FailCount = 1;
@@ -63,7 +86,8 @@ IF (isset($FailReturn)) {
         $_SEESION['Caution'] = "The system is no long stable enough to be used at this time.<BR>Contact Sandor as soon as your situation allows.<BR>Please continue running your event on paper.<BR>\n";
         OpenHTML($S7);
 
-        $setz = mysql_query("UPDATE events SET Estatus='X' WHERE EID='{$_SESSION['EID']}'", $db);
+        //$setz = mysql_query("UPDATE events SET Estatus='X' WHERE EID='{$_SESSION['EID']}'", $db);
+        $setz = mysqli_query($db_3, "UPDATE events SET Estatus='X' WHERE EID='{$_SESSION['EID']}'");
 
 
         print "<DIV CLASS=\"w3-panel w3-red w3-jumbo\"><P>Sorry folks, something broke that Sandor will have to fix.<BR>Anything written prior to the crash is still there, but you should finish the tournament on paper.<BR>Remember there are static score calculator scripts at <A HREF=\"http://scaikeqc.org/tools\">here</A>.</P></DIV>\n";
@@ -168,40 +192,54 @@ IF (!isset($_SESSION['EID']) OR $_SESSION['EID'] <= 0) {
     } // Reset Event search
 
     IF (!isset($Ein)) {
-        $sete = mysql_query("SELECT * FROM events WHERE Estatus = 'O'");
-        IF ($E = mysql_fetch_array($sete)) {
-            
+        //$sete = mysql_query("SELECT * FROM events WHERE Estatus = 'O'");
+        $sete = mysqli_query($db_3,"SELECT * FROM events WHERE Estatus = 'O'");
+        IF ($E = mysqli_fetch_array($sete)) {
+
             OpenHTML("Events");
-            
+
+            halter();
+
             print "<header class=\"w3-panel $S1\">\n";
             print "<H1>Welcome EMiC:</H1>\n";
             print "</header>\n";
-            
+
             print "<section class=\"w3-panel $S2\">\n";
             print "<P>The following events can be managed:</P>\n";
             print "<form class=\"w3-container\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">\n";
             print "<SELECT NAME=\"Ein\">\n";
             do {
                 printf("<OPTION VALUE=\"%s\">%s\n", $E[0], $E[2]);
-            } while ($E = mysql_fetch_row($sete));
+            } while ($E = mysqli_fetch_row($sete));
             print "</SELECT>\n<BR>\n";
             print "<P>EMiC Event code:<input name=\"Ecode\" type=\"password\"></P>\n";
             print "<P><button class=\"w3-btn w3-green\" name=\"EMiC\">Select Event</button>\n";
             print "</form></section>\n";
+
+            hoofer();
             die;
         } ELSE {
-            printf("Something went wrong, click <A HREF=\"%s?\">here</A> to try again.\n", $_SERVER['PHP_SELF']);
-            print "<PRE>";
-            print_r($_POST);
+
+            OpenHTML("Events");
+
+            halter();
+
+            ShowAlarms();
+
+            print "<div class=\"w3-panel w3-theme-d5\">\n";
+            print "Something went wrong, click <A HREF=\"{$_SERVER['PHP_SELF']}?\">here</A> to try again.\n";
             ShowDebug(get_defined_vars(),$vars_start);
-            die(mysql_error());
+            hoofer();
+            die();
         }
     } // Event Selection
 
     IF ($Ein > 0) {
         $_SESSION['EID'] = $Ein;
-        $setee = mysql_query("SELECT * FROM events WHERE PID=$Ein", $db);
-        IF ($EE = mysql_fetch_array($setee)) {
+        //$setee = mysql_query("SELECT * FROM events WHERE PID=$Ein", $db);
+        $setee = mysqli_query($db_3, "SELECT * FROM events WHERE EID=$Ein");
+
+        IF ($EE = mysqli_fetch_array($setee)) {
             IF ($Ecode == $EE['Epass']) {
                 $_SESSION['EID'] = $EE['EID'];
                 $_SESSION['EName'] = $EE['Ename'];
@@ -221,30 +259,39 @@ IF (!isset($_SESSION['EID']) OR $_SESSION['EID'] <= 0) {
                 die;
             } ELSE {
                 $_SESSION['EntryError'] = "The event code is not correct.<BR>Try again.\n";
-                OpenHTML("Error!");
                 header('Location: '.$_SERVER['PHP_SELF']);
                 die;
             } // Security Check
 
         } ELSE {
-            printf("Something went wrong, click <A HREF=\"%s?\">here</A> to try again.\n", $_SERVER['PHP_SELF']);
+            print "Something went wrong, click <A HREF=\"{$_SERVER['PHP_SELF']}\">here</A> to try again.\n";
             print "<PRE>";
             print_r($_POST);
             ShowDebug(get_defined_vars(),$vars_start);
-            die(mysql_error());
+            die();
         } // Load Event data into Session
+
     } //Event data loaded into Session
+
 }  // Event Selection and Data Management
 
 // $_SESSION['EID'] Is set if the script gets this far
 
 IF ($_SESSION['EID'] > 0) {
-    
 
     IF (!isset($_SESSION['stats']) OR $_SESSION['stats'] <= 0) {
-        $setr = mysql_query("SELECT PID,EHS,EHL,ER,ED,EMS,EMT,EB FROM events_temp WHERE EID={$_SESSION['EID']} AND Erun = 'N'", $db);
-        IF ($R = mysql_fetch_array($setr)) {
-            $EP = mysql_num_rows($setr);
+        //$setr = mysql_query("SELECT PID,EHS,EHL,ER,ED,EMS,EMT,EB FROM events_temp WHERE EID={$_SESSION['EID']} AND Erun = 'N'", $db);
+        $setr = mysqli_query($db_3, "SELECT PID,EHS,EHL,ER,ED,EMS,EMT,EB FROM events_temp WHERE EID={$_SESSION['EID']} AND Erun = 'N'");
+        IF ($R = mysqli_fetch_array($setr)) {
+            $EP = mysqli_num_rows($setr);
+            $EHS = 0;
+            $EHL = 0;
+            $ER = 0;
+            $ED = 0;
+            $EMS = 0;
+            $EMT = 0;
+            $EB = 0;
+
             do {
                 IF ($_SESSION['EHS'] == 'Y' AND $R['EHS'] == 'Y') {
                     $EHS++;
@@ -267,13 +314,13 @@ IF ($_SESSION['EID'] > 0) {
                 IF ($_SESSION['EB'] == 'Y' AND $R['EB'] == 'Y') {
                     $EB++;
                 }
-            } while ($R = mysql_fetch_array($setr));
+            } while ($R = mysqli_fetch_array($setr));
         } ELSE {
-            printf("Something went wrong, click <A HREF=\"%s?\">here</A> to try again.\n", $_SERVER['PHP_SELF']);
+            print "Something went wrong, click <A HREF=\"{$_SERVER['PHP_SELF']}\">here</A> to try again.\n";
             print "<PRE>";
             print_r($_POST);
             ShowDebug(get_defined_vars(),$vars_start);
-            die(mysql_error());
+            die();
         }
     
         $_SESSION['stats'] = $_SESSION['EID'];
@@ -324,101 +371,122 @@ IF ($_SESSION['EID'] > 0) {
 
 IF ($_SESSION['EHScount'] > 0 OR $_SESSION['EHLcount'] > 0 OR $_SESSION['ERcount'] > 0 OR $_SESSION['EDcount'] > 0 OR $_SESSION['EMScount'] > 0 OR $_SESSION['EMTcount'] > 0 OR $_SESSION['EBcount']) { // This seven part logic test looks to see if any games are set to run.
     OpenHTML("Welcome EMiC");
-    
-    PageHead("Welcome EMiC -- {$_SESSION['EName']}", $S1);
-    
+    halter();
+    ShowAlarms();
     print "<form name=\"EMiC_Top\" action=\"{$_SERVER['PHP_SELF']}\" method=\"POST\">\n";
-    print "<section class=\"w3-container $S2\">\n";
+    print "<section class=\"w3-container w3-theme-l2\">\n";
+
     IF ($_SESSION['EP'] > 1) {
         print "<P>A total of {$_SESSION['EP']} riders have registered for {$_SESSION['EName']}</P>\n";
     } ELSE {
         print "<P>Only one Rider registered for {$_SESSION['EName']}</P>\n";
-    }
-    print "<section class=\"w3-container $S3\">\n";
+    } // Stats
+
+    print "<section class=\"w3-container w3-theme-l3\">\n";
+
     IF (isset($_SESSION['RiderName']) AND !is_null($_SESSION['RiderName'])) {
         print "<P>Last Rider was  AnnounceRider()</P>\n";
     } // Last Rider
+
     IF (isset($_SESSION['LastGame']) AND !is_null($_SESSION['LastGame'])) {
         print "<P>Last Game was {$_SESSION['LastGame']}</P>\n";
     } // Last Game
+
     print "</section>\n";
     print "<section class=\"w3-container $S4\"><TABLE CLASS=\"w3-table\">\n";
     IF ($_SESSION['EHS'] == "Y") {
         print "<TR><TD>Behead the Enemy -- Short Course</TD><TD>{$_SESSION['EHScount']} </TD><TD>remain.</TD>\n";
+
         IF ($_SESSION['EHScount'] > 0) {
             print "<TD><button class=\"w3-btn w3-amber\" name=\"next\" type=\"submit\" value=\"EHS\">Run Heads 21</button></TD></TR>\n";
         } ELSE {
             print "<TD><button class=\"w3-btn\" disabled>Run Heads 21</button></TD></TR>\n";
         }
+
     } // Include a row for Heads 21 if the event offers it.
     IF ($_SESSION['EHL'] == "Y") {
         print "<TR><TD>Behead the Enemy -- Long Course</TD><TD>{$_SESSION['EHLcount']} </TD><TD>remain.</TD>\n";
+
         IF ($_SESSION['EHLcount'] > 0) {
             print "<TD><button class=\"w3-btn w3-amber\" name=\"next\" type=\"submit\" value=\"EHL\">Run Heads 30</button></TD></TR>\n";
         } ELSE {
             print "<TD><button class=\"w3-btn\" disabled>Run Heads 30</button></TD></TR>\n";
         }
+
     } // Include a row for Heads 30 if the event offers it.
     IF ($_SESSION['ER']  == "Y") {
         print "<TR><TD>Ring Tilt</TD><TD>{$_SESSION['ERcount']}  </TD><TD>remain.</TD>\n";
+
         IF ($_SESSION['ERcount'] > 0) {
             print "<TD><button class=\"w3-btn w3-amber\" name=\"next\" type=\"submit\" value=\"ER\">Run Rings</button></TD></TR>\n";
         } ELSE {
             print "<TD><button class=\"w3-btn\" disabled>Run Rings</button></TD></TR>\n";
         }
+
     } // Include a row for Rings if the event offers it.
     IF ($_SESSION['ED']  == "Y") {
         print "<TR><TD>Reed Chop</TD><TD>{$_SESSION['EDcount']}  </TD><TD>remain.</TD>\n";
+
         IF ($_SESSION['EDcount'] > 0) {
             print "<TD><button class=\"w3-btn w3-amber\" name=\"next\" type=\"submit\" value=\"ED\">Run Reeds</button></TD></TR>\n";
         } ELSE {
             print "<TD><button class=\"w3-btn\" disabled>Run Reeds</button></TD></TR>\n";
         }
+
     } // Include a row for Reeds if the event offers it.
     IF ($_SESSION['EMS'] == "Y") {
         print "<TR><TD>Mounted Archery -- Single Target</TD><TD>{$_SESSION['EMScount']} </TD><TD>remain.</TD>\n";
+
         IF ($_SESSION['EMScount'] > 0) {
             print "<TD><button class=\"w3-btn w3-amber\" name=\"next\" type=\"submit\" value=\"EMS\">Run MA Single</button></TD></TR>\n";
         } ELSE {
             print "<TD><button class=\"w3-btn\" disabled>Run MA Single</button></TD></TR>\n";
         }
+
     } // Include a row for MAST if the event offers it.
     IF ($_SESSION['EMT'] == "Y") {
         print "<TR><TD>Mounted Archery -- Triple Target</TD><TD>{$_SESSION['EMTcount']} </TD><TD>remain.</TD>\n";
+
         IF ($_SESSION['EMTcount'] > 0) {
             print "<TD><button class=\"w3-btn w3-amber\" name=\"next\" type=\"submit\" value=\"EMT\">Run MA Triple</button></TD></TR>\n";
         } ELSE {
             print "<TD><button class=\"w3-btn\" disabled>Run MA Triple</button></TD></TR>\n";
         }
+
     } // Include a row for MATT if the event offers it.
     IF ($_SESSION['EB']  == "Y") {
         print "<TR><TD>Birjas</TD><TD>{$_SESSION['EBcount']}  </TD><TD>remain.</TD>\n";
+
         IF ($_SESSION['EBcount'] > 0) {
             print "<TD><button class=\"w3-btn w3-amber\" name=\"next\" type=\"submit\" value=\"EB\">Run Birjas</button></TD></TR>\n";
         } ELSE {
             print "<TD><button class=\"w3-btn\" disabled>Run Birjas</button></TD></TR>\n";
         }
+
     } // Include a row for Birjas if the event offers it.
     print "</TABLE></section>\n";
+    hoofer();
     die;
 } // SO long as there are registered riders to record a score for, we will loop back to this segment.
 
 IF (isset($_SESSION['RiderName']) AND $_SESSION['EHScount'] == 0 AND $_SESSION['EHLcount'] == 0 AND $_SESSION['ERcount'] == 0 AND $_SESSION['EDcount'] == 0 AND $_SESSION['EMScount'] == 0 AND $_SESSION['EMTcount'] == 0 AND $_SESSION['EBcount'] == 0) {
-    $_SESSION['Caution'] = "All data has been collected and saved.<BR>Congradulations!<BR>\n";
     OpenHTML("Its Done!");
-    
-    print "<section class=\"w3-container $S1\">\n";
+    halter();
+    ShowAlarms();
+    $_SESSION['Caution'] = "All data has been collected and saved.\n";
+
+    print "<section class=\"w3-container w3-theme-l1\">\n";
     print "<H1>The games are all done...</H1>\n";
-    print "</section><section class=\"w3-container $S2\">\n";
+    print "</section><section class=\"w3-container w3-theme-l2\">\n";
     print "<P>Congradulate your riders for a well run event<BR>Unoffical standings are over on the event page</P><HR>\n";
-    print "</section><section class=\"w3-container $S3\">\n";
+    print "</section><section class=\"w3-container w3-theme-l3\">\n";
     print "<P>Your work at the event may be done but your job is not yet done.<BR>After the event is complete please be sure to finalize your scores and submit your scoresheets.</P>\n";
     print "</section>\n";
     
-    $setdtwo = mysql_query("UPDATE events SET Estatus='C' WHERE EID='{$_SESSION['EID']}'", $db);
-    IF ($dtwo = mysql_fetch_array($setdtwo)) {
-        print "<section class=\"w3-container $S4\"><P>All processes complete.</P></section>\n";
-        ShowDebug(get_defined_vars(),$vars_start);
+    $setdtwo = mysqli_query($db_3,"UPDATE events SET Estatus='C' WHERE EID='{$_SESSION['EID']}");
+    IF ($dtwo = mysqli_fetch_array($setdtwo)) {
+        print "<section class=\"w3-container w3-theme-d4\"><P>All processes complete.</P></section>\n";
+        hoofer();
         die;
     } ELSE {
         ShowDebug(get_defined_vars(),$vars_start);
