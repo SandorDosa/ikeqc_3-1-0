@@ -92,6 +92,15 @@ function OpenHTML($c1) { //For all of the pages that deal with data entry.
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     // print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
+    // Farcebooke JS code
+    print "<div id=\"fb-root\"></div>\n";
+    print "<script>(function(d, s, id) {\n";
+      print "var js, fjs = d.getElementsByTagName(s)[0];\n";
+      print "if (d.getElementById(id)) return;\n";
+      print "js = d.createElement(s); js.id = id;\n";
+      print "js.src = \"//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9\";\n";
+      print "fjs.parentNode.insertBefore(js, fjs);\n";
+    print "}(document, 'script', 'facebook-jssdk'));</script>\n";
 
 
 } // For all of the back-of-the-house pages.
@@ -106,12 +115,21 @@ function OpenTOP($c1) { //For all of the front-of-the-house pages
     print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: #FFCC00;\">\n";
+    // Farcebooke JS code
+    print "<div id=\"fb-root\"></div>\n";
+    print "<script>(function(d, s, id) {\n";
+      print "var js, fjs = d.getElementsByTagName(s)[0];\n";
+      print "if (d.getElementById(id)) return;\n";
+      print "js = d.createElement(s); js.id = id;\n";
+      print "js.src = \"//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9\";\n";
+      print "fjs.parentNode.insertBefore(js, fjs);\n";
+    print "}(document, 'script', 'facebook-jssdk'));</script>\n";
 } // For all of the Front-of-the-house Pages
 
 function ShowAlarms() {
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
 
-        print "<article class=\"w3-container w3-blue-grey\">\n";
+        print "<article class=\"w3-panel w3-center w3-theme-light\">\n";
         print "<P>Take Note:<BR>\n";
         print "{$_SESSION['Caution']}</P></article>\n";
         $_SESSION['Caution'] = NULL;
@@ -119,7 +137,7 @@ function ShowAlarms() {
 
     IF (isset($_SESSION['EntryError']) AND !is_null($_SESSION['EntryError'])) {
 
-        print "<article class=\"w3-container w3-red\">\n";
+        print "<article class=\"w3-panel w3-center w3-theme-dark\">\n";
         print "<P>You have an error in your input, please try again.<BR>\n";
         print "{$_SESSION['EntryError']}</P></article>\n";
         $_SESSION['EntryError'] = NULL;
@@ -336,6 +354,7 @@ function hoofer() {
             print "<a href=\"http://scaikeqc.org/riders.php\" class=\"w3-bar-item w3-button w3-mobile\">Rider Portal</a>\n";
             print "<a href=\"http://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Made Possible by:</a>\n";
             print "<a href=\"http://scaikeqc.org/privacy.php\" class=\"w3-bar-item w3-button w3-mobile\">Privacy Policy</a>\n";
+            print "<div class=\"w3-bar-item w3-mobile fb-like\" data-href=\"http://scaikeqc.org\" data-layout=\"button\" data-action=\"like\" data-size=\"small\" data-show-faces=\"false\" data-share=\"true\"></div>";
         print "</div>"; // End Quick Links
     print "</section>\n";
 } // Containerized footer section with links.
@@ -357,6 +376,7 @@ function halter() {
         print "</article>\n"; // End Title block
     print "</section>\n"; // End Banner block
 } // Containerized header section with links.
+
 
 
 
