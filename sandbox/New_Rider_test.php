@@ -39,7 +39,7 @@ IF (isset($_POST['PName'])) {
 
     IF ($A = mysqli_fetch_array($seta)) {
         IF ($A) {
-            OpenTOP();
+            OpenTOP("New Rider");
             halter();
             ShowAlarms();
             print "<DIV CLASS=\"w3-container w3-theme-l3\">\n";

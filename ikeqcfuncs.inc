@@ -102,8 +102,8 @@ function OpenTOP($c1) { //For all of the front-of-the-house pages
     print "<html lang=\"en\">\n";
     print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
-    print "<link rel=\"stylesheet\" href=\"w3css_4_local.css\">\n"; // local copy of the v4 W3css
-    print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
+    print "<link rel=\"stylesheet\" href=\"http://scaikeqc.org/w3css_4_local.css\">\n"; // local copy of the v4 W3css
+    print "<link rel=\"stylesheet\" href=\"http://scaikeqc.org/ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
     print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: #FFCC00;\">\n";
 } // For all of the Front-of-the-house Pages
@@ -333,7 +333,7 @@ function hoofer() {
             print "<a href=\"http://scaikeqc.org/blog/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Blog</a>\n";
             print "<a href=\"http://scaikeqc.org/contact.php\" class=\"w3-bar-item w3-button w3-mobile\">Contact Us</a>\n";
             print "<a href=\"http://scaikeqc.org/emta.php\" class=\"w3-bar-item w3-button w3-mobile\">EM/TA Portal</a>\n";
-            print "<a href=\"http://scaikeqc.org/riders.php\" class=\"w3-bar-item w3-button w3-mobile\">Rider Portal</a>\n";
+            print "<a href=\"http://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Rider Portal</a>\n";
             print "<a href=\"http://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Made Possible by:</a>\n";
             print "<a href=\"http://scaikeqc.org/privacy.php\" class=\"w3-bar-item w3-button w3-mobile\">Privacy Policy</a>\n";
         print "</div>"; // End Quick Links
@@ -343,7 +343,7 @@ function hoofer() {
 function halter() {
     print "<section class=\"w3-row w3-theme\">\n"; // Banner
         print "<article class=\"w3-col m3 l2 w3-cell w3-theme w3-center\">\n"; // Logo Block
-            print "<img title=\"Logo\" alt=\"Or, A Chamfron and in base the letters IKEqC vert.\" src=\"I3Logo3.png\">\n";
+            print "<img title=\"Logo\" alt=\"Or, A Chamfron and in base the letters IKEqC vert.\" src=\"http://scaikeqc.org/I3Logo3.png\">\n";
         print "</article>\n"; // End Logo block
         print "<article class=\"w3-col m9 l10 w3-theme w3-center w3-cell-middle\">\n"; // Title Block
             print "<H1>Inter-Kingdom Equestrian Competition</H1>\n";

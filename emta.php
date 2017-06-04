@@ -40,9 +40,9 @@ print "</div>\n";
 print "<div class=\"w3-container w3-theme-l4\">\n";
 print "<p>Tournament Assistant applications are OPEN.  Please email letters of introduction to \"ikeqc (at) scaikeqc (dot) org\" and the IKEqC Council will contact you with instructions.</p>\n";
 print "</div>\n";
-print "<div class=\"w3-container w3-theme-d4\">\n";
-print "<p>Tournament Assistant renewals are CLOSED.</p>\n";
-print "</div>\n";
+//print "<div class=\"w3-container w3-theme-d4\">\n";
+//print "<p>Tournament Assistant renewals are CLOSED.</p>\n";
+//print "</div>\n";
 
 
 

@@ -8,21 +8,11 @@
 
 $vars_start = get_defined_vars();
 session_start();
-include "../ikeqcfuncs.inc";
-include "../colors.inc";
-include "../index_funcs.inc";
+include "ikeqcfuncs.inc";
 
 OpenTOP("IKEqC AS LII");
 
-print "<section class=\"w3-row w3-theme\">\n"; // Banner
-print "<article class=\"w3-col m3 l2 w3-cell w3-theme w3-center\">\n"; // Logo Block
-print "<img title=\"Logo\" alt=\"Or, A Chamfron and in base the letters IKEqC vert.\" src=\"../I3Logo3.png\">\n";
-print "</article>\n"; // End Logo block
-print "<article class=\"w3-col m9 l10 w3-theme w3-center w3-cell-middle\">\n"; // Title Block
-print "<H1>Inter-Kingdom Equestrian Competition</H1>\n";
-print "<p>In the Fifty-Second Year of the Society of Creative Anachronism</p>\n";
-print "</article>\n"; // End Title block
-print "</section>\n"; // End Banner block
+halter();
 
 print "<section class=\"w3-row w3-theme\">\n"; // Main window
 
@@ -39,8 +29,10 @@ print "<a href=\"IKEqCScoresheetReedChop-ASLII.pdf\">Reed Chop Scoresheet</a> --
 print "<a href=\"IKEqCScoresheetArcherySingleShot-ASLII.pdf\">Mounted Archery Single Target</a> -- Publication date May 5, 2017<br>\n";
 print "<a href=\"IKEqCScoresheetArcheryTripleShot-ASLII.pdf\">Mounted Archery Triple Target</a> -- Publication date May 5, 2017</p>\n";
 
+print "<p><a href=\"IKEqC-LII_exp_r52-4.pdf\">Current Experimental Rules being considered</a> -- Publication date May 14, 2017</p>\n"   ;
+
 print "<hr>\n";
 print "<p><a href=\"http://scaikeqc.org/index.php\">Click here to return to the main page.</a></p>\n";
 print "</div>\n";
-
 print "</section>\n"; // End Main Window
+hoofer();
