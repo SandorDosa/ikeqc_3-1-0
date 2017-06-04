@@ -23,17 +23,29 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
 
   print "<article class=\"w3-col m9 l10 w3-theme\">\n"; // Content
 
+    print "<div class=\"w3-panel w3-theme-l2 w3-margin w3-center\">\n";
+      print "<H2>From the blog...</H2>\n";
+      $args = array( 'numberposts' => 1, 'post_status'=>"publish",'post_type'=>"post",'orderby'=>"post_date");
+      $postslist = get_posts( $args );
+      foreach ($postslist as $post) :  setup_postdata($post);
+        print "<h3>".get_the_title()."</h3>\n";
+        print "<p>\n".get_the_excerpt()."<hr>\n";
+        print "<a href=\"".get_the_permalink()."\">Read the full post</a> Posted on: ".get_the_date();
+        print "</p>\n";
+      endforeach;
+    print "</div>\n";
+
     include "special_notice.inc"; // Check for a special notice and display it.
 
     print "<section class=\"w3-container w3-center\">\n"; // Top 5 grid
     print "<article class=\"w3-row\">\n";
-    $F = mysqli_query($db_3, "SELECT g,a FROM ( SELECT '1' AS g,AVG(hsscore) AS a FROM ( SELECT SHSscore AS hsscore FROM heads_short) tmp1 ) tmp2 UNION ALL ( SELECT '2' AS g,AVG(hlscore) AS a FROM ( SELECT SHLscore AS hlscore FROM heads_long) tmp3 ) UNION ALL ( SELECT '3' AS g,AVG(rscore) AS a FROM ( SELECT SRscore AS rscore FROM rings) tmp4 ) UNION ALL ( SELECT '4' AS g,AVG(dscore) AS a FROM ( SELECT SDscore AS dscore FROM reeds) tmp5 ) UNION ALL ( SELECT '5' AS g,AVG(msscore) AS a FROM ( SELECT SMSscore AS msscore FROM ma_single) tmp7 ) UNION ALL ( SELECT '6' AS g,AVG(mtscore) AS a FROM ( SELECT SMTscore AS mtscore FROM ma_triple) tmp8 ) UNION ALL ( SELECT '7' AS g, '999' AS a ) ORDER BY a DESC");
+    $F = mysqli_query($db_3, "SELECT g,a FROM ( SELECT '1' AS g,AVG(hsscore) AS a FROM ( SELECT SHSscore AS hsscore FROM heads_short WHERE SHSseen = 'Y') tmp1 ) tmp2 UNION ALL ( SELECT '2' AS g,AVG(hlscore) AS a FROM ( SELECT SHLscore AS hlscore FROM heads_long WHERE SHLseen = 'Y') tmp3 ) UNION ALL ( SELECT '3' AS g,AVG(rscore) AS a FROM ( SELECT SRscore AS rscore FROM rings WHERE SRseen = 'Y') tmp4 ) UNION ALL ( SELECT '4' AS g,AVG(dscore) AS a FROM ( SELECT SDscore AS dscore FROM reeds WHERE SDseen = 'Y') tmp5 ) UNION ALL ( SELECT '5' AS g,AVG(msscore) AS a FROM ( SELECT SMSscore AS msscore FROM ma_single WHERE SMSseen = 'Y') tmp7 ) UNION ALL ( SELECT '6' AS g,AVG(mtscore) AS a FROM ( SELECT SMTscore AS mtscore FROM ma_triple WHERE SMTseen = 'Y') tmp8 ) UNION ALL ( SELECT '7' AS g, '999' AS a ) ORDER BY a DESC");
       IF ($FA = mysqli_fetch_assoc($F)) {
         do {
             SWITCH ($FA[0]) {
                 CASE 1:
                     print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-                    print "<p>Behead the Enemy - Short<br>\n";
+                    print "<p><a href=\"h21.php\">Behead the Enemy - Short</a><br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
                     $A = mysqli_query($db_3, "SELECT riders.Pname,heads_short.SHSscore,heads_short.DVN FROM riders LEFT JOIN heads_short ON riders.PID = heads_short.PID WHERE heads_short.SHSseen = 'Y' ORDER BY heads_short.SHSscore DESC LIMIT 5");
@@ -260,18 +272,6 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
   print "</article>\n"; // End Content window
 
   print "<article class=\"w3-col m3 l2 w3-theme\">\n"; // Sidebar begins
-
-    print "<div class=\"w3-panel w3-theme-l2 w3-center\">\n";
-      print "<H2>From the blog...</H2>\n";
-      $args = array( 'numberposts' => 1, 'post_status'=>"publish",'post_type'=>"post",'orderby'=>"post_date");
-      $postslist = get_posts( $args );
-      foreach ($postslist as $post) :  setup_postdata($post);
-        print "<h3>".get_the_title()."</h3>\n";
-        print "<p>\n".get_the_excerpt()."<hr>\n";
-        print "<a href=\"".get_the_permalink()."\">Read the full post</a><br>Posted on: ".get_the_date();
-        print "</p>\n";
-      endforeach;
-    print "</div>\n";
 
     print "<div class=\"w3-panel w3-theme-l4 w3-center\">\n";
     arc_list();
