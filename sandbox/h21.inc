@@ -23,4 +23,3 @@ function HeadsHeader($c) {
     print "</TABLE>\n";
     print "</DIV>\n";
 }
-?>

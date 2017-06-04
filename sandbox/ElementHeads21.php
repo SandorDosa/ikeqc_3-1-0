@@ -7,7 +7,7 @@ include "year.inc";
 include "h21.inc";
 
 // /Dev/Data is hardcoded here, actual use will pass this data via $_POST
-// include "dev_data.inc";
+include "dev_data.inc";
 // End /Dev/Data
 
 IF ($_SESSION['RunH21']) {
@@ -43,7 +43,7 @@ IF ($_SESSION['RunH21']) {
 
 // If $review is set, The run has been completed.
 
-    IF ($_POST['review'] > 0) {
+    IF ($_POST['run'] > 0) {
         IF (isset($_POST['Htime'])) {
             IF (is_numeric($_POST['Htime'])) {
                 IF (preg_match('/^[0-9]+\.[0-9]{2}$/', $_POST['Htime'])) {
@@ -119,11 +119,6 @@ IF ($_SESSION['RunH21']) {
         die;
     } // End Review Block
 
-    IF ($_POST['GoodRun'] == 1) {
-        $results1 = mysql_query("INSERT INTO heads_short (PID,HID,KID,EID,DVN,SHStime,SHSpenalty,SHSscore,SHSDQ,SHSseen,SHSyear) 
-VALUES ({$_SESSION['PID']},{$_SESSION['HID']},{$_SESSION['KID']},{$_SESSION['Event']},{$_SESSION['RiderDVN']},) ");
-        $results2 = mysql_query("UPDATE events_temp SET SHSscore = ")
-    }
     
 }
 
