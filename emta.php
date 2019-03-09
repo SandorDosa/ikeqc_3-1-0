@@ -30,7 +30,7 @@ print "<article class=\"w3-col m9 l10 w3-theme\">\n"; // Content
 
 print "<div class=\"w3-panel w3-theme-l2 w3-border w3-margin\">\n";
 print "<H3>Equestrian Marshal and Tournament Assistant Portal</H3>\n";
-print "<p>Welcome IKEqC Event runners!<br>While it would be accurate to say that your contibutions are invaluable to the IKEqC its also quite true to say we couldn't do it without you!<br>On behalf of the IKEqC Council, we are glad your here.</p>\n";
+print "<p>Welcome IKEqC Event runners!<br>While it would be accurate to say that your contributions are invaluable to the IKEqC its also quite true to say we couldn't do it without you!<br>On behalf of the IKEqC Council, we are glad your here.</p>\n";
 print "<div class=\"w3-container w3-theme-l4\">\n";
 print "<p>This page is dedicated to helping you run your Event or Practice and in entering your scores.</p>\n";
 print "</div>\n";
