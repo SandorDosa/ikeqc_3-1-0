@@ -3,12 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="b82a0a14-32d8-40ec-95a4-af9b5b592faf" name="Vagrant" url="http://localhost:8888">
-        <fileTransfer host="localhost" port="2222" accessType="SFTP">
-          <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" />
-          </advancedOptions>
-          <option name="port" value="2222" />
-        </fileTransfer>
+        <fileTransfer port="0" mountedRoot="/Applications/MAMP/htdocs" accessType="MOUNT" />
       </webServer>
     </option>
   </component>

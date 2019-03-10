@@ -86,10 +86,10 @@ function OpenHTML($c1) { //For all of the pages that deal with data entry.
     print "<html lang=\"en\">\n";
     print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
-    //print "<link rel=\"stylesheet\" href=\"http://www.w3schools.com/w3css/4/w3pro.css\">\n"; // original
+    //print "<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3pro.css\">\n"; // original
     print "<link rel=\"stylesheet\" href=\"w3css_4_local.css\">\n"; // local copy of the v4 W3css
     print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
-    print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
+    print "<link rel=\"icon\" type=\"image/png\" href=\"https://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     // print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     // Farcebooke JS code
@@ -103,7 +103,7 @@ function OpenHTML($c1) { //For all of the pages that deal with data entry.
     print "}(document, 'script', 'facebook-jssdk'));</script>\n";
 
 
-} // For all of the back-of-the-house pages.
+} // For all of the back-of-the-house pages.  Error is false-positive in supplied Facebook javascript.
 
 function OpenTOP($c1) { //For all of the front-of-the-house pages
 
@@ -111,9 +111,9 @@ function OpenTOP($c1) { //For all of the front-of-the-house pages
     print "<html lang=\"en\">\n";
     print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
-    print "<link rel=\"stylesheet\" href=\"http://scaikeqc.org/w3css_4_local.css\">\n"; // local copy of the v4 W3css
-    print "<link rel=\"stylesheet\" href=\"http://scaikeqc.org/ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
-    print "<link rel=\"icon\" type=\"image/png\" href=\"http://scaikeqc.org/sandbox/favicon.ico\" />\n";
+    print "<link rel=\"stylesheet\" href=\"https://scaikeqc.org/w3css_4_local.css\">\n"; // local copy of the v4 W3css
+    print "<link rel=\"stylesheet\" href=\"https://scaikeqc.org/ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
+    print "<link rel=\"icon\" type=\"image/png\" href=\"https://scaikeqc.org/sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: #FFCC00;\">\n";
     // Farcebooke JS code
     print "<div id=\"fb-root\"></div>\n";
@@ -124,7 +124,7 @@ function OpenTOP($c1) { //For all of the front-of-the-house pages
       print "js.src = \"//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9\";\n";
       print "fjs.parentNode.insertBefore(js, fjs);\n";
     print "}(document, 'script', 'facebook-jssdk'));</script>\n";
-} // For all of the Front-of-the-house Pages
+} // For all of the Front-of-the-house Pages   Error is false-positive in supplied Facebook javascript.
 
 function ShowAlarms() {
     IF (isset($_SESSION['Caution']) AND !is_null($_SESSION['Caution'])) {
@@ -324,37 +324,37 @@ function GroupLook($b) {
 
 function arc_list() {
     print "<strong>Scores Archive</strong><p>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xlviii\">XLVIII</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xlvii\">XLVI</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xlv\">XLV</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xliv\">XLIV</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xliii\">XLIII</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xlii\">XLII</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xli\">XLI</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xl\">XL</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xxxix\">XXXIX</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xxxviii\">XXXVIII</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xxxvii\">XXXVII</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xxxvi\">XXXVI</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/xxxv\">XXXV</a><br>\n";
-    print "<a href=\"http://scaikeqc.org/archive/index-2.html\">Archive Home</a></p>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xlviii\">XLVIII</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xlvii\">XLVI</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xlv\">XLV</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xliv\">XLIV</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xliii\">XLIII</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xlii\">XLII</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xli\">XLI</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xl\">XL</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xxxix\">XXXIX</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xxxviii\">XXXVIII</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xxxvii\">XXXVII</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xxxvi\">XXXVI</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/xxxv\">XXXV</a><br>\n";
+    print "<a href=\"https://scaikeqc.org/archive/index-2.html\">Archive Home</a></p>\n";
 } // Organized list of Archive links
 
 function hoofer() {
     print "<section class=\"w3-container w3-theme-d5 w3-center\">\n";
         print "<div class=\"w3-bar w3-center\">\n"; // Quick Links
-            print "<a href=\"http://scaikeqc.org/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Home</a>\n";
-            print "<a href=\"http://scaikeqc.org/rules/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Rules</a>\n";
-            print "<a href=\"http://scaikeqc.org/dl/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Downloads</a>\n";
-            print "<a href=\"http://scaikeqc.org/exp.php\" class=\"w3-bar-item w3-button w3-mobile\">Experiments</a>\n";
-            print "<a href=\"http://scaikeqc.org/archive/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Scores Archive</a>\n";
-            print "<a href=\"http://scaikeqc.org/blog/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Blog</a>\n";
-            print "<a href=\"http://scaikeqc.org/contact.php\" class=\"w3-bar-item w3-button w3-mobile\">Contact Us</a>\n";
-            print "<a href=\"http://scaikeqc.org/emta.php\" class=\"w3-bar-item w3-button w3-mobile\">EM/TA Portal</a>\n";
-            print "<a href=\"http://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Rider Portal</a>\n";
-            print "<a href=\"http://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Made Possible by:</a>\n";
-            print "<a href=\"http://scaikeqc.org/privacy.php\" class=\"w3-bar-item w3-button w3-mobile\">Privacy Policy</a>\n";
-            print "<div class=\"w3-bar-item w3-mobile fb-like\" data-href=\"http://scaikeqc.org\" data-layout=\"button\" data-action=\"like\" data-size=\"small\" data-show-faces=\"false\" data-share=\"true\"></div>";
+            print "<a href=\"https://scaikeqc.org/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Home</a>\n";
+            print "<a href=\"https://scaikeqc.org/rules/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Rules</a>\n";
+            print "<a href=\"https://scaikeqc.org/dl/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Downloads</a>\n";
+            print "<a href=\"https://scaikeqc.org/exp.php\" class=\"w3-bar-item w3-button w3-mobile\">Experiments</a>\n";
+            print "<a href=\"https://scaikeqc.org/archive/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Scores Archive</a>\n";
+            print "<a href=\"https://scaikeqc.org/blog/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Blog</a>\n";
+            print "<a href=\"https://scaikeqc.org/contact.php\" class=\"w3-bar-item w3-button w3-mobile\">Contact Us</a>\n";
+            print "<a href=\"https://scaikeqc.org/emta.php\" class=\"w3-bar-item w3-button w3-mobile\">EM/TA Portal</a>\n";
+            print "<a href=\"https://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Rider Portal</a>\n";
+            print "<a href=\"https://scaikeqc.org/not_yet.php\" class=\"w3-bar-item w3-button w3-mobile\">Made Possible by:</a>\n";
+            print "<a href=\"https://scaikeqc.org/privacy.php\" class=\"w3-bar-item w3-button w3-mobile\">Privacy Policy</a>\n";
+            print "<div class=\"w3-bar-item w3-mobile fb-like\" data-href=\"https://scaikeqc.org\" data-layout=\"button\" data-action=\"like\" data-size=\"small\" data-show-faces=\"false\" data-share=\"true\"></div>";
         print "</div>"; // End Quick Links
     print "</section>\n";
 } // Containerized footer section with links.
@@ -362,21 +362,55 @@ function hoofer() {
 function halter() {
     print "<section class=\"w3-row w3-theme\">\n"; // Banner
         print "<article class=\"w3-col m3 l2 w3-cell w3-theme w3-center\">\n"; // Logo Block
-            print "<img title=\"Logo\" alt=\"Or, A Chamfron and in base the letters IKEqC vert.\" src=\"http://scaikeqc.org/I3Logo3.png\">\n";
+            print "<img title=\"Logo\" alt=\"Or, A Chamfron and in base the letters IKEqC vert.\" src=\"https://scaikeqc.org/I3Logo3.png\">\n";
         print "</article>\n"; // End Logo block
         print "<article class=\"w3-col m9 l10 w3-theme w3-center w3-cell-middle\">\n"; // Title Block
             print "<H1>Inter-Kingdom Equestrian Competition</H1>\n";
-            print "<p>In the Fifty-Second Year of the Society of Creative Anachronism</p>\n";
+            long_as();
             print "<div class=\"w3-bar w3-center\">\n"; // Quick Links
-                print "<a href=\"http://scaikeqc.org/rules/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Rules</a>\n";
-                print "<a href=\"http://scaikeqc.org/emta.php\" class=\"w3-bar-item w3-button w3-mobile\">EM/TA Portal</a>\n";
-                print "<a href=\"http://scaikeqc.org/dl/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Forms/Downloads</a>\n";
-                print "<a href=\"http://scaikeqc.org/blog/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Blog</a>\n";
+                print "<a href=\"https://scaikeqc.org/rules/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Rules</a>\n";
+                print "<a href=\"https://scaikeqc.org/emta.php\" class=\"w3-bar-item w3-button w3-mobile\">EM/TA Portal</a>\n";
+                print "<a href=\"https://scaikeqc.org/dl/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Forms/Downloads</a>\n";
+                print "<a href=\"https://scaikeqc.org/blog/index.php\" class=\"w3-bar-item w3-button w3-mobile\">Blog</a>\n";
             print "</div>"; // End Quick Links
         print "</article>\n"; // End Title block
     print "</section>\n"; // End Banner block
 } // Containerized header section with links.
 
+function long_as() {
+    $date1 = new DateTime("1966-05-01"); // The recognized first day of the SCA Calender
+    $date2 = new DateTime("now"); // Date on load time.
+    $interval = $date1->diff($date2);
+    $as_long = $interval->y;
+
+    switch($as_long) {
+        case 52:
+            print "<p>In the Fifty-Third Year of the Society of Creative Anachronism</p>\n";
+            break;
+        case 53:
+            print "<p>In the Fifty-Forth Year of the Society of Creative Anachronism</p>\n";
+            break;
+        case 54:
+            print "<p>In the Fifty-Fifth Year of the Society of Creative Anachronism</p>\n";
+            break;
+        case 55:
+            print "<p>In the Fifty-Sixth Year of the Society of Creative Anachronism</p>\n";
+            break;
+        case 56:
+            print "<p>In the Fifty-Seventh Year of the Society of Creative Anachronism</p>\n";
+            break;
+        case 57:
+            print "<p>In the Fifty-Eighth Year of the Society of Creative Anachronism</p>\n";
+            break;
+        case 58:
+            print "<p>In the Fifty-Ninth Year of the Society of Creative Anachronism</p>\n";
+            break;
+        default:
+            print "<p>In the current age of the Society of Creative Anachronism</p>\n";
+    } // NOTE: The words are future tense one year higher than the mathematical result.
+
+
+} // Dynamically calculate the words for the title page, based on a calculation of the current AS date.
 
 
 

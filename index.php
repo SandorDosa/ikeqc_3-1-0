@@ -12,9 +12,9 @@ include "year.inc";
 include "ikeqcfuncs.inc";
 include "index_funcs.inc";
 include "colors.inc";
-require "./blog/wp-blog-header.php"; //link to your blog-header.php using relative path
+require "blog/wp-blog-header.php"; //link to your blog-header.php using relative path
 
-OpenTOP("IKEqC AS LII");
+OpenTOP("IKEqC AS LIII");
 
 halter();
 
@@ -39,7 +39,7 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
 
     print "<section class=\"w3-container w3-center\">\n"; // Top 5 grid
     print "<article class=\"w3-row\">\n";
-    $F = mysqli_query($db_3, "SELECT g,a FROM ( SELECT '1' AS g,AVG(hsscore) AS a FROM ( SELECT SHSscore AS hsscore FROM heads_short WHERE SHSseen = 'Y') tmp1 ) tmp2 UNION ALL ( SELECT '2' AS g,AVG(hlscore) AS a FROM ( SELECT SHLscore AS hlscore FROM heads_long WHERE SHLseen = 'Y') tmp3 ) UNION ALL ( SELECT '3' AS g,AVG(rscore) AS a FROM ( SELECT SRscore AS rscore FROM rings WHERE SRseen = 'Y') tmp4 ) UNION ALL ( SELECT '4' AS g,AVG(dscore) AS a FROM ( SELECT SDscore AS dscore FROM reeds WHERE SDseen = 'Y') tmp5 ) UNION ALL ( SELECT '5' AS g,AVG(msscore) AS a FROM ( SELECT SMSscore AS msscore FROM ma_single WHERE SMSseen = 'Y') tmp7 ) UNION ALL ( SELECT '6' AS g,AVG(mtscore) AS a FROM ( SELECT SMTscore AS mtscore FROM ma_triple WHERE SMTseen = 'Y') tmp8 ) UNION ALL ( SELECT '7' AS g, '999' AS a ) ORDER BY a DESC");
+    $F = mysqli_query($db_3, "SELECT g,a FROM ( SELECT '1' AS g,AVG(hsscore) AS a FROM ( SELECT SHSscore AS hsscore FROM heads_short WHERE SHSseen = 'Y' && SHSyear = '$anyear') tmp1 ) tmp2 UNION ALL ( SELECT '2' AS g,AVG(hlscore) AS a FROM ( SELECT SHLscore AS hlscore FROM heads_long WHERE SHLseen = 'Y' && SHLyear = '$anyear') tmp3 ) UNION ALL ( SELECT '3' AS g,AVG(rscore) AS a FROM ( SELECT SRscore AS rscore FROM rings WHERE SRseen = 'Y' && SRyear = '$anyear') tmp4 ) UNION ALL ( SELECT '4' AS g,AVG(dscore) AS a FROM ( SELECT SDscore AS dscore FROM reeds WHERE SDseen = 'Y' && SDyear = '$anyear') tmp5 ) UNION ALL ( SELECT '5' AS g,AVG(msscore) AS a FROM ( SELECT SMSscore AS msscore FROM ma_single WHERE SMSseen = 'Y' && SMSyear = '$anyear') tmp7 ) UNION ALL ( SELECT '6' AS g,AVG(mtscore) AS a FROM ( SELECT SMTscore AS mtscore FROM ma_triple WHERE SMTseen = 'Y' && SMTyear = '$anyear') tmp8 ) UNION ALL ( SELECT '7' AS g, '999' AS a ) ORDER BY a DESC");
       IF ($FA = mysqli_fetch_assoc($F)) {
         do {
             SWITCH ($FA[0]) {
@@ -48,7 +48,7 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p><a href=\"h21.php\">Behead the Enemy - Short</a><br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_short.SHSscore,heads_short.DVN FROM riders LEFT JOIN heads_short ON riders.PID = heads_short.PID WHERE heads_short.SHSseen = 'Y' ORDER BY heads_short.SHSscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_short.SHSscore,heads_short.DVN FROM riders LEFT JOIN heads_short ON riders.PID = heads_short.PID WHERE heads_short.SHSseen = 'Y' && heads_short.SHSyear = '$anyear' ORDER BY heads_short.SHSscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
@@ -84,7 +84,7 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p>Behead the Enemy - Long<br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_long.SHLscore,heads_long.DVN FROM riders LEFT JOIN heads_long ON riders.PID = heads_long.PID WHERE heads_long.SHLseen = 'Y' ORDER BY heads_long.SHLscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_long.SHLscore,heads_long.DVN FROM riders LEFT JOIN heads_long ON riders.PID = heads_long.PID WHERE heads_long.SHLseen = 'Y' && heads_long.SHLyear = '$anyear' ORDER BY heads_long.SHLscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
@@ -121,7 +121,7 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p>Ring Tilt<br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,rings.SRscore,rings.DVN FROM riders LEFT JOIN rings ON riders.PID = rings.PID WHERE rings.SRseen = 'Y' ORDER BY rings.SRscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,rings.SRscore,rings.DVN FROM riders LEFT JOIN rings ON riders.PID = rings.PID WHERE rings.SRseen = 'Y' && rings.SRyear = '$anyear' ORDER BY rings.SRscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
@@ -157,7 +157,7 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p>Reed Chop<br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,reeds.SDscore,reeds.DVN FROM riders LEFT JOIN reeds ON riders.PID = reeds.PID WHERE reeds.SDseen = 'Y' ORDER BY reeds.SDscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,reeds.SDscore,reeds.DVN FROM riders LEFT JOIN reeds ON riders.PID = reeds.PID WHERE reeds.SDseen = 'Y' && reeds.SDyear = '$anyear' ORDER BY reeds.SDscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
@@ -193,7 +193,7 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p><a href=\"mast.php\">Mounted Archery -- Single</a><br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_single.SMSscore,ma_single.DVN FROM riders LEFT JOIN ma_single ON riders.PID = ma_single.PID WHERE ma_single.SMSseen = 'Y' ORDER BY ma_single.SMSscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_single.SMSscore,ma_single.DVN FROM riders LEFT JOIN ma_single ON riders.PID = ma_single.PID WHERE ma_single.SMSseen = 'Y' && ma_single.SMSyear = '$anyear' ORDER BY ma_single.SMSscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
@@ -229,7 +229,7 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p>Mounted Archery -- Triple<br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_triple.SMTscore,ma_triple.DVN FROM riders LEFT JOIN ma_triple ON riders.PID = ma_triple.PID WHERE ma_triple.SMTseen = 'Y' ORDER BY ma_triple.SMTscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_triple.SMTscore,ma_triple.DVN FROM riders LEFT JOIN ma_triple ON riders.PID = ma_triple.PID WHERE ma_triple.SMTseen = 'Y' && ma_triple.SMTyear = '$anyear' ORDER BY ma_triple.SMTscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
