@@ -111,9 +111,9 @@ function OpenTOP($c1) { //For all of the front-of-the-house pages
     print "<html lang=\"en\">\n";
     print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
-    print "<link rel=\"stylesheet\" href=\"https://scaikeqc.org/w3css_4_local.css\">\n"; // local copy of the v4 W3css
-    print "<link rel=\"stylesheet\" href=\"https://scaikeqc.org/ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
-    print "<link rel=\"icon\" type=\"image/png\" href=\"https://scaikeqc.org/sandbox/favicon.ico\" />\n";
+    print "<link rel=\"stylesheet\" href=\"w3css_4_local.css\">\n"; // local copy of the v4 W3css
+    print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
+    print "<link rel=\"icon\" type=\"image/png\" href=\"sandbox/favicon.ico\" />\n";
     print "<body style=\"min-height: 100vh; background-color: #FFCC00;\">\n";
     // Farcebooke JS code
     print "<div id=\"fb-root\"></div>\n";
