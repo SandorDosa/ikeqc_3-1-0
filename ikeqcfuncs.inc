@@ -87,10 +87,17 @@ function OpenHTML($c1) { //For all of the pages that deal with data entry.
     print "<title>$c1</title>\n";
     print "<meta name=\"viewport\" charset=\"UTF-8\" content=\"width=device-width, initial-scale=1\">\n";
     //print "<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3pro.css\">\n"; // original
-    print "<link rel=\"stylesheet\" href=\"w3css_4_local.css\">\n"; // local copy of the v4 W3css
-    print "<link rel=\"stylesheet\" href=\"ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
-    print "<link rel=\"icon\" type=\"image/png\" href=\"https://scaikeqc.org/sandbox/favicon.ico\" />\n";
-    print "<body style=\"min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
+    print "<link rel=\"stylesheet\" href=\"./w3css_4_local.css\">\n"; // local copy of the v4 W3css
+    print "<link rel=\"stylesheet\" href=\"./ikeqc_lii.css\">\n"; // #FFCC00 (IKEqC logo background) color theme
+    print "<link rel=\"icon\" type=\"image/png\" href=\"./sandbox/favicon.ico\" />\n";
+
+    IF (isset($_SESSION['BG'])) {
+        $BG = $_SESSION['BG'];
+    } ELSE {
+        $BG = "#FFCC00";
+    }
+
+    print "<body style=\"min-height: 100vh; background-color: $BG;\">\n";
     // print "<body style=\"max-width:500px; min-height: 100vh; background-color: {$_SESSION['BG']};\">\n";
     // Farcebooke JS code
     print "<div id=\"fb-root\"></div>\n";
@@ -362,7 +369,7 @@ function hoofer() {
 function halter() {
     print "<section class=\"w3-row w3-theme\">\n"; // Banner
         print "<article class=\"w3-col m3 l2 w3-cell w3-theme w3-center\">\n"; // Logo Block
-            print "<img title=\"Logo\" alt=\"Or, A Chamfron and in base the letters IKEqC vert.\" src=\"https://scaikeqc.org/I3Logo3.png\">\n";
+            print "<img title=\"Logo\" alt=\"Or, A Chamfron and in base the letters IKEqC vert.\" src=\"I3Logo3.png\">\n";
         print "</article>\n"; // End Logo block
         print "<article class=\"w3-col m9 l10 w3-theme w3-center w3-cell-middle\">\n"; // Title Block
             print "<H1>Inter-Kingdom Equestrian Competition</H1>\n";
@@ -412,28 +419,58 @@ function long_as() {
 
 } // Dynamically calculate the words for the title page, based on a calculation of the current AS date.
 
+function div_tags($div) {
+    SWITCH ($div) {
+        CASE 1:
+            print "<td class='w3-theme-d5'>Canter</td>\n";
+            break;
+        CASE 2:
+            print "<td class='w3-theme-d5'>Trot</td>\n";
+            break;
+        CASE 3:
+            print "<td class='w3-theme-d5'>Walk</td>\n";
+            break;
+        DEFAULT:
+            print "<td class='w3-theme-d5'>Walk</td>\n";
+            break;
+    }
+}
 
+function pend_tags($seen) {
+    IF ($seen == "U") {
+        print "<td class='w3-theme-d5'>Pending</td>\n";
+    }
+} // Depreciated
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function status_tags($seen) {
+    SWITCH ($seen) {
+        CASE "A":
+            print "<td class='w3-theme-d5'>Offical</td>\n"; // Accepted -- formally code "Y"
+            break;
+        CASE "D":
+            print "<td class='w3-theme-d5'>Exceeded</td>\n"; // Accepted Low -- depreciated
+            break;
+        CASE "H":
+            print "<td class='w3-theme-d5'>Hidden</td>\n"; // new for Scorekeeper v3.1.0
+            break;
+        CASE "R":
+            print "<td class='w3-theme-d5'>Under Review</td>\n"; // new for Scorekeeper v3.1.0
+            break;
+        CASE "U":
+            print "<td class='w3-theme-d5'>Pending</td>\n"; // Reported but not confirmed -- formally code "N"
+            break;
+        CASE "W":
+            print "<td class='w3-theme-d5'>Withdrawn</td>\n"; // new for Scorekeeper v3.1.0
+            break;
+        CASE "Y":
+            print "<td class='w3-theme-d5'>Offical</td>\n"; // Accepted -- formally code "Y"
+            break;
+        CASE "Z":
+            print "<td class='w3-theme-d5'>Deleted</td>\n"; // Deleted
+            break;
+        default:
+            print "<td class='w3-theme-d5'>Hidden</td>\n"; // new for Scorekeeper v3.1.0
+            break;
+    }
+}
 

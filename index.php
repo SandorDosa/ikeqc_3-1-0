@@ -48,24 +48,12 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p><a href=\"h21.php\">Behead the Enemy - Short</a><br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_short.SHSscore,heads_short.DVN FROM riders LEFT JOIN heads_short ON riders.PID = heads_short.PID WHERE heads_short.SHSseen = 'Y' && heads_short.SHSyear = '$anyear' ORDER BY heads_short.SHSscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_short.SHSscore,heads_short.DVN,heads_short.SHSseen FROM riders LEFT JOIN heads_short ON riders.PID = heads_short.PID WHERE ( heads_short.SHSseen = 'Y' || heads_short.SHSseen = 'U') && heads_short.SHSyear = '$anyear' ORDER BY heads_short.SHSscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
-                            SWITCH ($AA[2]) {
-                                CASE 1:
-                                    print "<td class='w3-theme-d5'>Canter</td>\n";
-                                    break;
-                                CASE 2:
-                                    print "<td class='w3-theme-d5'>Trot</td>\n";
-                                    break;
-                                CASE 3:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                                DEFAULT:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                            }
+                            div_tags($AA[2]);
+                            pend_tags($AA[3]);
                             $count++;
                         } while ($AA = mysqli_fetch_array($A));
 
@@ -81,27 +69,15 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     BREAK; // Heads Short
                 CASE 2:
                     print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-                    print "<p>Behead the Enemy - Long<br>\n";
+                    print "<p><a href=\"h30.php\">Behead the Enemy - Long</a><br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_long.SHLscore,heads_long.DVN FROM riders LEFT JOIN heads_long ON riders.PID = heads_long.PID WHERE heads_long.SHLseen = 'Y' && heads_long.SHLyear = '$anyear' ORDER BY heads_long.SHLscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,heads_long.SHLscore,heads_long.DVN,heads_long.SHLseen FROM riders LEFT JOIN heads_long ON riders.PID = heads_long.PID WHERE ( heads_long.SHLseen = 'Y' || heads_long.SHLseen = 'U') && heads_long.SHLyear = '$anyear' ORDER BY heads_long.SHLscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
-                            SWITCH ($AA[2]) {
-                                CASE 1:
-                                    print "<td class='w3-theme-d5'>Canter</td>\n";
-                                    break;
-                                CASE 2:
-                                    print "<td class='w3-theme-d5'>Trot</td>\n";
-                                    break;
-                                CASE 3:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                                DEFAULT:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                            }
+                            div_tags($AA[2]);
+                            pend_tags($AA[3]);
                             $count++;
                         } while ($AA = mysqli_fetch_array($A));
 
@@ -118,27 +94,15 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     BREAK; // Heads Long
                 CASE 3:
                     print "<div class=\"w3-col m6 l4 w3-cell w3-theme-l3 w3-border w3-padding-small w3-center\">\n";
-                    print "<p>Ring Tilt<br>\n";
+                    print "<p><a href=\"rings.php\">Ring Tilt</a><br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,rings.SRscore,rings.DVN FROM riders LEFT JOIN rings ON riders.PID = rings.PID WHERE rings.SRseen = 'Y' && rings.SRyear = '$anyear' ORDER BY rings.SRscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,rings.SRscore,rings.DVN,rings.SRseen FROM riders LEFT JOIN rings ON riders.PID = rings.PID WHERE (rings.SRseen = 'Y' || rings.SRseen = 'U') && rings.SRyear = '$anyear' ORDER BY rings.SRscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
-                            SWITCH ($AA[2]) {
-                                CASE 1:
-                                    print "<td class='w3-theme-d5'>Canter</td>\n";
-                                    break;
-                                CASE 2:
-                                    print "<td class='w3-theme-d5'>Trot</td>\n";
-                                    break;
-                                CASE 3:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                                DEFAULT:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                            }
+                            div_tags($AA[2]);
+                            pend_tags($AA[3]);
                             $count++;
                         } while ($AA = mysqli_fetch_array($A));
 
@@ -157,24 +121,12 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p>Reed Chop<br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,reeds.SDscore,reeds.DVN FROM riders LEFT JOIN reeds ON riders.PID = reeds.PID WHERE reeds.SDseen = 'Y' && reeds.SDyear = '$anyear' ORDER BY reeds.SDscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,reeds.SDscore,reeds.DVN,reeds.SDseen FROM riders LEFT JOIN reeds ON riders.PID = reeds.PID WHERE ( reeds.SDseen = 'Y' || reeds.SDseen = 'U' ) && reeds.SDyear = '$anyear' ORDER BY reeds.SDscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
-                            SWITCH ($AA[2]) {
-                                CASE 1:
-                                    print "<td class='w3-theme-d5'>Canter</td>\n";
-                                    break;
-                                CASE 2:
-                                    print "<td class='w3-theme-d5'>Trot</td>\n";
-                                    break;
-                                CASE 3:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                                DEFAULT:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                            }
+                            div_tags($AA[2]);
+                            pend_tags($AA[3]);
                             $count++;
                         } while ($AA = mysqli_fetch_array($A));
 
@@ -193,24 +145,12 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p><a href=\"mast.php\">Mounted Archery -- Single</a><br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_single.SMSscore,ma_single.DVN FROM riders LEFT JOIN ma_single ON riders.PID = ma_single.PID WHERE ma_single.SMSseen = 'Y' && ma_single.SMSyear = '$anyear' ORDER BY ma_single.SMSscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_single.SMSscore,ma_single.DVN,ma_single.SMSseen FROM riders LEFT JOIN ma_single ON riders.PID = ma_single.PID WHERE ( ma_single.SMSseen = 'Y' || ma_single.SMSseen = 'U' ) && ma_single.SMSyear = '$anyear' ORDER BY ma_single.SMSscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
-                            SWITCH ($AA[2]) {
-                                CASE 1:
-                                    print "<td class='w3-theme-d5'>Canter</td>\n";
-                                    break;
-                                CASE 2:
-                                    print "<td class='w3-theme-d5'>Trot</td>\n";
-                                    break;
-                                CASE 3:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                                DEFAULT:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                            }
+                            div_tags($AA[2]);
+                            pend_tags($AA[3]);
                             $count++;
                         } while ($AA = mysqli_fetch_array($A));
 
@@ -229,24 +169,12 @@ print "<section class=\"w3-row w3-theme w3-margin\">\n"; // Main window
                     print "<p>Mounted Archery -- Triple<br>\n";
                     print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
                     $count = 0;
-                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_triple.SMTscore,ma_triple.DVN FROM riders LEFT JOIN ma_triple ON riders.PID = ma_triple.PID WHERE ma_triple.SMTseen = 'Y' && ma_triple.SMTyear = '$anyear' ORDER BY ma_triple.SMTscore DESC LIMIT 5");
+                    $A = mysqli_query($db_3, "SELECT riders.Pname,ma_triple.SMTscore,ma_triple.DVN,ma_triple.SMTseen FROM riders LEFT JOIN ma_triple ON riders.PID = ma_triple.PID WHERE ( ma_triple.SMTseen = 'Y' || ma_triple.SMTseen = 'U') && ma_triple.SMTyear = '$anyear' ORDER BY ma_triple.SMTscore DESC LIMIT 5");
                     IF ($AA = mysqli_fetch_array($A)) {
                         do {
                             print "<tr><td class='w3-left-align'>{$AA[0]}</td><td class='w3-right-align'>{$AA[1]}</td>";
-                            SWITCH ($AA[2]) {
-                                CASE 1:
-                                    print "<td class='w3-theme-d5'>Canter</td>\n";
-                                    break;
-                                CASE 2:
-                                    print "<td class='w3-theme-d5'>Trot</td>\n";
-                                    break;
-                                CASE 3:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                                DEFAULT:
-                                    print "<td class='w3-theme-d5'>Walk</td>\n";
-                                    break;
-                            }
+                            div_tags($AA[2]);
+                            pend_tags($AA[3]);
                             $count++;
                         } while ($AA = mysqli_fetch_array($A));
 

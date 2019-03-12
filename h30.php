@@ -26,7 +26,7 @@ print "<div class=\"w3-panel w3-theme-l2 w3-border w3-center\">\n";
 print "<H1>Behead the Enemy - Long</H1>\n";
 print "<div class='w3-centered'><table style='margin: 0 auto;'>\n";
 $count = 0;
-$A = mysqli_query($db_3, "SELECT riders.Pname,heads_short.SHSscore,heads_short.DVN,events.Ename,heads_short.SHSseen FROM riders LEFT JOIN heads_short ON riders.PID = heads_short.PID LEFT JOIN events ON events.EID = heads_short.EID WHERE ( heads_short.SHSseen = 'Y' || heads_short.SHSseen = 'U' ) &&  heads_short.SHSyear = $anyear ORDER BY heads_short.SHSscore DESC");
+$A = mysqli_query($db_3, "SELECT riders.Pname,heads_long.SHLscore,heads_long.DVN,events.Ename,heads_long.SHLseen FROM riders LEFT JOIN heads_long ON riders.PID = heads_long.PID LEFT JOIN events ON events.EID = heads_long.EID WHERE ( heads_long.SHLseen = 'Y' || heads_long.SHLseen = 'U' ) && heads_long.SHLyear = $anyear ORDER BY heads_long.SHLscore DESC");
 IF ($AA = mysqli_fetch_array($A)) {
     print "<tr><th class='w3-left-align'>Name</th><th class='w3-center'>Score</th><th>Div</th><th class='w3-center'>Event</th></tr>\n";
     do {
@@ -42,7 +42,7 @@ print "<a href=\"http://scaikeqc.org/index.php\">Click here to return to the mai
 print "</div>\n";
 
 print "<div class=\"w3-panel w3-theme-l2 w3-center\">\n";
-print "<p>For Behead the Enemy - Short, Riders weave through six poles, spaced at 21 feet intervals, striking at target heads on the four center poles.  Score is calculated based on time, the number of heads struck, the number of weaves made, and the divisional gait.</p>\n";
+print "<p>For Behead the Enemy - Long, Riders weave through six poles, spaced at 30 feet intervals, striking at target heads on the four center poles.  Score is calculated based on time, the number of heads struck, the number of weaves made, and the divisional gait.</p>\n";
 print "<p>See an error?  Please let us know by email at \"ikeqc (at) scaikeqc (dot) org\".</p>\n";
 
 print "</div>\n";
